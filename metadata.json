@@ -1,0 +1,6 @@
+{
+  "name": "Abdul Qabid Siaka | Creative Technologist Portfolio",
+  "description": "Interactive portfolio for Abdul Qabid Siaka — Software Developer, Graphic Designer, and AR Creator. Features interactive Build, Design, and AR worlds, case studies, skill constellation, and recruiter mode.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
