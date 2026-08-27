@@ -222,7 +222,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Sarah Jenkins"
+                    placeholder="e.g. user"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl bg-[#FAFAF7] border-2 border-[#111111] text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:bg-white"
@@ -236,7 +236,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <input
                     type="email"
                     required
-                    placeholder="sarah@company.com"
+                    placeholder="user@domain.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl bg-[#FAFAF7] border-2 border-[#111111] text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:bg-white"

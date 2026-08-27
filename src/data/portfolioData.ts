@@ -162,31 +162,6 @@ export const BUILD_PROJECTS: Project[] = [
     role: 'Lead UI/UX & Web Developer',
     liveUrl: 'https://grandioseglam.vercel.app/',
     githubUrl: 'https://github.com/alqabid'
-  },
-  {
-    id: 'autoresume-ai',
-    title: 'AutoResume AI',
-    category: 'build',
-    subtitle: 'Semantic Skill Extraction & ATS Optimizer',
-    tagline: 'Transform tech resumes into tailored ATS-compliant profiles.',
-    description: 'An automated analyzer extracting keyword taxonomies, technical competencies, and semantic job description matches using natural language embeddings.',
-    problem: 'Job seekers struggle to understand how applicant tracking systems parse their engineering experience.',
-    solution: 'Built an interactive parser that tokenizes resumes, highlights missing domain competencies, and suggests high-impact bullet point phrasing.',
-    features: [
-      'PDF & Word document multi-section parser',
-      'Semantic keyword clustering across 200+ developer frameworks',
-      'Match percentage calculation against target job descriptions'
-    ],
-    technologies: ['Python', 'FastAPI', 'NLP', 'React', 'Tailwind CSS'],
-    metrics: [
-      { label: 'Parsing Accuracy', value: '96%' },
-      { label: 'Processing Speed', value: '< 1.2s' }
-    ],
-    previewType: 'image',
-    previewUrl: 'https://api.microlink.io?url=https%3A%2F%2Fgithub.com%2Falqabid&screenshot=true&meta=false&embed=screenshot.url',
-    accentColor: '#C9B8FF',
-    role: 'Full-Stack Developer',
-    githubUrl: 'https://github.com/alqabid'
   }
 ];
 
@@ -601,17 +576,17 @@ export const AR_LENSES: ARLens[] = [
 ];
 
 export const SKILL_NODES: SkillNode[] = [
-  { id: 'react', name: 'React', category: 'code', level: 92, description: 'Component architecture, hooks, state machines, Motion animations, performance optimization.', connectedProjects: ['medvision', 'yugogoo', 'autoresume-ai'] },
-  { id: 'typescript', name: 'TypeScript', category: 'code', level: 90, description: 'Strict typing, generic interfaces, scalable full-stack codebases.', connectedProjects: ['medvision', 'yugogoo'] },
-  { id: 'python', name: 'Python', category: 'code', level: 94, description: 'FastAPI, asynchronous backend architectures, data preprocessing, machine learning scripts.', connectedProjects: ['medvision', 'autoresume-ai'] },
-  { id: 'fastapi', name: 'FastAPI', category: 'code', level: 90, description: 'High-throughput microservices, OpenAPI schemas, async workers.', connectedProjects: ['medvision', 'autoresume-ai'] },
+  { id: 'react', name: 'React', category: 'code', level: 92, description: 'Component architecture, hooks, state machines, Motion animations, performance optimization.', connectedProjects: ['medvision', 'yugogoo', 'ugogo', 'grandiose-glam'] },
+  { id: 'typescript', name: 'TypeScript', category: 'code', level: 90, description: 'Strict typing, generic interfaces, scalable full-stack codebases.', connectedProjects: ['medvision', 'yugogoo', 'ugogo', 'grandiose-glam'] },
+  { id: 'python', name: 'Python', category: 'code', level: 94, description: 'FastAPI, asynchronous backend architectures, data preprocessing, machine learning scripts.', connectedProjects: ['medvision'] },
+  { id: 'fastapi', name: 'FastAPI', category: 'code', level: 90, description: 'High-throughput microservices, OpenAPI schemas, async workers.', connectedProjects: ['medvision'] },
   { id: 'tensorflow', name: 'TensorFlow / AI', category: 'ai', level: 85, description: 'MobileNetV2, CNN architectures, computer vision transfer learning, model quantization.', connectedProjects: ['medvision'] },
   { id: 'canva', name: 'Canva (Advanced)', category: 'design', level: 98, description: 'High-converting visual composition, YouTube thumbnails, marketing collateral, brand decks.', connectedProjects: ['thumb-ai-breakthrough', 'thumb-dev-roadmap', 'brand-tech-fest', 'social-product-drop'] },
   { id: 'photoshop', name: 'Adobe Photoshop', category: 'design', level: 88, description: 'Photo manipulation, color grading, clipping paths, lighting effects, raster compositing.', connectedProjects: ['thumb-ai-breakthrough', 'poster-cyber-beats', 'marketing-creator-kit'] },
   { id: 'figma', name: 'Figma', category: 'design', level: 86, description: 'UI/UX wireframing, responsive design systems, interactive prototypes.', connectedProjects: ['ui-crypto-lens', 'brand-tech-fest', 'yugogoo'] },
   { id: 'lensstudio', name: 'Lens Studio', category: 'ar', level: 92, description: 'Face & world tracking, segmentation shaders, visual scripting, 3D asset integration.', connectedProjects: ['lens-cyber-hud', 'lens-aura-bloom', 'lens-retro-shades', 'lens-ghana-portal'] },
   { id: 'postgresql', name: 'PostgreSQL & SQL', category: 'code', level: 84, description: 'Relational schemas, indexing, query optimization, spatial queries.', connectedProjects: ['medvision', 'yugogoo'] },
-  { id: 'tailwind', name: 'Tailwind CSS', category: 'code', level: 95, description: 'Utility-first rapid prototyping, responsive layouts, custom design systems.', connectedProjects: ['medvision', 'yugogoo', 'autoresume-ai'] },
+  { id: 'tailwind', name: 'Tailwind CSS', category: 'code', level: 95, description: 'Utility-first rapid prototyping, responsive layouts, custom design systems.', connectedProjects: ['medvision', 'yugogoo', 'ugogo', 'grandiose-glam'] },
   { id: 'ar_vfx', name: 'AR Shaders & VFX', category: 'ar', level: 87, description: 'Particle systems, lighting maps, blend modes, interactive triggers.', connectedProjects: ['lens-cyber-hud', 'lens-aura-bloom'] }
 ];
 

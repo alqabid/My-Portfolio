@@ -29,26 +29,7 @@ const DEFAULT_ADMIN_CONFIG: AdminConfig = {
   pin: '2026'
 };
 
-const DEFAULT_INITIAL_MESSAGES: ContactMessage[] = [
-  {
-    id: 'msg-sample-1',
-    name: 'University Student Council',
-    email: 'src@umat.edu.gh',
-    projectType: 'Snapchat AR Lens',
-    message: 'Hello Abdul, we loved your campus campaign lenses! We would like to commission an official interactive filter for our upcoming annual university festival.',
-    date: new Date(Date.now() - 86400000 * 2).toISOString(),
-    status: 'new'
-  },
-  {
-    id: 'msg-sample-2',
-    name: 'Tech Horizon Summit',
-    email: 'partners@techhorizon.io',
-    projectType: 'Full-Stack Web App',
-    message: 'Hi Abdul, reaching out regarding a medical AI diagnostic dashboard inspired by MedVision. Would love to discuss a contract.',
-    date: new Date(Date.now() - 86400000 * 4).toISOString(),
-    status: 'read'
-  }
-];
+const DEFAULT_INITIAL_MESSAGES: ContactMessage[] = [];
 
 interface PortfolioContextType {
   // State slices
@@ -135,6 +116,11 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored);
+        const storedMessages: ContactMessage[] = Array.isArray(parsed.contactMessages)
+          ? parsed.contactMessages.filter(
+              (m: ContactMessage) => m && m.id && !m.id.startsWith('msg-sample-')
+            )
+          : [];
         return {
           personalInfo: parsed.personalInfo || DEFAULT_PERSONAL_INFO,
           buildProjects: parsed.buildProjects || DEFAULT_BUILD_PROJECTS,
@@ -143,7 +129,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
           skillNodes: parsed.skillNodes || DEFAULT_SKILL_NODES,
           services: parsed.services || DEFAULT_SERVICES,
           experience: parsed.experience || DEFAULT_EXPERIENCE,
-          contactMessages: parsed.contactMessages || DEFAULT_INITIAL_MESSAGES,
+          contactMessages: storedMessages,
           adminConfig: parsed.adminConfig || DEFAULT_ADMIN_CONFIG
         };
       }

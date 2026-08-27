@@ -21,6 +21,7 @@ import {
   Upload,
   RotateCcw,
   Eye,
+  EyeOff,
   Search,
   X,
   Copy,
@@ -113,6 +114,7 @@ export const AdminPortal: React.FC = () => {
   // Security config local state
   const [newAdminEmail, setNewAdminEmail] = useState(adminConfigState.email);
   const [newAdminPin, setNewAdminPin] = useState(adminConfigState.pin);
+  const [showSecurityPin, setShowSecurityPin] = useState(false);
 
   // Search queries for lists
   const [searchQuery, setSearchQuery] = useState('');
@@ -1130,8 +1132,11 @@ export const AdminPortal: React.FC = () => {
               {contactMessages.length === 0 ? (
                 <div className="p-8 text-center bg-[#14151B] border border-neutral-800 rounded-xl space-y-2">
                   <Inbox className="w-8 h-8 text-neutral-600 mx-auto" />
-                  <p className="text-xs font-mono text-neutral-400">
-                    No client inquiries recorded yet.
+                  <p className="text-xs font-mono text-neutral-300 font-bold">
+                    No visitor inquiries received yet.
+                  </p>
+                  <p className="text-[11px] font-mono text-neutral-500 max-w-sm mx-auto">
+                    When visitors submit the contact form on your portfolio site, their messages and project requests will appear here in real time.
                   </p>
                 </div>
               ) : (
@@ -1160,7 +1165,7 @@ export const AdminPortal: React.FC = () => {
                           </span>
                         </div>
                         <span className="text-[10px] font-mono text-neutral-500">
-                          {new Date(msg.timestamp).toLocaleString()}
+                          {new Date(msg.date || Date.now()).toLocaleString()}
                         </span>
                       </div>
 
@@ -1250,14 +1255,25 @@ export const AdminPortal: React.FC = () => {
                     <label className="block text-[11px] font-mono text-neutral-400 uppercase tracking-wider mb-1">
                       Security PIN Code
                     </label>
-                    <input
-                      type="text"
-                      required
-                      maxLength={10}
-                      value={newAdminPin}
-                      onChange={(e) => setNewAdminPin(e.target.value)}
-                      className="w-full px-3 py-2 rounded-lg bg-neutral-900 border border-neutral-700 text-xs font-mono text-white focus:outline-none focus:border-emerald-500"
-                    />
+                    <div className="relative">
+                      <input
+                        type={showSecurityPin ? 'text' : 'password'}
+                        required
+                        maxLength={10}
+                        value={newAdminPin}
+                        onChange={(e) => setNewAdminPin(e.target.value)}
+                        placeholder="••••••"
+                        className="w-full pl-3 pr-10 py-2 rounded-lg bg-neutral-900 border border-neutral-700 text-xs font-mono tracking-widest text-white focus:outline-none focus:border-emerald-500"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowSecurityPin(!showSecurityPin)}
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-300 p-1 cursor-pointer"
+                        title={showSecurityPin ? 'Hide PIN' : 'Reveal PIN'}
+                      >
+                        {showSecurityPin ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                      </button>
+                    </div>
                   </div>
                 </div>
 

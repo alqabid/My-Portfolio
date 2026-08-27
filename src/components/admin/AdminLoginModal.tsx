@@ -20,8 +20,7 @@ export const AdminLoginModal: React.FC = () => {
     isAdminLoginModalOpen,
     setIsAdminLoginModalOpen,
     setIsAdminPortalOpen,
-    loginAdmin,
-    adminConfigState
+    loginAdmin
   } = usePortfolio();
 
   const [email, setEmail] = useState('');
@@ -57,13 +56,6 @@ export const AdminLoginModal: React.FC = () => {
       }
       setIsSubmitting(false);
     }, 250);
-  };
-
-  const handleQuickFill = () => {
-    playSound('click');
-    setEmail(adminConfigState.email);
-    setPin(adminConfigState.pin);
-    setErrorMsg('');
   };
 
   return (
@@ -130,7 +122,7 @@ export const AdminLoginModal: React.FC = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="siakaabdulqabid@gmail.com"
+                placeholder="admin@domain.com"
                 className="w-full pl-9 pr-3.5 py-2 rounded-xl bg-neutral-900 border border-neutral-700 text-xs font-mono text-neutral-100 placeholder:text-neutral-600 focus:outline-none focus:border-emerald-500 transition-colors"
               />
             </div>
@@ -159,14 +151,14 @@ export const AdminLoginModal: React.FC = () => {
                 maxLength={10}
                 value={pin}
                 onChange={(e) => setPin(e.target.value)}
-                placeholder="Security PIN (e.g. 2026)"
+                placeholder="••••••"
                 className="w-full pl-9 pr-3.5 py-2 rounded-xl bg-neutral-900 border border-neutral-700 text-xs font-mono tracking-widest text-neutral-100 placeholder:text-neutral-600 focus:outline-none focus:border-emerald-500 transition-colors"
               />
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="pt-2 space-y-2.5">
+          <div className="pt-2">
             <button
               type="submit"
               disabled={isSubmitting}
@@ -174,15 +166,6 @@ export const AdminLoginModal: React.FC = () => {
             >
               <span>{isSubmitting ? 'Authenticating...' : 'Sign In to Console'}</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-
-            {/* Quick Fill Demo Helper */}
-            <button
-              type="button"
-              onClick={handleQuickFill}
-              className="w-full py-1.5 rounded-lg bg-transparent hover:bg-neutral-900 text-neutral-500 hover:text-neutral-300 font-mono text-[10px] flex items-center justify-center gap-1.5 cursor-pointer transition-colors"
-            >
-              <span>Auto-fill registered credentials</span>
             </button>
           </div>
         </form>
