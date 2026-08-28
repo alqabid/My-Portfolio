@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#FFF35C" stroke="#111111" stroke-width="4"/>
+  <!-- Drop shadow effect inside SVG -->
+  <rect x="10" y="10" width="44" height="44" rx="10" fill="#111111"/>
+  <rect x="8" y="8" width="44" height="44" rx="10" fill="#FFF35C" stroke="#111111" stroke-width="3"/>
+  <!-- Monogram text AQ -->
+  <text x="30" y="37" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="22" fill="#111111" text-anchor="middle" letter-spacing="-1">AQ</text>
+  <!-- Accent Sparkle -->
+  <polygon points="46,14 48,19 53,21 48,23 46,28 44,23 39,21 44,19" fill="#111111"/>
+</svg>

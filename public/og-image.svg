@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&amp;family=Space+Grotesk:wght@600;700&amp;family=JetBrains+Mono:wght@600;700&amp;display=swap');
+      .title { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 900; }
+      .mono { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+      .display { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; }
+    </style>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#E5E5DC" stroke-width="1.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="630" fill="#FAFAF7"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.6"/>
+
+  <!-- Outer Neo-brutalist Border -->
+  <rect x="24" y="24" width="1152" height="582" rx="28" fill="none" stroke="#111111" stroke-width="5"/>
+
+  <!-- Top Status Bar Card -->
+  <rect x="70" y="70" width="1060" height="60" rx="16" fill="#111111"/>
+  <circle cx="106" cy="100" r="7" fill="#FF5F56"/>
+  <circle cx="130" cy="100" r="7" fill="#FFBD2E"/>
+  <circle cx="154" cy="100" r="7" fill="#27C93F"/>
+  <text x="600" y="106" class="mono" font-size="16" fill="#FFF35C" text-anchor="middle" letter-spacing="2">ABDUL QABID SIAKA · CREATIVE TECHNOLOGIST</text>
+  <rect x="990" y="84" width="110" height="32" rx="8" fill="#FFF35C"/>
+  <text x="1045" y="105" class="mono" font-size="13" fill="#111111" text-anchor="middle" font-weight="900">GHANA 🇬🇭</text>
+
+  <!-- Main Hero Card Shadow & Body -->
+  <rect x="76" y="162" width="1056" height="310" rx="24" fill="#111111"/>
+  <rect x="70" y="156" width="1056" height="310" rx="24" fill="#FFFFFF" stroke="#111111" stroke-width="4"/>
+
+  <!-- Role Pills -->
+  <rect x="110" y="196" width="140" height="36" rx="10" fill="#FFF35C" stroke="#111111" stroke-width="2"/>
+  <text x="180" y="220" class="mono" font-size="13" fill="#111111" text-anchor="middle">⚡ SOFTWARE</text>
+
+  <rect x="264" y="196" width="180" height="36" rx="10" fill="#FFB7D5" stroke="#111111" stroke-width="2"/>
+  <text x="354" y="220" class="mono" font-size="13" fill="#111111" text-anchor="middle">🎨 GRAPHIC DESIGN</text>
+
+  <rect x="458" y="196" width="150" height="36" rx="10" fill="#C9B8FF" stroke="#111111" stroke-width="2"/>
+  <text x="533" y="220" class="mono" font-size="13" fill="#111111" text-anchor="middle">👓 AR CREATOR</text>
+
+  <!-- Main Title -->
+  <text x="110" y="305" class="title" font-size="62" fill="#111111" letter-spacing="-1.5">ABDUL QABID SIAKA</text>
+  
+  <!-- Subtitle statement -->
+  <text x="110" y="360" class="display" font-size="24" fill="#333333">I Build Digital Products · Design Visual Media · Create AR Experiences</text>
+  
+  <!-- Stack tags -->
+  <text x="110" y="420" class="mono" font-size="15" fill="#666666">React · TypeScript · Python · AI / Computer Vision · Canva · Lens Studio · 3D VFX</text>
+
+  <!-- Side Metric / Avatar Box inside Card -->
+  <rect x="890" y="190" width="200" height="240" rx="18" fill="#FAFAF7" stroke="#111111" stroke-width="3"/>
+  <rect x="910" y="210" width="160" height="110" rx="12" fill="#111111"/>
+  <text x="990" y="260" class="title" font-size="36" fill="#FFF35C" text-anchor="middle">100K+</text>
+  <text x="990" y="295" class="mono" font-size="12" fill="#FFFFFF" text-anchor="middle">AR &amp; MEDIA VIEWS</text>
+  
+  <rect x="910" y="335" width="160" height="40" rx="10" fill="#B9F5D0" stroke="#111111" stroke-width="2"/>
+  <text x="990" y="360" class="mono" font-size="13" fill="#111111" text-anchor="middle">● AVAILABLE FOR HIRE</text>
+
+  <!-- Bottom Strip 3 Pills -->
+  <g transform="translate(70, 490)">
+    <!-- Pill 1 -->
+    <rect x="0" y="0" width="335" height="74" rx="16" fill="#FFF35C" stroke="#111111" stroke-width="3"/>
+    <text x="24" y="34" class="title" font-size="17" fill="#111111">💻 BUILD WORLD</text>
+    <text x="24" y="56" class="mono" font-size="12" fill="#444444">MedVision, Yugogoo, UGOGO</text>
+
+    <!-- Pill 2 -->
+    <rect x="360" y="0" width="335" height="74" rx="16" fill="#FFB7D5" stroke="#111111" stroke-width="3"/>
+    <text x="384" y="34" class="title" font-size="17" fill="#111111">✨ DESIGN WORLD</text>
+    <text x="384" y="56" class="mono" font-size="12" fill="#444444">Viral Thumbnails &amp; Brand Kits</text>
+
+    <!-- Pill 3 -->
+    <rect x="720" y="0" width="340" height="74" rx="16" fill="#C9B8FF" stroke="#111111" stroke-width="3"/>
+    <text x="744" y="34" class="title" font-size="17" fill="#111111">🌐 AR WORLD</text>
+    <text x="744" y="56" class="mono" font-size="12" fill="#444444">Snapchat Official Creator Hub</text>
+  </g>
+</svg>
