@@ -1,4 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+import sharp from 'sharp';
+import fs from 'fs';
+import path from 'path';
+
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&amp;family=Space+Grotesk:wght@600;700&amp;family=JetBrains+Mono:wght@600;700&amp;display=swap');
@@ -161,4 +165,37 @@
       <text x="14" y="128" class="mono" font-size="10" fill="#777777">TOOLS: LENS STUDIO · 3D SHADERS</text>
     </g>
   </g>
-</svg>
+</svg>`;
+
+async function generateImages() {
+  const publicDir = path.resolve('public');
+  if (!fs.existsSync(publicDir)) {
+    fs.mkdirSync(publicDir, { recursive: true });
+  }
+
+  // Save SVG
+  fs.writeFileSync(path.join(publicDir, 'og-preview.svg'), svg);
+  fs.writeFileSync(path.join(publicDir, 'og-image.svg'), svg);
+
+  // Generate PNGs at 1200x630 (Standard OpenGraph size for WhatsApp, Facebook, LinkedIn, Twitter/X)
+  await sharp(Buffer.from(svg))
+    .png({ quality: 95, compressionLevel: 8 })
+    .toFile(path.join(publicDir, 'og-preview.png'));
+
+  await sharp(Buffer.from(svg))
+    .png({ quality: 95, compressionLevel: 8 })
+    .toFile(path.join(publicDir, 'og-image.png'));
+
+  // Also create a high-quality JPG for maximum compatibility across older crawlers (iMessage, WhatsApp)
+  await sharp(Buffer.from(svg))
+    .jpeg({ quality: 92 })
+    .toFile(path.join(publicDir, 'og-preview.jpg'));
+
+  await sharp(Buffer.from(svg))
+    .jpeg({ quality: 92 })
+    .toFile(path.join(publicDir, 'og-image.jpg'));
+
+  console.log('OpenGraph preview images generated successfully!');
+}
+
+generateImages().catch(console.error);
