@@ -9,6 +9,9 @@ export interface PersonalInfo {
   brandStatement: string;
   tagline: string;
   location: string;
+  phone?: string;
+  whatsappNumber?: string;
+  portfolioUrl?: string;
   email: string;
   github: string;
   linkedin: string;
@@ -113,6 +116,17 @@ export interface ExperienceItem {
   location: string;
   highlights: string[];
   technologies: string[];
+  category?: 'software' | 'design_ar' | 'entrepreneurship' | 'leadership' | 'academic';
+}
+
+export interface EducationItem {
+  degree: string;
+  institution: string;
+  school?: string;
+  location: string;
+  period: string;
+  coursework?: string[];
+  highlights?: string[];
 }
 
 export interface ContactMessage {
