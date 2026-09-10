@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import {
   Mail,
   Send,
-  Sparkles,
+  Zap,
   MessageSquare,
   Linkedin,
   Github,
@@ -69,7 +69,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           {/* Left Column: Direct Links & Narrative */}
           <div className="lg:col-span-6 space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold tracking-wider uppercase text-[#FFF35C]">
-              <Sparkles className="w-3.5 h-3.5" />
+              <Zap className="w-3.5 h-3.5" />
               <span>LET'S COLLABORATE</span>
             </div>
 

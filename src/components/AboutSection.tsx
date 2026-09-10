@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, Terminal, Palette, Glasses, Brain, Compass, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Terminal, Palette, Glasses, Brain, Compass, CheckCircle2, ArrowRight } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { playSound } from '../utils/sound';
 
@@ -39,7 +39,7 @@ export const AboutSection: React.FC = () => {
           {/* Left Column: Narrative & The Equation */}
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#111111] text-white text-xs font-mono font-bold tracking-wider uppercase">
-              <Sparkles className="w-3.5 h-3.5 text-[#FFF35C]" />
+              <Compass className="w-3.5 h-3.5 text-[#FFF35C]" />
               <span>THE CREATIVE TECHNOLOGIST</span>
             </div>
 

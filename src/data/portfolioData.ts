@@ -13,7 +13,7 @@ export const PERSONAL_INFO = {
   portfolioUrl: 'https://aqsmyportfolio.vercel.app',
   email: 'siakaabdulqabid@gmail.com',
   github: 'https://github.com/alqabid',
-  linkedin: 'https://www.linkedin.com/in/abdul-qabid-siaka',
+  linkedin: 'https://www.linkedin.com/in/abdulqabidsiaka/',
   snapchat: 'https://creator.snapchat.com/creator/zVAqoADqQn9UCriV-MlElg',
   snapchatCreator: 'https://creator.snapchat.com/creator/zVAqoADqQn9UCriV-MlElg',
   snapchatAccount: 'https://www.snapchat.com/add/big_qabid?share_id=Y2N5s5T8SAGlHF13qzE7qA&locale=en_GH',
@@ -407,7 +407,7 @@ export const AR_LENSES: ARLens[] = [
     builtWith: 'Lens Studio',
     uuid: '7f20fcf0b65d450c90ffcf37971dcf32',
     description: 'Dynamic TEIN presidential campaign AR lens featuring interactive banner overlays and celebration particles.',
-    features: ['Presidential Campaign Frame', 'Soft Lighting Shader', 'Real-time Landmark Sync', 'Gesture-Activated Sparkles'],
+    features: ['Presidential Campaign Frame', 'Soft Lighting Shader', 'Real-time Landmark Sync', 'Gesture-Activated Visual Particles'],
     stats: {
       views: '64.2K+',
       shares: '9.8K+',
@@ -511,7 +511,7 @@ export const AR_LENSES: ARLens[] = [
     name: 'GENZ AFFAIR',
     type: 'Face Effect',
     builtWith: 'Lens Studio',
-    description: 'Youth festival & social event aesthetic filter with Y2K chromatic aura, holographic sparkles, and soft skin tone grading.',
+    description: 'Youth festival & social event aesthetic filter with Y2K chromatic aura, holographic chromatic particles, and soft skin tone grading.',
     features: ['Y2K Grain & Chromatic Bloom', 'Floating Micro-glitter Emitter', 'Portrait Depth Lighting', 'Tap to switch 4 vibes'],
     stats: {
       views: '71.4K+',
@@ -695,7 +695,7 @@ export const SERVICES: ServiceItem[] = [
     description: 'Crafting immersive augmented reality experiences for creators, brands, and cultural events.',
     deliverables: ['Snapchat Lens Studio development', 'Custom face effects, segmentation & 3D tracking shaders', 'Event & festival branded spatial filters', 'Snapcode deployment & analytics optimization'],
     accentColor: '#C9B8FF',
-    iconName: 'Sparkles'
+    iconName: 'Glasses'
   }
 ];
 
@@ -707,7 +707,7 @@ export const RECRUITER_DATA = {
   whatsappNumber: '023 831 8021',
   portfolioUrl: 'https://aqsmyportfolio.vercel.app',
   email: 'siakaabdulqabid@gmail.com',
-  linkedin: 'https://www.linkedin.com/in/abdul-qabid-siaka',
+  linkedin: 'https://www.linkedin.com/in/abdulqabidsiaka/',
   github: 'https://github.com/alqabid',
   summary: 'Dynamic and technically proficient Computer Science & Engineering student with a proven track record in full-stack software development, advanced graphic design, artificial intelligence, and prompt engineering. Combines rigorous engineering principles with creative design strategies to architect scalable web applications, deploy machine learning models, and produce high-impact digital branding. Demonstrated ability to lead product development lifecycles from ideation to deployment, utilizing modern tech stacks (React, Python, FastAPI, AWS) and generative AI to drive innovation and solve complex real-world challenges. Highly skilled in translating complex technical concepts into accessible, functional, and visually striking user experiences through expert-level command of UI/UX and graphic design tools including Canva, Figma, and Adobe Photoshop.',
   skills: {

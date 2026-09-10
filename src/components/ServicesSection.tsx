@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Code2, Palette, Sparkles, Brain, Check, ArrowRight } from 'lucide-react';
+import { Code2, Palette, Glasses, Brain, Check, ArrowRight, Layers } from 'lucide-react';
 import { ServiceItem } from '../types';
 import { usePortfolio } from '../context/PortfolioContext';
 import { playSound } from '../utils/sound';
@@ -17,8 +17,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
         return Code2;
       case 'Palette':
         return Palette;
-      case 'Sparkles':
-        return Sparkles;
+      case 'Glasses':
+        return Glasses;
       case 'Brain':
         return Brain;
       default:
@@ -31,7 +31,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
       {/* Section Header */}
       <div className="mb-14">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#A9DDFF] border-2 border-[#111111] text-xs font-mono font-bold text-[#111111] shadow-[2px_2px_0px_0px_#111111] uppercase tracking-wider mb-4">
-          <Sparkles className="w-3.5 h-3.5" />
+          <Layers className="w-3.5 h-3.5" />
           <span>CAPABILITIES & COLLABORATION</span>
         </div>
         <h2 className="text-4xl sm:text-6xl font-display font-extrabold text-[#111111] tracking-tight mb-4">

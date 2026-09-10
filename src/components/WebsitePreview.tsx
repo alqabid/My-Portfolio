@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, RefreshCw, Globe, ShieldCheck, Monitor, Maximize2, Sparkles } from 'lucide-react';
+import { ExternalLink, RefreshCw, Globe, ShieldCheck, Monitor, Maximize2 } from 'lucide-react';
 import { playSound } from '../utils/sound';
 
 interface WebsitePreviewProps {

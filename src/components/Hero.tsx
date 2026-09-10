@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowDownRight, Mail, Sparkles, Terminal, Palette, Glasses, Play } from 'lucide-react';
+import { ArrowDownRight, Mail, Target, Terminal, Palette, Glasses, Play } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { playSound } from '../utils/sound';
 
@@ -384,7 +384,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             className="absolute -top-4 -right-2 sm:-right-4 px-3.5 py-2 rounded-2xl bg-[#FFF35C] border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111] text-xs font-display font-extrabold text-[#111111] flex items-center gap-1.5 select-none"
           >
-            <Sparkles className="w-3.5 h-3.5" /> 94.2% AI Accuracy
+            <Target className="w-3.5 h-3.5" /> 94.2% Model Accuracy
           </motion.div>
 
           <motion.div

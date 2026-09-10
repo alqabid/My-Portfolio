@@ -12,7 +12,6 @@ import {
   Activity,
   Layers,
   ArrowRight,
-  Sparkles,
   MapPin,
   Ticket,
   QrCode,

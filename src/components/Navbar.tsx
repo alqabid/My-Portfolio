@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Briefcase, Compass, FileText, Sparkles, ShieldCheck } from 'lucide-react';
+import { Volume2, VolumeX, Briefcase, Compass, FileText, ShieldCheck } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { playSound } from '../utils/sound';
 

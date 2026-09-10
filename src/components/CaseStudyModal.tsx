@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ExternalLink, Github, CheckCircle2, Cpu, Database, Layers, Sparkles, Globe } from 'lucide-react';
+import { X, ExternalLink, Github, CheckCircle2, Cpu, Database, Layers, Globe } from 'lucide-react';
 import { Project } from '../types';
 import { playSound } from '../utils/sound';
 import { WebsitePreview } from './WebsitePreview';

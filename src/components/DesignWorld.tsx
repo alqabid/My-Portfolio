@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import {
   Palette,
-  Sparkles,
   Zap,
   CheckCircle2,
   Sliders,

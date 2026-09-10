@@ -11,7 +11,7 @@ import {
   CheckCircle2,
   Briefcase,
   GraduationCap,
-  Sparkles,
+  Glasses,
   Phone,
   Code2,
   Brain,
@@ -229,7 +229,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
 
               <div className="p-3.5 rounded-2xl bg-[#FAFAF7] border border-[#111111] space-y-2">
                 <span className="text-[11px] font-mono font-bold text-[#111111] flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5" /> AR & CREATIVE TECHNOLOGY
+                  <Glasses className="w-3.5 h-3.5" /> AR & SPATIAL COMPUTING
                 </span>
                 <div className="flex flex-wrap gap-1">
                   {RECRUITER_DATA.skills.ar_creative.map((s, idx) => (

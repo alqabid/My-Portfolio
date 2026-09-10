@@ -21,7 +21,7 @@ import {
   EXPERIENCE as DEFAULT_EXPERIENCE
 } from '../data/portfolioData';
 
-const STORAGE_KEY = 'abdul_portfolio_cms_v2';
+const STORAGE_KEY = 'abdul_portfolio_cms_v4';
 const AUTH_STORAGE_KEY = 'abdul_portfolio_auth_session';
 
 const DEFAULT_ADMIN_CONFIG: AdminConfig = {

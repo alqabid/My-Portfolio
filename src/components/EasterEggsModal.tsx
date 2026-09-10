@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Sparkles, Trophy, X, Zap, Volume2 } from 'lucide-react';
+import { Trophy, X, Zap, Volume2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { playSound } from '../utils/sound';
 

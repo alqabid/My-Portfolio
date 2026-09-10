@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Network, Sparkles, Layers, ArrowRight, Code, Palette, Glasses, Brain } from 'lucide-react';
+import { Network, Layers, ArrowRight, Code, Palette, Glasses, Brain } from 'lucide-react';
 import { SkillNode, CursorType } from '../types';
 import { usePortfolio } from '../context/PortfolioContext';
 import { playSound } from '../utils/sound';

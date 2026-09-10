@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Sparkles, ArrowRight, FastForward, Code, Palette, Glasses } from 'lucide-react';
+import { Compass, ArrowRight, FastForward, Code, Palette, Glasses } from 'lucide-react';
 import { playSound } from '../utils/sound';
 
 interface IntroScreenProps {
@@ -97,7 +97,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onComplete }) => {
               transition={{ duration: 0.4, delay: 0.2 }}
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111111] text-white text-sm font-display font-medium tracking-wide mb-4"
             >
-              <Sparkles className="w-4 h-4 text-[#FFF35C]" />
+              <Compass className="w-4 h-4 text-[#FFF35C]" />
               <span>INTERACTIVE PORTFOLIO</span>
             </motion.div>
 

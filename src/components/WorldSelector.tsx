@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Terminal, Palette, Glasses, ArrowUpRight, Sparkles, Cpu, Image, Layers } from 'lucide-react';
+import { Terminal, Palette, Glasses, ArrowUpRight, Cpu, Image, Layers } from 'lucide-react';
 import { playSound } from '../utils/sound';
 import { CursorType } from '../types';
 
@@ -63,7 +63,7 @@ export const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onS
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#111111] text-white text-xs font-mono font-bold tracking-wider uppercase mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#FFF35C]" />
+            <Layers className="w-3.5 h-3.5 text-[#FFF35C]" />
             <span>THREE MULTIDISCIPLINARY REALMS</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-display font-extrabold text-[#111111] tracking-tight">
