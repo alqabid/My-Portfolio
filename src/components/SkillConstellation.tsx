@@ -139,7 +139,7 @@ export const SkillConstellation: React.FC<SkillConstellationProps> = ({ onSetCur
                   className={`px-4 py-2.5 rounded-2xl border-2 font-display font-bold text-xs sm:text-sm flex items-center gap-2 cursor-pointer transition-all ${
                     isSelected
                       ? 'bg-[#111111] text-[#FFF35C] border-[#111111] shadow-[4px_4px_0px_0px_#FFF35C] -translate-y-1'
-                      : 'bg-[#FAFAF7] text-[#111111] border-[#111111] hover:bg-white shadow-[2px_2px_0px_0px_#111111]'
+                      : 'bg-white text-[#111111] border-[#111111] hover:bg-neutral-100 shadow-[2px_2px_0px_0px_#111111]'
                   }`}
                 >
                   <span
@@ -177,7 +177,7 @@ export const SkillConstellation: React.FC<SkillConstellationProps> = ({ onSetCur
         </div>
 
         {/* Right: Active Node Deep Breakdown Panel */}
-        <div className="lg:col-span-5 rounded-3xl bg-[#FAFAF7] border-3 border-[#111111] p-6 sm:p-8 shadow-[8px_8px_0px_0px_#111111] flex flex-col justify-between space-y-6">
+        <div className="lg:col-span-5 rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-8 shadow-[8px_8px_0px_0px_#111111] flex flex-col justify-between space-y-6">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSkill.id}
@@ -241,7 +241,7 @@ export const SkillConstellation: React.FC<SkillConstellationProps> = ({ onSetCur
                       <span className="font-display font-bold text-[#111111]">
                         {proj.title}
                       </span>
-                      <span className="text-[10px] font-mono bg-[#FAFAF7] px-2 py-0.5 rounded border border-[#E0E0D8] text-[#555555]">
+                      <span className="text-[10px] font-mono bg-white px-2 py-0.5 rounded border border-[#E0E0D8] text-[#555555]">
                         {proj.category}
                       </span>
                     </div>

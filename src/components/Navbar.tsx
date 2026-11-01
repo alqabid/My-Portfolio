@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Briefcase, Compass, FileText, ShieldCheck } from 'lucide-react';
+import { Volume2, VolumeX, Briefcase, Compass, FileText } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { playSound } from '../utils/sound';
 
@@ -22,7 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onTriggerEasterEgg,
   activeSection
 }) => {
-  const { personalInfo, isAdminLoggedIn, setIsAdminPortalOpen } = usePortfolio();
+  const { personalInfo } = usePortfolio();
   const [isScrolled, setIsScrolled] = useState(false);
   const [logoClicks, setLogoClicks] = useState(0);
 
@@ -97,7 +97,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   className={`px-3.5 py-1.5 rounded-full text-xs font-display font-bold tracking-wide uppercase transition-all duration-150 ${
                     isActive
                       ? 'bg-[#111111] text-[#FFF35C]'
-                      : 'text-[#333333] hover:bg-[#F0F0EA] hover:text-[#111111]'
+                      : 'text-[#333333] hover:bg-neutral-100 hover:text-[#111111]'
                   }`}
                 >
                   {link.label}
@@ -116,7 +116,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onToggleSound();
               playSound('switch');
             }}
-            className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] shadow-[2px_2px_0px_0px_#111111] hover:bg-[#F4F4EE] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
+            className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] shadow-[2px_2px_0px_0px_#111111] hover:bg-neutral-100 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
             title={soundEnabled ? 'Mute Sound Effects' : 'Enable Interactive Sound FX'}
           >
             {soundEnabled ? (
@@ -161,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               playSound('pop');
               onOpenResume();
             }}
-            className="px-3 sm:px-4 py-2 rounded-2xl bg-white border-2 border-[#111111] font-display font-bold text-xs text-[#111111] flex items-center gap-1.5 shadow-[3px_3px_0px_0px_#111111] hover:bg-[#F4F4EE] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
+            className="px-3 sm:px-4 py-2 rounded-2xl bg-white border-2 border-[#111111] font-display font-bold text-xs text-[#111111] flex items-center gap-1.5 shadow-[3px_3px_0px_0px_#111111] hover:bg-neutral-100 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
           >
             <FileText className="w-4 h-4 text-[#111111]" />
             <span className="hidden md:inline">RESUME</span>

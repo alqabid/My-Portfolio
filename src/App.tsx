@@ -103,7 +103,7 @@ export function App() {
   }, [introCompleted, isRecruiterMode]);
 
   return (
-    <div className="relative min-h-screen bg-[#FAFAF7] text-[#111111] overflow-x-hidden">
+    <div className="relative min-h-screen bg-white text-[#111111] overflow-x-hidden">
       {/* Intro Experience Screen */}
       {!introCompleted && (
         <IntroScreen onComplete={() => setIntroCompleted(true)} />

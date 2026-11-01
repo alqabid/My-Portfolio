@@ -34,7 +34,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onComplete }) => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.04, filter: 'blur(10px)' }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#FAFAF7] text-[#111111] overflow-hidden select-none"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white text-[#111111] overflow-hidden select-none"
         >
           {/* Subtle playful background pastel shapes */}
           <motion.div

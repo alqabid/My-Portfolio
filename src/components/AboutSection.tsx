@@ -89,7 +89,7 @@ export const AboutSection: React.FC = () => {
             </div>
 
             {/* THE FORMULA CARD */}
-            <div className="p-5 rounded-2xl bg-[#FAFAF7] border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111]">
+            <div className="p-5 rounded-2xl bg-white border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111]">
               <span className="text-[10px] font-mono text-[#777777] uppercase font-bold block mb-3">
                 THE MULTIDISCIPLINARY EQUATION
               </span>
@@ -122,7 +122,7 @@ export const AboutSection: React.FC = () => {
                 <motion.div
                   key={idx}
                   whileHover={{ x: 6 }}
-                  className="p-5 rounded-2xl bg-[#FAFAF7] border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111] flex items-start gap-4 transition-all"
+                  className="p-5 rounded-2xl bg-white border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111] flex items-start gap-4 transition-all"
                 >
                   <div
                     className="w-12 h-12 rounded-2xl border-2 border-[#111111] flex items-center justify-center shrink-0 shadow-[2px_2px_0px_0px_#111111]"
@@ -163,7 +163,7 @@ export const AboutSection: React.FC = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 text-xs sm:text-sm font-mono text-[#555555]">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#FAFAF7] border border-[#111111]">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#111111]">
                 <MapPin className="w-4 h-4 text-[#111111]" /> {currentExp.location}
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#FFF35C] border border-[#111111] font-bold text-[#111111]">
@@ -181,7 +181,7 @@ export const AboutSection: React.FC = () => {
               {currentExp.highlights.map((hl, idx) => (
                 <div
                   key={idx}
-                  className="p-3.5 rounded-2xl bg-[#FAFAF7] border border-[#111111] flex items-start gap-3 hover:bg-[#FFFDF0] transition-colors"
+                  className="p-3.5 rounded-2xl bg-white border border-[#111111] flex items-start gap-3 hover:bg-neutral-50 transition-colors"
                 >
                   <div className="w-5 h-5 rounded-full bg-[#10B981]/20 text-[#10B981] flex items-center justify-center shrink-0 mt-0.5 border border-[#10B981]/40">
                     <CheckCircle2 className="w-3.5 h-3.5" />
@@ -207,7 +207,7 @@ export const AboutSection: React.FC = () => {
               {currentExp.technologies.map((tech, tIdx) => (
                 <span
                   key={tIdx}
-                  className="px-3 py-1 rounded-xl bg-[#FAFAF7] border border-[#111111] text-xs font-mono font-bold text-[#111111] shadow-[2px_2px_0px_0px_#111111]"
+                  className="px-3 py-1 rounded-xl bg-white border border-[#111111] text-xs font-mono font-bold text-[#111111] shadow-[2px_2px_0px_0px_#111111]"
                 >
                   {tech}
                 </span>
@@ -250,7 +250,7 @@ export const AboutSection: React.FC = () => {
                     {previousExps.map((prev, pIdx) => (
                       <div
                         key={pIdx}
-                        className="p-5 rounded-2xl bg-[#FAFAF7] border-2 border-[#111111] space-y-3"
+                        className="p-5 rounded-2xl bg-white border-2 border-[#111111] space-y-3"
                       >
                         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
                           <div>

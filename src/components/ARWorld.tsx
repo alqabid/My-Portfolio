@@ -131,7 +131,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
               className={`px-3 py-1.5 rounded-xl font-display font-bold text-xs border transition-all cursor-pointer ${
                 filterCategory === cat
                   ? 'bg-[#111111] text-[#FFF35C] border-[#111111]'
-                  : 'bg-[#FAFAF7] text-[#555555] border-neutral-300 hover:border-[#111111]'
+                  : 'bg-white text-[#555555] border-neutral-300 hover:border-[#111111]'
               }`}
             >
               {cat}
@@ -147,7 +147,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
             placeholder="Search lenses (e.g. SRC, RAVE)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-3 py-1.5 text-xs font-mono rounded-xl bg-[#FAFAF7] border border-[#111111] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#FFF35C]"
+            className="w-full pl-9 pr-3 py-1.5 text-xs font-mono rounded-xl bg-white border border-[#111111] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#FFF35C]"
           />
         </div>
       </div>
@@ -164,7 +164,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
           </span>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 max-h-[340px] overflow-y-auto p-1.5 border-2 border-[#111111] rounded-3xl bg-[#FAFAF7]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 max-h-[340px] overflow-y-auto p-1.5 border-2 border-[#111111] rounded-3xl bg-white">
           {filteredLenses.map((lens, index) => {
             const isSelected = activeLens.id === lens.id;
             return (
@@ -285,7 +285,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
             {activeLens.features.map((feature, i) => (
               <span
                 key={i}
-                className="px-3 py-1 rounded-full bg-[#FAFAF7] border border-[#111111] text-xs font-mono font-medium text-[#222222]"
+                className="px-3 py-1 rounded-full bg-white border border-[#111111] text-xs font-mono font-medium text-[#222222]"
               >
                 ✓ {feature}
               </span>
@@ -352,7 +352,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
             </div>
 
             {/* Box 3: Official Creator Hub */}
-            <div className="p-4 rounded-2xl bg-[#FAFAF7] border-2 border-[#111111] flex items-center justify-between gap-3 shadow-[3px_3px_0px_0px_#111111]">
+            <div className="p-4 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-between gap-3 shadow-[3px_3px_0px_0px_#111111]">
               <div className="space-y-1">
                 <span className="text-[10px] font-mono font-bold text-[#666666] uppercase block">
                   ALL LENSES CATALOG

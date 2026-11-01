@@ -39,7 +39,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAF7] pt-24 pb-20 px-4 sm:px-6 lg:px-8 print:p-0 print:bg-white">
+    <div className="min-h-screen bg-white pt-24 pb-20 px-4 sm:px-6 lg:px-8 print:p-0 print:bg-white">
       <div className="max-w-4xl mx-auto space-y-8 print:space-y-6">
         {/* Top Control Strip (Hidden in Print) */}
         <div className="print:hidden flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-white border-2 border-[#111111] shadow-[4px_4px_0px_0px_#111111]">
@@ -128,7 +128,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                 href={RECRUITER_DATA.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl bg-[#FAFAF7] hover:bg-neutral-100 text-[#111111] font-display font-bold text-xs border border-[#111111] text-center transition-all flex items-center justify-center gap-1.5"
+                className="px-4 py-2 rounded-xl bg-white hover:bg-neutral-100 text-[#111111] font-display font-bold text-xs border border-[#111111] text-center transition-all flex items-center justify-center gap-1.5"
               >
                 <Linkedin className="w-3.5 h-3.5" />
                 <span>LinkedIn Profile</span>
@@ -137,7 +137,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                 href={RECRUITER_DATA.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl bg-[#FAFAF7] hover:bg-neutral-100 text-[#111111] font-display font-bold text-xs border border-[#111111] text-center transition-all flex items-center justify-center gap-1.5"
+                className="px-4 py-2 rounded-xl bg-white hover:bg-neutral-100 text-[#111111] font-display font-bold text-xs border border-[#111111] text-center transition-all flex items-center justify-center gap-1.5"
               >
                 <Github className="w-3.5 h-3.5" />
                 <span>GitHub Repos</span>
@@ -147,7 +147,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
 
           {/* 01 // PROFESSIONAL SUMMARY */}
           <div className="space-y-3">
-            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-[#FAFAF7] px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
+            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-white px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
               01 // PROFESSIONAL SUMMARY
             </h2>
             <div className="space-y-2.5 text-sm sm:text-base text-[#333333] leading-relaxed">
@@ -159,12 +159,12 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
 
           {/* 02 // CORE TECHNICAL & CREATIVE COMPETENCIES */}
           <div className="space-y-4">
-            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-[#FAFAF7] px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
+            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-white px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
               02 // CORE TECHNICAL & CREATIVE COMPETENCIES
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              <div className="p-3.5 rounded-2xl bg-[#FAFAF7] border border-[#111111] space-y-2">
+              <div className="p-3.5 rounded-2xl bg-white border border-[#111111] space-y-2">
                 <span className="text-[11px] font-mono font-bold text-[#111111] flex items-center gap-1.5">
                   <Code2 className="w-3.5 h-3.5" /> PROGRAMMING & DATABASES
                 </span>
@@ -177,7 +177,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-[#FAFAF7] border border-[#111111] space-y-2">
+              <div className="p-3.5 rounded-2xl bg-white border border-[#111111] space-y-2">
                 <span className="text-[11px] font-mono font-bold text-[#111111] flex items-center gap-1.5">
                   <Brain className="w-3.5 h-3.5" /> PROMPT ENGINEERING & GENAI
                 </span>
@@ -190,7 +190,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-[#FAFAF7] border border-[#111111] space-y-2">
+              <div className="p-3.5 rounded-2xl bg-white border border-[#111111] space-y-2">
                 <span className="text-[11px] font-mono font-bold text-[#111111] flex items-center gap-1.5">
                   <Terminal className="w-3.5 h-3.5" /> FRONTEND & WEB ARCHITECTURE
                 </span>
@@ -203,7 +203,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-[#FAFAF7] border border-[#111111] space-y-2">
+              <div className="p-3.5 rounded-2xl bg-white border border-[#111111] space-y-2">
                 <span className="text-[11px] font-mono font-bold text-[#111111] flex items-center gap-1.5">
                   <Palette className="w-3.5 h-3.5" /> GRAPHIC DESIGN & UI/UX
                 </span>
@@ -216,7 +216,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-[#FAFAF7] border border-[#111111] space-y-2">
+              <div className="p-3.5 rounded-2xl bg-white border border-[#111111] space-y-2">
                 <span className="text-[11px] font-mono font-bold text-[#111111] flex items-center gap-1.5">
                   <Layers className="w-3.5 h-3.5" /> BACKEND & CLOUD INFRASTRUCTURE
                 </span>
@@ -229,7 +229,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-[#FAFAF7] border border-[#111111] space-y-2">
+              <div className="p-3.5 rounded-2xl bg-white border border-[#111111] space-y-2">
                 <span className="text-[11px] font-mono font-bold text-[#111111] flex items-center gap-1.5">
                   <Glasses className="w-3.5 h-3.5" /> AR & SPATIAL COMPUTING
                 </span>
@@ -242,7 +242,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-[#FAFAF7] border border-[#111111] space-y-2">
+              <div className="p-3.5 rounded-2xl bg-white border border-[#111111] space-y-2">
                 <span className="text-[11px] font-mono font-bold text-[#111111] flex items-center gap-1.5">
                   <Brain className="w-3.5 h-3.5" /> AI & MACHINE LEARNING
                 </span>
@@ -255,7 +255,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-[#FAFAF7] border border-[#111111] space-y-2">
+              <div className="p-3.5 rounded-2xl bg-white border border-[#111111] space-y-2">
                 <span className="text-[11px] font-mono font-bold text-[#111111] flex items-center gap-1.5">
                   <Terminal className="w-3.5 h-3.5" /> VERSION CONTROL & TOOLING
                 </span>
@@ -272,13 +272,13 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
 
           {/* 03 // SOFTWARE ENGINEERING & PRODUCT DEVELOPMENT PROJECTS */}
           <div className="space-y-6">
-            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-[#FAFAF7] px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
+            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-white px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
               03 // SOFTWARE ENGINEERING & PRODUCT DEVELOPMENT PROJECTS
             </h2>
 
             <div className="space-y-5">
               {RECRUITER_DATA.softwareProjects.map((p, idx) => (
-                <div key={idx} className="p-5 rounded-2xl bg-[#FAFAF7] border border-[#111111] space-y-3">
+                <div key={idx} className="p-5 rounded-2xl bg-white border border-[#111111] space-y-3">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
                       <h3 className="text-base font-display font-extrabold text-[#111111] flex items-center gap-2">
@@ -294,7 +294,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                           href={p.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-2.5 py-1 rounded-lg bg-white border border-[#111111] text-[11px] font-mono font-bold text-[#111111] hover:bg-[#F0F0EA] flex items-center gap-1"
+                          className="px-2.5 py-1 rounded-lg bg-white border border-[#111111] text-[11px] font-mono font-bold text-[#111111] hover:bg-neutral-100 flex items-center gap-1"
                         >
                           <ExternalLink className="w-3 h-3" /> Live
                         </a>
@@ -304,7 +304,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                           href={p.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-2.5 py-1 rounded-lg bg-white border border-[#111111] text-[11px] font-mono font-bold text-[#111111] hover:bg-[#F0F0EA] flex items-center gap-1"
+                          className="px-2.5 py-1 rounded-lg bg-white border border-[#111111] text-[11px] font-mono font-bold text-[#111111] hover:bg-neutral-100 flex items-center gap-1"
                         >
                           <Github className="w-3 h-3" /> Code
                         </a>
@@ -335,13 +335,13 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
 
           {/* 04 // DESIGN, AI & CREATIVE TECHNOLOGY EXPERIENCE */}
           <div className="space-y-4">
-            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-[#FAFAF7] px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
+            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-white px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
               04 // DESIGN, AI & CREATIVE TECHNOLOGY EXPERIENCE
             </h2>
 
             <div className="space-y-4">
               {RECRUITER_DATA.creativeAiExperience.map((c, idx) => (
-                <div key={idx} className="p-4 rounded-2xl bg-[#FAFAF7] border border-[#111111] space-y-2">
+                <div key={idx} className="p-4 rounded-2xl bg-white border border-[#111111] space-y-2">
                   <h4 className="font-display font-extrabold text-sm text-[#111111]">
                     {c.area}
                   </h4>
@@ -360,7 +360,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
 
           {/* 05 // PROFESSIONAL & CAREER EXPERIENCE */}
           <div className="space-y-4">
-            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-[#FAFAF7] px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
+            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-white px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
               05 // PROFESSIONAL & CAREER EXPERIENCE
             </h2>
 
@@ -374,8 +374,8 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                     key={idx}
                     className={`p-5 rounded-2xl border ${
                       isJuni
-                        ? 'bg-[#FFFDF0] border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111]'
-                        : 'bg-[#FAFAF7] border-[#111111]'
+                        ? 'bg-white border-2 border-[#111111] shadow-[4px_4px_0px_0px_#FFF35C]'
+                        : 'bg-white border-[#111111]'
                     } space-y-3`}
                   >
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
@@ -439,13 +439,13 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
 
           {/* 06 // LEADERSHIP & INSTITUTIONAL INVOLVEMENT */}
           <div className="space-y-4">
-            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-[#FAFAF7] px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
+            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-white px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
               06 // LEADERSHIP & INSTITUTIONAL INVOLVEMENT
             </h2>
 
             <div className="space-y-4">
               {RECRUITER_DATA.leadership.map((item, idx) => (
-                <div key={idx} className="p-4 rounded-2xl bg-[#FAFAF7] border border-[#111111] space-y-2">
+                <div key={idx} className="p-4 rounded-2xl bg-white border border-[#111111] space-y-2">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                     <div>
                       <h4 className="font-display font-extrabold text-sm text-[#111111]">
@@ -474,12 +474,12 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
 
           {/* 07 // EDUCATION */}
           <div className="space-y-4">
-            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-[#FAFAF7] px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
+            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-white px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
               07 // EDUCATION
             </h2>
 
             {RECRUITER_DATA.education.map((edu, idx) => (
-              <div key={idx} className="p-5 rounded-2xl bg-[#FAFAF7] border border-[#111111] space-y-3">
+              <div key={idx} className="p-5 rounded-2xl bg-white border border-[#111111] space-y-3">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div>
                     <h4 className="font-display font-extrabold text-base text-[#111111]">
@@ -524,7 +524,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
 
           {/* 08 // PROFESSIONAL EXPERTISE OVERVIEW */}
           <div className="space-y-3 pt-2 border-t-2 border-[#111111]">
-            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-[#FAFAF7] px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
+            <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-white px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
               08 // PROFESSIONAL EXPERTISE OVERVIEW
             </h2>
             <div className="flex flex-wrap gap-2 pt-1">

@@ -42,7 +42,7 @@ export const EasterEggsModal: React.FC<EasterEggsModalProps> = ({ isOpen, onClos
               playSound('pop');
               onClose();
             }}
-            className="absolute top-4 right-4 w-9 h-9 rounded-xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] hover:bg-[#FAFAF7] shadow-[2px_2px_0px_0px_#111111] transition-all cursor-pointer"
+            className="absolute top-4 right-4 w-9 h-9 rounded-xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] hover:bg-neutral-100 shadow-[2px_2px_0px_0px_#111111] transition-all cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>

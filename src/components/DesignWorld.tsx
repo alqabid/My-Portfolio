@@ -34,8 +34,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
     personalInfo: PERSONAL_INFO,
     designItems,
     isAdminLoggedIn,
-    setIsAdminPortalOpen,
-    setIsAdminLoginModalOpen
+    setIsAdminPortalOpen
   } = usePortfolio();
 
   // Category filter and search
@@ -188,28 +187,34 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
           </div>
 
           <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
-            <button
-              onClick={() => {
-                playSound('click');
-                if (isAdminLoggedIn) {
-                  setIsAdminPortalOpen(true);
-                } else {
-                  setIsAdminLoginModalOpen(true);
-                }
-              }}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#FFF35C] border-2 border-[#111111] font-display font-bold text-sm text-[#111111] shadow-[4px_4px_0px_0px_#111111] hover:shadow-[2px_2px_0px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer"
-            >
-              <Upload className="w-4 h-4" />
-              <span>{isAdminLoggedIn ? 'Open Admin CMS to Upload Flyers' : 'Admin Login to Upload Flyers'}</span>
-            </button>
             <a
               href="#contact"
               onClick={() => playSound('click')}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border-2 border-[#111111] font-display font-bold text-sm text-[#111111] shadow-[4px_4px_0px_0px_#111111] hover:shadow-[2px_2px_0px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#FFF35C] border-2 border-[#111111] font-display font-bold text-sm text-[#111111] shadow-[4px_4px_0px_0px_#111111] hover:shadow-[2px_2px_0px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer"
             >
               <MessageSquare className="w-4 h-4" />
               <span>Commission Custom Flyer</span>
             </a>
+            <a
+              href={`mailto:${PERSONAL_INFO.email || 'abdulqabidsiaka@gmail.com'}?subject=Graphic%20Design%20Commission`}
+              onClick={() => playSound('click')}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border-2 border-[#111111] font-display font-bold text-sm text-[#111111] shadow-[4px_4px_0px_0px_#111111] hover:shadow-[2px_2px_0px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer"
+            >
+              <Mail className="w-4 h-4" />
+              <span>Request Brand Kit</span>
+            </a>
+            {isAdminLoggedIn && (
+              <button
+                onClick={() => {
+                  playSound('click');
+                  setIsAdminPortalOpen(true);
+                }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#111111] text-[#FFF35C] border-2 border-[#111111] font-display font-bold text-sm shadow-[4px_4px_0px_0px_#111111] hover:shadow-[2px_2px_0px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer"
+              >
+                <Upload className="w-4 h-4" />
+                <span>Upload Flyer</span>
+              </button>
+            )}
           </div>
         </div>
       ) : (
@@ -230,7 +235,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
                 className={`px-4 py-2 rounded-xl text-xs font-display font-bold whitespace-nowrap transition-all border-2 cursor-pointer ${
                   isSelected
                     ? 'bg-[#111111] text-white border-[#111111] shadow-[2px_2px_0px_0px_#FFF35C]'
-                    : 'bg-[#F9F9F9] text-[#555555] border-[#111111]/20 hover:border-[#111111] hover:text-[#111111]'
+                    : 'bg-white text-[#555555] border-[#111111]/20 hover:border-[#111111] hover:text-[#111111]'
                 }`}
               >
                 {cat.label}
@@ -248,7 +253,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
               placeholder="Search flyers, tools, client..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 rounded-xl bg-[#F9F9F9] border-2 border-[#111111]/30 focus:border-[#111111] text-xs font-mono text-[#111111] placeholder:text-neutral-400 focus:outline-none"
+              className="w-full pl-9 pr-8 py-2 rounded-xl bg-white border-2 border-[#111111]/30 focus:border-[#111111] text-xs font-mono text-[#111111] placeholder:text-neutral-400 focus:outline-none"
             />
             {searchQuery && (
               <button
@@ -356,7 +361,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
                         {design.tools.map((tool) => (
                           <span
                             key={tool}
-                            className="px-2 py-0.5 rounded-md bg-[#F4F4F4] border border-[#111111]/20 text-[10px] font-mono text-[#333333]"
+                            className="px-2 py-0.5 rounded-md bg-white border border-[#111111]/20 text-[10px] font-mono text-[#333333]"
                           >
                             {tool}
                           </span>

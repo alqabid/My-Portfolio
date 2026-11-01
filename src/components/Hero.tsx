@@ -316,7 +316,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
                 playSound('pop');
                 onOpenContact();
               }}
-              className="px-6 py-4 rounded-2xl bg-white hover:bg-[#F5F5EE] text-[#111111] font-display font-bold text-base border-2 border-[#111111] shadow-[4px_4px_0px_0px_#111111] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2 cursor-pointer"
+              className="px-6 py-4 rounded-2xl bg-white hover:bg-neutral-100 text-[#111111] font-display font-bold text-base border-2 border-[#111111] shadow-[4px_4px_0px_0px_#111111] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2 cursor-pointer"
             >
               <Mail className="w-5 h-5 text-[#111111]" />
               <span>CONTACT ME</span>
@@ -350,7 +350,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
           {/* Card Frame containing interactive canvas */}
           <div className="w-full h-full min-h-[380px] sm:min-h-[460px] rounded-3xl bg-white border-3 border-[#111111] shadow-[8px_8px_0px_0px_#111111] relative overflow-hidden flex flex-col">
             {/* Top window bar */}
-            <div className="px-4 py-2.5 bg-[#FAFAF7] border-b-2 border-[#111111] flex items-center justify-between select-none">
+            <div className="px-4 py-2.5 bg-white border-b-2 border-[#111111] flex items-center justify-between select-none">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-[#FFB7D5] border border-[#111111]" />
                 <div className="w-3 h-3 rounded-full bg-[#FFF35C] border border-[#111111]" />
@@ -367,7 +367,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
             </div>
 
             {/* Canvas Area */}
-            <div className="flex-1 relative bg-[#FAFAF7] cursor-crosshair">
+            <div className="flex-1 relative bg-white cursor-crosshair">
               <canvas ref={canvasRef} className="w-full h-full block" />
 
               {/* Floating interactive hint badge */}

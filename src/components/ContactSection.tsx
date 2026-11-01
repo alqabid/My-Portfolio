@@ -225,7 +225,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     placeholder="e.g. user"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#FAFAF7] border-2 border-[#111111] text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:bg-white"
+                    className="w-full px-4 py-3 rounded-xl bg-white border-2 border-[#111111] text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#FFF35C]"
                   />
                 </div>
 
@@ -239,7 +239,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     placeholder="user@domain.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#FAFAF7] border-2 border-[#111111] text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:bg-white"
+                    className="w-full px-4 py-3 rounded-xl bg-white border-2 border-[#111111] text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#FFF35C]"
                   />
                 </div>
 
@@ -250,7 +250,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <select
                     value={formData.projectType}
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#FAFAF7] border-2 border-[#111111] text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:bg-white cursor-pointer"
+                    className="w-full px-4 py-3 rounded-xl bg-white border-2 border-[#111111] text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#FFF35C] cursor-pointer"
                   >
                     <option value="Full-Stack Web App">Full-Stack Web App (React / FastAPI / Node)</option>
                     <option value="AI & Computer Vision Model">AI & Computer Vision Model</option>
@@ -271,7 +271,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     placeholder="Tell me about your timeline, goals, or idea..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#FAFAF7] border-2 border-[#111111] text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:bg-white resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-white border-2 border-[#111111] text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#FFF35C] resize-none"
                   />
                 </div>
 

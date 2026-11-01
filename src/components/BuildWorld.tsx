@@ -50,7 +50,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
 
       {/* FEATURED PROJECT 1: MEDVISION with Real Live Link Preview */}
       <div className="mb-16 rounded-3xl bg-white border-3 border-[#111111] shadow-[8px_8px_0px_0px_#111111] overflow-hidden">
-        <div className="p-6 sm:p-10 border-b-2 border-[#111111] bg-[#FAFAF7] flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div className="p-6 sm:p-10 border-b-2 border-[#111111] bg-white flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-3">
               <span className="px-3 py-1 rounded-full bg-[#FFF35C] border border-[#111111] text-xs font-bold font-mono text-[#111111]">
@@ -94,7 +94,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
               href="https://github.com/alqabid"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] shadow-[2px_2px_0px_0px_#111111] hover:bg-[#F0F0EA] transition-all"
+              className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] shadow-[2px_2px_0px_0px_#111111] hover:bg-neutral-100 transition-all"
               title="View on GitHub"
             >
               <Github className="w-5 h-5" />
@@ -117,7 +117,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
 
       {/* FEATURED PROJECT 2: YUGOGOO with Live Link Preview */}
       <div className="mb-16 rounded-3xl bg-white border-3 border-[#111111] shadow-[8px_8px_0px_0px_#111111] overflow-hidden">
-        <div className="p-6 sm:p-10 border-b-2 border-[#111111] bg-[#FAFAF7] flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div className="p-6 sm:p-10 border-b-2 border-[#111111] bg-white flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-3">
               <span className="px-3 py-1 rounded-full bg-[#A9DDFF] border border-[#111111] text-xs font-bold font-mono text-[#111111]">
@@ -161,7 +161,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
               href="https://github.com/alqabid"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] shadow-[2px_2px_0px_0px_#111111] hover:bg-[#F0F0EA] transition-all"
+              className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] shadow-[2px_2px_0px_0px_#111111] hover:bg-neutral-100 transition-all"
               title="View on GitHub"
             >
               <Github className="w-5 h-5" />
@@ -185,7 +185,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
       {/* ADDITIONAL PRODUCTION PROJECTS GRID (UGOGO, GRANDIOSE GLAM) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* UGOGO */}
-        <div className="rounded-3xl bg-[#FAFAF7] border-2 border-[#111111] p-5 flex flex-col justify-between shadow-[4px_4px_0px_0px_#111111] transition-all hover:-translate-y-1">
+        <div className="rounded-3xl bg-white border-2 border-[#111111] p-5 flex flex-col justify-between shadow-[4px_4px_0px_0px_#111111] transition-all hover:-translate-y-1">
           <div className="space-y-3">
             {/* Live Link Preview Browser Header */}
             <div className="rounded-xl overflow-hidden border border-[#111111] bg-[#111111]">
@@ -245,7 +245,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
             </a>
             <button
               onClick={() => onOpenCaseStudy(BUILD_PROJECTS.find(p => p.id === 'ugogo') || BUILD_PROJECTS[2])}
-              className="px-3 py-2 rounded-xl bg-white hover:bg-[#F0F0EA] text-[#111111] font-display font-bold text-xs border border-[#111111] cursor-pointer"
+              className="px-3 py-2 rounded-xl bg-white hover:bg-neutral-100 text-[#111111] font-display font-bold text-xs border border-[#111111] cursor-pointer"
               title="View Case Study"
             >
               CASE STUDY
@@ -254,7 +254,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
               href="https://github.com/alqabid"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-xl bg-white border border-[#111111] text-[#111111] hover:bg-[#F0F0EA]"
+              className="p-2 rounded-xl bg-white border border-[#111111] text-[#111111] hover:bg-neutral-100"
               title="View on GitHub"
             >
               <Github className="w-4 h-4" />
@@ -263,7 +263,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
         </div>
 
         {/* GRANDIOSE GLAM */}
-        <div className="rounded-3xl bg-[#FAFAF7] border-2 border-[#111111] p-5 flex flex-col justify-between shadow-[4px_4px_0px_0px_#111111] transition-all hover:-translate-y-1">
+        <div className="rounded-3xl bg-white border-2 border-[#111111] p-5 flex flex-col justify-between shadow-[4px_4px_0px_0px_#111111] transition-all hover:-translate-y-1">
           <div className="space-y-3">
             {/* Live Link Preview Browser Header */}
             <div className="rounded-xl overflow-hidden border border-[#111111] bg-[#111111]">
@@ -323,7 +323,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
             </a>
             <button
               onClick={() => onOpenCaseStudy(BUILD_PROJECTS.find(p => p.id === 'grandiose-glam') || BUILD_PROJECTS[3])}
-              className="px-3 py-2 rounded-xl bg-white hover:bg-[#F0F0EA] text-[#111111] font-display font-bold text-xs border border-[#111111] cursor-pointer"
+              className="px-3 py-2 rounded-xl bg-white hover:bg-neutral-100 text-[#111111] font-display font-bold text-xs border border-[#111111] cursor-pointer"
               title="View Case Study"
             >
               CASE STUDY
@@ -332,7 +332,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
               href="https://github.com/alqabid"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-xl bg-white border border-[#111111] text-[#111111] hover:bg-[#F0F0EA]"
+              className="p-2 rounded-xl bg-white border border-[#111111] text-[#111111] hover:bg-neutral-100"
               title="View on GitHub"
             >
               <Github className="w-4 h-4" />

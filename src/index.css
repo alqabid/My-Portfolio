@@ -7,14 +7,14 @@
     --accent-pink: #FFB7D5;
     --accent-sky: #A9DDFF;
     --accent-mint: #B9F5D0;
-    --neutral-bg: #FAFAF7;
+    --neutral-bg: #FFFFFF;
     --deep-black: #111111;
   }
 
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     color: #111111;
-    background-color: #FAFAF7;
+    background-color: #FFFFFF;
   }
 
   h1, h2, h3, .font-display {
@@ -68,7 +68,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAFAF7;
+  background: #FFFFFF;
 }
 
 ::-webkit-scrollbar-thumb {

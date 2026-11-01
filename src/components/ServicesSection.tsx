@@ -100,7 +100,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                     playSound('pop');
                     onSelectService(srv.title);
                   }}
-                  className="w-full py-3.5 rounded-2xl bg-[#FAFAF7] hover:bg-[#111111] text-[#111111] hover:text-[#FFF35C] font-display font-bold text-xs uppercase tracking-wider border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-2 cursor-pointer group"
+                  className="w-full py-3.5 rounded-2xl bg-white hover:bg-[#111111] text-[#111111] hover:text-[#FFF35C] font-display font-bold text-xs uppercase tracking-wider border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-2 cursor-pointer group"
                 >
                   <span>INQUIRE ABOUT {srv.title}</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

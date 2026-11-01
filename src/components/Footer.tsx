@@ -32,14 +32,21 @@ export const Footer: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    // Secret keyboard shortcut: Ctrl+Shift+A or Cmd+Shift+A
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Secret key shortcut: Ctrl+Shift+A or Cmd+Shift+A opens admin gateway
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'a') {
         e.preventDefault();
         handleOpenAdmin();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
+
+    // Stealth URL param check: ?admin=true or #admin
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('admin') === 'true' || urlParams.get('portal') === 'true' || window.location.hash === '#admin') {
+      handleOpenAdmin();
+    }
+
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isAdminLoggedIn]);
 
@@ -85,7 +92,7 @@ export const Footer: React.FC = () => {
               href={PERSONAL_INFO.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-[#FAFAF7] hover:bg-[#111111] text-[#111111] hover:text-white border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] flex items-center justify-center transition-all"
+              className="w-9 h-9 rounded-xl bg-white hover:bg-[#111111] text-[#111111] hover:text-white border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] flex items-center justify-center transition-all"
               title="GitHub Profile"
             >
               <Github className="w-4 h-4" />
@@ -96,7 +103,7 @@ export const Footer: React.FC = () => {
               href={PERSONAL_INFO.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-[#FAFAF7] hover:bg-[#111111] text-[#111111] hover:text-white border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] flex items-center justify-center transition-all"
+              className="w-9 h-9 rounded-xl bg-white hover:bg-[#111111] text-[#111111] hover:text-white border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] flex items-center justify-center transition-all"
               title="LinkedIn Profile"
             >
               <Linkedin className="w-4 h-4" />
@@ -107,7 +114,7 @@ export const Footer: React.FC = () => {
               href={PERSONAL_INFO.snapchatCreator}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-[#FAFAF7] hover:bg-[#FFF35C] text-[#111111] border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] flex items-center justify-center transition-all"
+              className="w-9 h-9 rounded-xl bg-white hover:bg-[#FFF35C] text-[#111111] border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] flex items-center justify-center transition-all"
               title="Snapchat Lens Creator Hub"
             >
               <Glasses className="w-4 h-4" />
@@ -118,7 +125,7 @@ export const Footer: React.FC = () => {
               href={PERSONAL_INFO.snapchatAccount}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-[#FAFAF7] hover:bg-[#FFFC00] text-[#111111] border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] flex items-center justify-center transition-all"
+              className="w-9 h-9 rounded-xl bg-white hover:bg-[#FFFC00] text-[#111111] border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] flex items-center justify-center transition-all"
               title={`Add @${PERSONAL_INFO.snapchatHandle} on Snapchat`}
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -131,7 +138,7 @@ export const Footer: React.FC = () => {
               href={PERSONAL_INFO.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-[#FAFAF7] hover:bg-[#25D366] text-[#111111] hover:text-white border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] flex items-center justify-center transition-all"
+              className="w-9 h-9 rounded-xl bg-white hover:bg-[#25D366] text-[#111111] hover:text-white border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] flex items-center justify-center transition-all"
               title="WhatsApp Contact"
             >
               <MessageSquare className="w-4 h-4" />
@@ -140,7 +147,7 @@ export const Footer: React.FC = () => {
           {PERSONAL_INFO.email && (
             <a
               href={`mailto:${PERSONAL_INFO.email}`}
-              className="w-9 h-9 rounded-xl bg-[#FAFAF7] hover:bg-[#111111] text-[#111111] hover:text-white border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] flex items-center justify-center transition-all"
+              className="w-9 h-9 rounded-xl bg-white hover:bg-[#111111] text-[#111111] hover:text-white border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] flex items-center justify-center transition-all"
               title="Direct Email"
             >
               <Mail className="w-4 h-4" />
@@ -148,26 +155,15 @@ export const Footer: React.FC = () => {
           )}
         </div>
 
-        {/* Action Column: Back to top button & Hidden Stealth Trigger right below */}
-        <div className="flex flex-col items-center md:items-end gap-1.5">
+        {/* Action Column: Back to top button */}
+        <div className="flex flex-col items-center md:items-end">
           {/* Back to top button */}
           <button
             onClick={scrollToTop}
-            className="px-4 py-2.5 rounded-2xl bg-[#FAFAF7] hover:bg-[#111111] text-[#111111] hover:text-[#FFF35C] border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none font-display font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-all"
+            className="px-4 py-2.5 rounded-2xl bg-white hover:bg-[#111111] text-[#111111] hover:text-[#FFF35C] border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none font-display font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-all"
           >
             <span>BACK TO TOP</span>
             <ArrowUp className="w-3.5 h-3.5" />
-          </button>
-
-          {/* Stealth discreet hit-target right below Back to Top (Invisible to visitors, known only to you) */}
-          <button
-            onClick={handleOpenAdmin}
-            tabIndex={-1}
-            className="h-3 w-16 opacity-0 hover:opacity-20 cursor-default flex items-center justify-center focus:outline-none transition-opacity"
-            title=""
-            aria-hidden="true"
-          >
-            <span className="w-1 h-1 rounded-full bg-neutral-400"></span>
           </button>
         </div>
       </div>

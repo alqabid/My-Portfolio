@@ -24,7 +24,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
           className="relative w-full max-w-4xl bg-white border-3 border-[#111111] rounded-3xl shadow-[10px_10px_0px_0px_#111111] overflow-hidden my-8 max-h-[90vh] flex flex-col"
         >
           {/* Header */}
-          <div className="p-6 sm:p-8 bg-[#FAFAF7] border-b-2 border-[#111111] flex items-start justify-between gap-4">
+          <div className="p-6 sm:p-8 bg-white border-b-2 border-[#111111] flex items-start justify-between gap-4">
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
                 <span
@@ -50,7 +50,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
                 playSound('pop');
                 onClose();
               }}
-              className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] hover:bg-[#F0F0EA] shadow-[2px_2px_0px_0px_#111111] transition-all cursor-pointer shrink-0"
+              className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] hover:bg-neutral-100 shadow-[2px_2px_0px_0px_#111111] transition-all cursor-pointer shrink-0"
             >
               <X className="w-5 h-5" />
             </button>
@@ -88,7 +88,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
             {project.metrics && project.metrics.length > 0 && (
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {project.metrics.map((m, idx) => (
-                  <div key={idx} className="p-4 rounded-2xl bg-[#FAFAF7] border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111]">
+                  <div key={idx} className="p-4 rounded-2xl bg-white border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111]">
                     <span className="text-[10px] font-mono text-[#777777] uppercase block">{m.label}</span>
                     <span className="font-display font-black text-2xl text-[#111111]">{m.value}</span>
                   </div>
@@ -141,7 +141,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {project.features.map((f, idx) => (
-                  <div key={idx} className="p-3.5 rounded-xl bg-[#FAFAF7] border border-[#111111] flex items-start gap-2 text-xs font-semibold text-[#333333]">
+                  <div key={idx} className="p-3.5 rounded-xl bg-white border border-[#111111] flex items-start gap-2 text-xs font-semibold text-[#333333]">
                     <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
                     <span>{f}</span>
                   </div>
@@ -155,7 +155,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
                 TECH STACK:
               </span>
               {project.technologies.map((t, idx) => (
-                <span key={idx} className="px-3 py-1 rounded-lg bg-[#FAFAF7] border border-[#111111] font-mono text-xs font-bold text-[#111111]">
+                <span key={idx} className="px-3 py-1 rounded-lg bg-white border border-[#111111] font-mono text-xs font-bold text-[#111111]">
                   {t}
                 </span>
               ))}
@@ -163,7 +163,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
           </div>
 
           {/* Footer Actions */}
-          <div className="p-6 bg-[#FAFAF7] border-t-2 border-[#111111] flex flex-wrap items-center justify-between gap-4">
+          <div className="p-6 bg-white border-t-2 border-[#111111] flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-3">
               {project.liveUrl && (
                 <a
