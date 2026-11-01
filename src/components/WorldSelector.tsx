@@ -100,7 +100,7 @@ export const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onS
                 playSound('whoosh');
                 onSelectWorld(w.id);
               }}
-              className={`group relative rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-8 flex flex-col justify-between cursor-pointer transition-all duration-300 active:scale-[0.98] overflow-hidden`}
+              className={`group relative rounded-3xl bg-white border border-neutral-200/80 hover:border-neutral-400 p-6 sm:p-8 flex flex-col justify-between cursor-pointer transition-all duration-300 active:scale-[0.98] overflow-hidden`}
               style={{
                 backgroundColor: isHovered ? `${w.accent}15` : '#FFFFFF'
               }}
@@ -108,11 +108,11 @@ export const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onS
               {/* Top Accent corner badge */}
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-3">
-                  <div className={`w-12 h-12 rounded-2xl ${w.iconColor} border-2 border-[#111111] flex items-center justify-center`}>
+                  <div className={`w-12 h-12 rounded-2xl ${w.iconColor} flex items-center justify-center`}>
                     <Icon className="w-6 h-6 text-[#111111]" />
                   </div>
                   <div>
-                    <span className="font-mono text-xs font-bold text-[#888888] block">
+                    <span className="font-mono text-xs font-bold text-neutral-400 block">
                       WORLD // {w.number}
                     </span>
                     <span className="font-display font-bold text-xs text-[#111111] uppercase tracking-wide">
@@ -121,7 +121,7 @@ export const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onS
                   </div>
                 </div>
 
-                <div className="w-10 h-10 rounded-full border-2 border-[#111111] bg-white flex items-center justify-center group-hover:bg-[#111111] group-hover:text-white transition-colors">
+                <div className="w-10 h-10 rounded-full border border-neutral-200 bg-white flex items-center justify-center group-hover:bg-[#111111] group-hover:border-neutral-900 group-hover:text-white transition-colors">
                   <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
               </div>
@@ -131,15 +131,15 @@ export const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onS
                 <h3 className="text-4xl sm:text-5xl font-display font-black text-[#111111] tracking-tight mb-2 flex items-center gap-2">
                   <span>{w.title}</span>
                 </h3>
-                <p className="text-sm sm:text-base text-[#555555] font-medium leading-relaxed">
+                <p className="text-sm sm:text-base text-neutral-600 font-medium leading-relaxed">
                   {w.tagline}
                 </p>
               </div>
 
               {/* Highlights list */}
-              <div className="space-y-2 mb-8 pt-4 border-t border-[#ECECE4]">
+              <div className="space-y-2 mb-8 pt-4 border-t border-neutral-200/80">
                 {w.highlights.map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2 text-xs font-display font-semibold text-[#333333]">
+                  <div key={idx} className="flex items-center gap-2 text-xs font-display font-semibold text-neutral-800">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#111111]" />
                     <span>{item}</span>
                   </div>
@@ -147,16 +147,16 @@ export const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onS
               </div>
 
               {/* Bottom Metric Pill */}
-              <div className="pt-4 border-t border-[#ECECE4] flex items-center justify-between">
+              <div className="pt-4 border-t border-neutral-200/80 flex items-center justify-between">
                 <div>
                   <span className="font-display font-black text-lg text-[#111111] block">
                     {w.metric}
                   </span>
-                  <span className="text-[10px] font-mono text-[#777777] uppercase">
+                  <span className="text-[10px] font-mono text-neutral-500 uppercase">
                     {w.statLabel}
                   </span>
                 </div>
-                <div className="px-3.5 py-1.5 rounded-xl bg-[#111111] text-white font-display font-bold text-xs tracking-wider uppercase group-hover:bg-[#FFF35C] group-hover:text-[#111111] group-hover:border group-hover:border-[#111111] transition-colors">
+                <div className="px-3.5 py-1.5 rounded-xl bg-[#111111] text-white font-display font-bold text-xs tracking-wider uppercase group-hover:bg-[#FFF35C] group-hover:text-[#111111] transition-colors">
                   EXPLORE →
                 </div>
               </div>

@@ -49,7 +49,7 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
   };
 
   return (
-    <div className="w-full rounded-2xl border-2 border-[#111111] bg-[#111111] overflow-hidden flex flex-col">
+    <div className="w-full rounded-2xl border border-neutral-200/80 bg-[#111111] overflow-hidden flex flex-col">
       {/* Realistic Browser Chrome / Navigation Header */}
       <div className="bg-[#1C1C1C] px-3.5 py-2.5 border-b border-[#333333] flex items-center justify-between gap-3 select-none">
         {/* Window controls */}
@@ -169,7 +169,7 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
             ) : (
               <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-[#1C1C1C] to-[#0D0D0D]">
                 <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center border-2 border-[#333333] mb-3"
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center border border-neutral-700 mb-3"
                   style={{ backgroundColor: `${accentColor}20` }}
                 >
                   <Globe className="w-7 h-7" style={{ color: accentColor }} />
@@ -231,7 +231,7 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3.5 py-1.5 rounded-lg bg-[#FFF35C] hover:bg-[#ffe338] text-[#111111] font-display font-bold text-xs border border-[#111111] flex items-center gap-1 transition-all"
+                  className="px-3.5 py-1.5 rounded-lg bg-[#FFF35C] hover:bg-[#ffe338] text-[#111111] font-display font-bold text-xs flex items-center gap-1 transition-all"
                 >
                   <span>VISIT SITE</span>
                   <ExternalLink className="w-3 h-3" />

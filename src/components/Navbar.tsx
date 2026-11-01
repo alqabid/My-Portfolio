@@ -61,19 +61,19 @@ export const Navbar: React.FC<NavbarProps> = ({
         <button
           id="navbar-logo-btn"
           onClick={handleLogoClick}
-          className={`flex items-center gap-2.5 px-3 sm:px-4 py-2 rounded-2xl border-2 border-[#111111] transition-all duration-200 cursor-pointer active:scale-95 ${
+          className={`flex items-center gap-2.5 px-3 sm:px-4 py-2 rounded-2xl border border-neutral-200/80 transition-all duration-200 cursor-pointer active:scale-95 ${
             isScrolled ? 'bg-white/95 backdrop-blur-md' : 'bg-white'
           }`}
           title={logoClicks > 0 ? `${5 - logoClicks} clicks until secret mode!` : 'Abdul Qabid Siaka'}
         >
-          <div className="w-7 h-7 rounded-xl bg-[#FFF35C] border border-[#111111] flex items-center justify-center font-display font-extrabold text-sm text-[#111111]">
+          <div className="w-7 h-7 rounded-xl bg-[#FFF35C] flex items-center justify-center font-display font-extrabold text-sm text-[#111111]">
             {personalInfo.name ? personalInfo.name.charAt(0).toUpperCase() : 'A'}
           </div>
           <div className="text-left hidden xs:block">
             <span className="font-display font-bold text-sm tracking-tight text-[#111111] block leading-none">
               {personalInfo.name ? personalInfo.name.split(' ').slice(0, 2).join(' ') : 'ABDUL QABID'}
             </span>
-            <span className="text-[10px] font-mono text-[#666666] tracking-wider uppercase leading-tight">
+            <span className="text-[10px] font-mono text-neutral-500 tracking-wider uppercase leading-tight">
               CREATIVE TECH
             </span>
           </div>
@@ -86,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Center Desktop Navigation Links */}
         {!isRecruiterMode && (
-          <nav className="hidden lg:flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border-2 border-[#111111]">
+          <nav className="hidden lg:flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-neutral-200/80">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -97,7 +97,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   className={`px-3.5 py-1.5 rounded-full text-xs font-display font-bold tracking-wide uppercase transition-all duration-150 ${
                     isActive
                       ? 'bg-[#111111] text-[#FFF35C]'
-                      : 'text-[#333333] hover:bg-neutral-100 hover:text-[#111111]'
+                      : 'text-neutral-700 hover:bg-neutral-100 hover:text-[#111111]'
                   }`}
                 >
                   {link.label}
@@ -116,13 +116,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               onToggleSound();
               playSound('switch');
             }}
-            className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] hover:bg-neutral-100 active:scale-95 transition-all cursor-pointer"
+            className="w-10 h-10 rounded-2xl bg-white border border-neutral-200/80 flex items-center justify-center text-[#111111] hover:bg-neutral-100 active:scale-95 transition-all cursor-pointer"
             title={soundEnabled ? 'Mute Sound Effects' : 'Enable Interactive Sound FX'}
           >
             {soundEnabled ? (
               <Volume2 className="w-4 h-4 text-[#111111]" />
             ) : (
-              <VolumeX className="w-4 h-4 text-[#888888]" />
+              <VolumeX className="w-4 h-4 text-neutral-400" />
             )}
           </button>
 
@@ -133,10 +133,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               playSound('switch');
               onToggleRecruiterMode();
             }}
-            className={`px-3 sm:px-4 py-2 rounded-2xl border-2 border-[#111111] font-display font-bold text-xs flex items-center gap-2 active:scale-95 transition-all cursor-pointer ${
+            className={`px-3 sm:px-4 py-2 rounded-2xl border font-display font-bold text-xs flex items-center gap-2 active:scale-95 transition-all cursor-pointer ${
               isRecruiterMode
-                ? 'bg-[#111111] text-[#FFF35C]'
-                : 'bg-[#FFF35C] text-[#111111] hover:bg-[#ffee38]'
+                ? 'bg-[#111111] text-[#FFF35C] border-transparent'
+                : 'bg-[#FFF35C] text-[#111111] border-neutral-200 hover:bg-[#ffee38]'
             }`}
           >
             {isRecruiterMode ? (
@@ -161,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               playSound('pop');
               onOpenResume();
             }}
-            className="px-3 sm:px-4 py-2 rounded-2xl bg-white border-2 border-[#111111] font-display font-bold text-xs text-[#111111] flex items-center gap-1.5 hover:bg-neutral-100 active:scale-95 transition-all cursor-pointer"
+            className="px-3 sm:px-4 py-2 rounded-2xl bg-white border border-neutral-200/80 font-display font-bold text-xs text-[#111111] flex items-center gap-1.5 hover:bg-neutral-100 active:scale-95 transition-all cursor-pointer"
           >
             <FileText className="w-4 h-4 text-[#111111]" />
             <span className="hidden md:inline">RESUME</span>

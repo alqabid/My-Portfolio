@@ -143,28 +143,28 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
     <section id="design" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Section Header */}
       <div className="mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFB7D5] border-2 border-[#111111] text-xs font-mono font-bold text-[#111111] uppercase tracking-wider mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFB7D5]/80 border border-neutral-200/80 text-xs font-mono font-bold text-neutral-900 uppercase tracking-wider mb-4">
           <Palette className="w-3.5 h-3.5" />
           <span>DESIGN WORLD // GRAPHIC DESIGN & FLYER SHOWCASE</span>
         </div>
         <h2 className="text-4xl sm:text-6xl font-display font-extrabold text-[#111111] tracking-tight mb-4">
           VISUALS THAT COMMAND ATTENTION.
         </h2>
-        <p className="text-base sm:text-xl text-[#555555] max-w-3xl leading-relaxed">
+        <p className="text-base sm:text-xl text-neutral-600 max-w-3xl leading-relaxed">
           Showcase of bespoke promotional flyers, event posters, viral YouTube thumbnails, and brand identities crafted across Canva Advanced, Adobe Photoshop, and Figma.
         </p>
 
         {/* Tools Badges */}
         <div className="mt-6 flex flex-wrap items-center gap-3">
-          <div className="px-4 py-2 rounded-2xl bg-white border-2 border-[#111111] flex items-center gap-2">
+          <div className="px-4 py-2 rounded-2xl bg-white border border-neutral-200/80 flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-[#00C4CC]" />
             <span className="font-display font-bold text-xs text-[#111111]">CANVA — ADVANCED MASTER</span>
           </div>
-          <div className="px-4 py-2 rounded-2xl bg-white border-2 border-[#111111] flex items-center gap-2">
+          <div className="px-4 py-2 rounded-2xl bg-white border border-neutral-200/80 flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-[#31A8FF]" />
             <span className="font-display font-bold text-xs text-[#111111]">ADOBE PHOTOSHOP</span>
           </div>
-          <div className="px-4 py-2 rounded-2xl bg-white border-2 border-[#111111] flex items-center gap-2">
+          <div className="px-4 py-2 rounded-2xl bg-white border border-neutral-200/80 flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-[#F24E1E]" />
             <span className="font-display font-bold text-xs text-[#111111]">FIGMA</span>
           </div>
@@ -173,15 +173,15 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
 
       {/* Flyer & Design Showcase: Loaded Items vs Empty Showcase Ready State */}
       {designItems.length === 0 ? (
-        <div className="p-8 sm:p-14 text-center rounded-3xl bg-white border-3 border-[#111111] space-y-6 mb-16">
-          <div className="w-16 h-16 rounded-2xl bg-[#FFB7D5] border-2 border-[#111111] flex items-center justify-center mx-auto">
+        <div className="p-8 sm:p-14 text-center rounded-3xl bg-white border border-neutral-200/80 space-y-6 mb-16">
+          <div className="w-16 h-16 rounded-2xl bg-[#FFB7D5] flex items-center justify-center mx-auto">
             <Palette className="w-8 h-8 text-[#111111]" />
           </div>
           <div className="max-w-xl mx-auto space-y-2">
             <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-[#111111]">
               DESIGN SHOWCASE READY
             </h3>
-            <p className="text-sm sm:text-base text-[#555555] leading-relaxed">
+            <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
               Authentic event flyers, custom brand graphics, and promotional posters will appear here. No simulated or artificial placeholders are displayed — only real visual deliverables.
             </p>
           </div>
@@ -190,7 +190,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
             <a
               href="#contact"
               onClick={() => playSound('click')}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#FFF35C] border-2 border-[#111111] font-display font-bold text-sm text-[#111111] hover:bg-[#faee37] active:scale-95 transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#FFF35C] border border-neutral-300 font-display font-bold text-sm text-[#111111] hover:bg-[#faee37] active:scale-95 transition-all cursor-pointer"
             >
               <MessageSquare className="w-4 h-4" />
               <span>Commission Custom Flyer</span>
@@ -198,7 +198,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
             <a
               href={`mailto:${PERSONAL_INFO.email || 'abdulqabidsiaka@gmail.com'}?subject=Graphic%20Design%20Commission`}
               onClick={() => playSound('click')}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border-2 border-[#111111] font-display font-bold text-sm text-[#111111] hover:bg-neutral-100 active:scale-95 transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border border-neutral-200/80 font-display font-bold text-sm text-[#111111] hover:bg-neutral-50 active:scale-95 transition-all cursor-pointer"
             >
               <Mail className="w-4 h-4" />
               <span>Request Brand Kit</span>
@@ -209,7 +209,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
                   playSound('click');
                   setIsAdminPortalOpen(true);
                 }}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#111111] text-[#FFF35C] border-2 border-[#111111] font-display font-bold text-sm hover:bg-neutral-800 active:scale-95 transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#111111] text-[#FFF35C] font-display font-bold text-sm hover:bg-neutral-800 active:scale-95 transition-all cursor-pointer"
               >
                 <Upload className="w-4 h-4" />
                 <span>Upload Flyer</span>
@@ -220,7 +220,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
       ) : (
         <>
           {/* Interactive Category & Search Controls */}
-      <div className="mb-10 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded-3xl bg-white border-3 border-[#111111]">
+      <div className="mb-10 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded-3xl bg-white border border-neutral-200/80">
         {/* Category Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
           {categories.map((cat) => {
@@ -232,10 +232,10 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
                   playSound('click');
                   setSelectedCategory(cat.id);
                 }}
-                className={`px-4 py-2 rounded-xl text-xs font-display font-bold whitespace-nowrap transition-all border-2 cursor-pointer ${
+                className={`px-4 py-2 rounded-xl text-xs font-display font-bold whitespace-nowrap transition-all border cursor-pointer ${
                   isSelected
                     ? 'bg-[#111111] text-white border-[#111111]'
-                    : 'bg-white text-[#555555] border-[#111111]/20 hover:border-[#111111] hover:text-[#111111]'
+                    : 'bg-white text-neutral-600 border-neutral-200 hover:border-neutral-400 hover:text-[#111111]'
                 }`}
               >
                 {cat.label}
@@ -253,7 +253,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
               placeholder="Search flyers, tools, client..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 rounded-xl bg-white border-2 border-[#111111]/30 focus:border-[#111111] text-xs font-mono text-[#111111] placeholder:text-neutral-400 focus:outline-none"
+              className="w-full pl-9 pr-8 py-2 rounded-xl bg-white border border-neutral-200 focus:border-neutral-400 text-xs font-mono text-[#111111] placeholder:text-neutral-400 focus:outline-none"
             />
             {searchQuery && (
               <button
@@ -264,7 +264,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
               </button>
             )}
           </div>
-          <div className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#FFF35C] border-2 border-[#111111] text-[11px] font-mono font-bold text-[#111111] whitespace-nowrap">
+          <div className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#FFF35C] border border-neutral-300 text-[11px] font-mono font-bold text-[#111111] whitespace-nowrap">
             <span>{filteredDesigns.length} ASSETS</span>
           </div>
         </div>
@@ -285,11 +285,11 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.25 }}
-                className="group rounded-3xl bg-white border-3 border-[#111111] overflow-hidden flex flex-col justify-between transition-all duration-200 hover:border-black"
+                className="group rounded-3xl bg-white border border-neutral-200/80 overflow-hidden flex flex-col justify-between transition-all duration-200 hover:border-neutral-400"
               >
                 {/* Visual Image Container with Flyer Aspect Ratio */}
                 <div
-                  className={`relative w-full bg-[#1A1A1A] overflow-hidden border-b-3 border-[#111111] cursor-pointer group/img ${
+                  className={`relative w-full bg-[#1A1A1A] overflow-hidden border-b border-neutral-200/80 cursor-pointer group/img ${
                     isFlyerOrPoster ? 'aspect-[4/5]' : 'aspect-[16/10]'
                   }`}
                   onClick={() => {
@@ -311,7 +311,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
 
                   {/* Top Badges */}
                   <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 z-10">
-                    <span className={`px-2.5 py-1 rounded-full border-2 border-[#111111] text-[10px] font-mono font-bold uppercase ${categoryBadge}`}>
+                    <span className={`px-2.5 py-1 rounded-full border border-neutral-200/80 text-[10px] font-mono font-bold uppercase ${categoryBadge}`}>
                       {design.category}
                     </span>
 
@@ -324,7 +324,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
 
                   {/* Quick Inspect Hover Overlay Button */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-10 pointer-events-none">
-                    <div className="px-4 py-2 rounded-2xl bg-[#FFF35C] border-2 border-[#111111] text-[#111111] font-display font-extrabold text-xs flex items-center gap-2 scale-90 group-hover/img:scale-100 transition-transform">
+                    <div className="px-4 py-2 rounded-2xl bg-[#FFF35C] border border-neutral-300 text-[#111111] font-display font-extrabold text-xs flex items-center gap-2 scale-90 group-hover/img:scale-100 transition-transform">
                       <Eye className="w-4 h-4" />
                       <span>Inspect Flyer</span>
                     </div>
@@ -342,26 +342,26 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
                 <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                   <div className="space-y-2">
                     {design.clientOrProject && (
-                      <span className="text-[11px] font-mono font-bold text-[#888888] uppercase tracking-wider block">
+                      <span className="text-[11px] font-mono font-bold text-neutral-400 uppercase tracking-wider block">
                         {design.clientOrProject}
                       </span>
                     )}
                     <h3 className="text-xl font-display font-extrabold text-[#111111] leading-snug group-hover:text-neutral-900">
                       {design.title}
                     </h3>
-                    <p className="text-xs text-[#555555] leading-relaxed line-clamp-2">
+                    <p className="text-xs text-neutral-600 leading-relaxed line-clamp-2">
                       {design.description || 'Custom crafted visual asset engineered with high contrast, deliberate typography, and balanced spacing.'}
                     </p>
                   </div>
 
                   {/* Tools & Tags */}
-                  <div className="space-y-3 pt-2 border-t-2 border-[#F0F0F0]">
+                  <div className="space-y-3 pt-2 border-t border-neutral-100">
                     {design.tools && design.tools.length > 0 && (
                       <div className="flex flex-wrap items-center gap-1.5">
                         {design.tools.map((tool) => (
                           <span
                             key={tool}
-                            className="px-2 py-0.5 rounded-md bg-white border border-[#111111]/20 text-[10px] font-mono text-[#333333]"
+                            className="px-2 py-0.5 rounded-md bg-neutral-50 border border-neutral-200/80 text-[10px] font-mono text-neutral-700"
                           >
                             {tool}
                           </span>
@@ -377,7 +377,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
                           playSound('click');
                           setSelectedDesign(design);
                         }}
-                        className="flex-1 px-3.5 py-2.5 rounded-xl bg-[#111111] hover:bg-neutral-800 text-white font-display font-bold text-xs flex items-center justify-center gap-1.5 border-2 border-[#111111] active:scale-95 transition-all cursor-pointer"
+                        className="flex-1 px-3.5 py-2.5 rounded-xl bg-[#111111] hover:bg-neutral-800 text-white font-display font-bold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition-all cursor-pointer"
                       >
                         <Eye className="w-3.5 h-3.5" />
                         <span>Quick View</span>
@@ -389,7 +389,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
                           href={design.previewUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-3 py-2.5 rounded-xl bg-[#FFF35C] hover:bg-[#faee37] text-[#111111] font-display font-bold text-xs flex items-center justify-center gap-1 border-2 border-[#111111] active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+                          className="px-3 py-2.5 rounded-xl bg-[#FFF35C] hover:bg-[#faee37] text-[#111111] font-display font-bold text-xs flex items-center justify-center gap-1 border border-neutral-300 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
                           title={design.previewLinkLabel || 'Open Live Preview'}
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
@@ -406,12 +406,12 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
           })}
         </div>
       ) : (
-        <div className="p-12 text-center rounded-3xl bg-white border-3 border-[#111111] space-y-4 mb-16">
+        <div className="p-12 text-center rounded-3xl bg-white border border-neutral-200/80 space-y-4 mb-16">
           <Palette className="w-10 h-10 text-neutral-400 mx-auto" />
           <h3 className="text-xl font-display font-extrabold text-[#111111]">
             No matching designs found
           </h3>
-          <p className="text-sm text-[#666666] max-w-md mx-auto">
+          <p className="text-sm text-neutral-600 max-w-md mx-auto">
             Try adjusting your search query or switching to another category tab above.
           </p>
           <button
@@ -437,7 +437,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full max-w-5xl max-h-[92vh] bg-[#14151B] border-3 border-[#111111] rounded-3xl overflow-hidden flex flex-col md:flex-row text-white"
+              className="relative w-full max-w-5xl max-h-[92vh] bg-[#14151B] border border-neutral-800 rounded-3xl overflow-hidden flex flex-col md:flex-row text-white"
             >
               {/* Close Button */}
               <button
@@ -585,7 +585,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
                       href={selectedDesign.previewUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full px-4 py-3 rounded-xl bg-[#FFF35C] hover:bg-[#faee37] text-[#111111] font-display font-extrabold text-xs flex items-center justify-center gap-2 border-2 border-[#111111] active:scale-95 transition-all cursor-pointer"
+                      className="w-full px-4 py-3 rounded-xl bg-[#FFF35C] hover:bg-[#faee37] text-[#111111] font-display font-extrabold text-xs flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer"
                     >
                       <ExternalLink className="w-4 h-4" />
                       <span>{selectedDesign.previewLinkLabel || 'Open Live Preview / External Link'}</span>
@@ -596,7 +596,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
                     href={`https://wa.me/233238318021?text=Hi%20Abdul,%20I%20saw%20your%20design%20"${encodeURIComponent(selectedDesign.title)}"%20and%20I'd%20like%20to%20commission%20a%20flyer/graphic%20like%20this.`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full px-4 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-[#111111] font-display font-extrabold text-xs flex items-center justify-center gap-2 border-2 border-[#111111] active:scale-95 transition-all cursor-pointer"
+                    className="w-full px-4 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-[#111111] font-display font-extrabold text-xs flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer"
                   >
                     <MessageSquare className="w-4 h-4" />
                     <span>Inquire About This Design</span>
@@ -609,16 +609,16 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
       </AnimatePresence>
 
       {/* Bespoke Commission Card */}
-      <div className="p-8 sm:p-10 rounded-3xl bg-white border-3 border-[#111111] flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="p-8 sm:p-10 rounded-3xl bg-white border border-neutral-200/80 flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="space-y-2 max-w-2xl text-center md:text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFF35C] border border-[#111111] text-[11px] font-mono font-bold text-[#111111]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFF35C] border border-neutral-200/80 text-[11px] font-mono font-bold text-[#111111]">
             <Award className="w-3.5 h-3.5" />
             <span>CUSTOM COMMISSIONS & FLYER PACKAGES</span>
           </div>
           <h3 className="text-2xl sm:text-3xl font-display font-black text-[#111111]">
             Need Custom Flyers, Thumbnails, or Branding?
           </h3>
-          <p className="text-xs sm:text-sm text-[#555555] leading-relaxed">
+          <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
             All flyer designs, event posters, and visual campaigns are created bespoke to match your event theme, creator brand, and audience. Reach out directly to commission single promotional flyers or full event packages.
           </p>
         </div>
@@ -628,7 +628,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
             href={PERSONAL_INFO.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3.5 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-[#111111] font-display font-extrabold text-xs sm:text-sm border-2 border-[#111111] flex items-center gap-2 active:scale-95 transition-all cursor-pointer"
+            className="px-6 py-3.5 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-[#111111] font-display font-extrabold text-xs sm:text-sm flex items-center gap-2 active:scale-95 transition-all cursor-pointer"
           >
             <MessageSquare className="w-4 h-4" />
             <span>WhatsApp Direct</span>
@@ -636,7 +636,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = ({ onSetCursor }) => {
 
           <a
             href={`mailto:${PERSONAL_INFO.email}?subject=Custom%20Flyer%20%26%20Design%20Inquiry`}
-            className="px-6 py-3.5 rounded-2xl bg-[#111111] hover:bg-neutral-800 text-[#FFF35C] font-display font-extrabold text-xs sm:text-sm border-2 border-[#111111] flex items-center gap-2 active:scale-95 transition-all cursor-pointer"
+            className="px-6 py-3.5 rounded-2xl bg-[#111111] hover:bg-neutral-800 text-[#FFF35C] font-display font-extrabold text-xs sm:text-sm flex items-center gap-2 active:scale-95 transition-all cursor-pointer"
           >
             <Mail className="w-4 h-4" />
             <span>Email for Quote</span>

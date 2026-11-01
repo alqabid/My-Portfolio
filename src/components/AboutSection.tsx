@@ -55,8 +55,8 @@ export const AboutSection: React.FC = () => {
 
   return (
     <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
-      {/* Container with bold neo-brutalist border and soft background */}
-      <div className="rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-12 relative overflow-hidden">
+      {/* Container with clean subtle border and soft background */}
+      <div className="rounded-3xl bg-white border border-neutral-200/80 p-6 sm:p-12 relative overflow-hidden">
         {/* Subtle decorative background shapes */}
         <div className="absolute -top-16 -right-16 w-80 h-80 rounded-full bg-[#FFF35C]/25 blur-3xl pointer-events-none" />
         <div className="absolute -bottom-16 -left-16 w-80 h-80 rounded-full bg-[#C9B8FF]/25 blur-3xl pointer-events-none" />
@@ -74,10 +74,10 @@ export const AboutSection: React.FC = () => {
             </h2>
 
             {/* Rendered Updated Bio Paragraphs */}
-            <div className="space-y-4 text-sm sm:text-base text-[#444444] leading-relaxed">
+            <div className="space-y-4 text-sm sm:text-base text-neutral-700 leading-relaxed">
               {bioParagraphs.length > 0 ? (
                 bioParagraphs.map((para, idx) => (
-                  <p key={idx} className={idx === 0 ? 'text-base sm:text-lg font-medium text-[#222222]' : ''}>
+                  <p key={idx} className={idx === 0 ? 'text-base sm:text-lg font-medium text-neutral-900' : ''}>
                     {para}
                   </p>
                 ))
@@ -89,24 +89,24 @@ export const AboutSection: React.FC = () => {
             </div>
 
             {/* THE FORMULA CARD */}
-            <div className="p-5 rounded-2xl bg-white border-2 border-[#111111]">
-              <span className="text-[10px] font-mono text-[#777777] uppercase font-bold block mb-3">
+            <div className="p-5 rounded-2xl bg-neutral-50/50 border border-neutral-200/80">
+              <span className="text-[10px] font-mono text-neutral-500 uppercase font-bold block mb-3">
                 THE MULTIDISCIPLINARY EQUATION
               </span>
               <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-display font-extrabold text-[#111111]">
-                <span className="px-3 py-1 rounded-xl bg-[#FFF35C] border border-[#111111]">
+                <span className="px-3 py-1 rounded-xl bg-[#FFF35C] border border-neutral-200/80">
                   CODER (React, TS, Python, FinTech)
                 </span>
                 <span className="text-lg">+</span>
-                <span className="px-3 py-1 rounded-xl bg-[#FFB7D5] border border-[#111111]">
+                <span className="px-3 py-1 rounded-xl bg-[#FFB7D5] border border-neutral-200/80">
                   DESIGNER (Canva & Photoshop)
                 </span>
                 <span className="text-lg">+</span>
-                <span className="px-3 py-1 rounded-xl bg-[#C9B8FF] border border-[#111111]">
+                <span className="px-3 py-1 rounded-xl bg-[#C9B8FF] border border-neutral-200/80">
                   CREATOR (Lens Studio AR)
                 </span>
                 <span className="text-lg">=</span>
-                <span className="px-3.5 py-1 rounded-xl bg-[#111111] text-[#FFF35C] border border-[#111111]">
+                <span className="px-3.5 py-1 rounded-xl bg-[#111111] text-[#FFF35C]">
                   CREATIVE TECHNOLOGIST
                 </span>
               </div>
@@ -122,10 +122,10 @@ export const AboutSection: React.FC = () => {
                 <motion.div
                   key={idx}
                   whileHover={{ x: 6 }}
-                  className="p-5 rounded-2xl bg-white border-2 border-[#111111] flex items-start gap-4 transition-all"
+                  className="p-5 rounded-2xl bg-white border border-neutral-200/80 flex items-start gap-4 transition-all hover:border-neutral-300"
                 >
                   <div
-                    className="w-12 h-12 rounded-2xl border-2 border-[#111111] flex items-center justify-center shrink-0"
+                    className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0"
                     style={{ backgroundColor: pil.bg }}
                   >
                     <Icon className="w-6 h-6 text-[#111111]" />
@@ -134,7 +134,7 @@ export const AboutSection: React.FC = () => {
                     <h3 className="text-base font-display font-extrabold text-[#111111]">
                       {pil.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-[#555555] leading-relaxed">
+                    <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
                       {pil.description}
                     </p>
                   </div>
@@ -147,8 +147,8 @@ export const AboutSection: React.FC = () => {
 
       {/* CURRENT EXPERIENCE SPOTLIGHT: JUNI GHANA LIMITED */}
       {currentExp && (
-        <div className="rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-10 space-y-6">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-2 border-[#111111] pb-6">
+        <div className="rounded-3xl bg-white border border-neutral-200/80 p-6 sm:p-10 space-y-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-200/80 pb-6">
             <div className="space-y-1">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#10B981] text-white text-xs font-mono font-bold uppercase tracking-wider mb-2">
                 <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
@@ -157,16 +157,16 @@ export const AboutSection: React.FC = () => {
               <h3 className="text-3xl sm:text-4xl font-display font-black text-[#111111] tracking-tight">
                 {currentExp.company}
               </h3>
-              <p className="text-base sm:text-lg font-display font-bold text-[#333333]">
+              <p className="text-base sm:text-lg font-display font-bold text-neutral-800">
                 {currentExp.role}
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3 text-xs sm:text-sm font-mono text-[#555555]">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#111111]">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 text-xs sm:text-sm font-mono text-neutral-600">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-neutral-200/80">
                 <MapPin className="w-4 h-4 text-[#111111]" /> {currentExp.location}
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#FFF35C] border border-[#111111] font-bold text-[#111111]">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#FFF35C] border border-amber-300 font-bold text-[#111111]">
                 <Calendar className="w-4 h-4 text-[#111111]" /> {currentExp.period}
               </span>
             </div>
@@ -174,19 +174,19 @@ export const AboutSection: React.FC = () => {
 
           {/* Highlights & Contributions */}
           <div className="space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-wider font-extrabold text-[#777777]">
+            <h4 className="text-xs font-mono uppercase tracking-wider font-extrabold text-neutral-500">
               KEY RESPONSIBILITIES & CONTRIBUTIONS
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {currentExp.highlights.map((hl, idx) => (
                 <div
                   key={idx}
-                  className="p-3.5 rounded-2xl bg-white border border-[#111111] flex items-start gap-3 hover:bg-neutral-50 transition-colors"
+                  className="p-3.5 rounded-2xl bg-white border border-neutral-200/80 flex items-start gap-3 hover:bg-neutral-50 transition-colors"
                 >
                   <div className="w-5 h-5 rounded-full bg-[#10B981]/20 text-[#10B981] flex items-center justify-center shrink-0 mt-0.5 border border-[#10B981]/40">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                   </div>
-                  <p className="text-xs sm:text-sm text-[#333333] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed">
                     {hl.includes('React, JavaScript and TypeScript') ? (
                       <>
                         Work with <strong className="text-[#111111]">React, JavaScript and TypeScript</strong> to develop and improve web application interfaces.
@@ -203,11 +203,11 @@ export const AboutSection: React.FC = () => {
           {/* Technologies Stack */}
           {currentExp.technologies && currentExp.technologies.length > 0 && (
             <div className="pt-2 flex flex-wrap items-center gap-2">
-              <span className="text-xs font-mono text-[#777777] font-bold mr-1">STACK:</span>
+              <span className="text-xs font-mono text-neutral-500 font-bold mr-1">STACK:</span>
               {currentExp.technologies.map((tech, tIdx) => (
                 <span
                   key={tIdx}
-                  className="px-3 py-1 rounded-xl bg-white border border-[#111111] text-xs font-mono font-bold text-[#111111]"
+                  className="px-3 py-1 rounded-xl bg-neutral-50 border border-neutral-200/80 text-xs font-mono font-bold text-[#111111]"
                 >
                   {tech}
                 </span>
@@ -217,13 +217,13 @@ export const AboutSection: React.FC = () => {
 
           {/* Toggle for other career experience */}
           {previousExps.length > 0 && (
-            <div className="pt-4 border-t border-[#E5E5DC]">
+            <div className="pt-4 border-t border-neutral-200/80">
               <button
                 onClick={() => {
                   playSound('pop');
                   setShowAllExperience(!showAllExperience);
                 }}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-neutral-100 border-2 border-[#111111] text-xs sm:text-sm font-display font-bold text-[#111111] active:scale-95 transition-all cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200/80 text-xs sm:text-sm font-display font-bold text-[#111111] active:scale-95 transition-all cursor-pointer"
               >
                 <Briefcase className="w-4 h-4 text-[#111111]" />
                 <span>
@@ -250,18 +250,18 @@ export const AboutSection: React.FC = () => {
                     {previousExps.map((prev, pIdx) => (
                       <div
                         key={pIdx}
-                        className="p-5 rounded-2xl bg-white border-2 border-[#111111] space-y-3"
+                        className="p-5 rounded-2xl bg-white border border-neutral-200/80 space-y-3"
                       >
                         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
                           <div>
                             <h4 className="text-base font-display font-extrabold text-[#111111]">
                               {prev.company}
                             </h4>
-                            <p className="text-xs sm:text-sm font-semibold text-[#444444]">
+                            <p className="text-xs sm:text-sm font-semibold text-neutral-700">
                               {prev.role} · <span className="font-mono text-xs">{prev.location}</span>
                             </p>
                           </div>
-                          <span className="px-3 py-1 rounded-lg bg-white border border-[#111111] text-xs font-mono font-bold text-[#111111] self-start sm:self-auto">
+                          <span className="px-3 py-1 rounded-lg bg-neutral-50 border border-neutral-200/80 text-xs font-mono font-bold text-[#111111] self-start sm:self-auto">
                             {prev.period}
                           </span>
                         </div>

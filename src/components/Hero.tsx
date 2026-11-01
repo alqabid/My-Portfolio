@@ -249,10 +249,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border-2 border-[#111111] mb-6"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200/80 mb-6"
           >
             <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
-            <span className="font-mono text-xs font-bold text-[#111111] uppercase tracking-wider">
+            <span className="font-mono text-xs font-bold text-neutral-800 uppercase tracking-wider">
               {PERSONAL_INFO.location} · {PERSONAL_INFO.availability}
             </span>
           </motion.div>
@@ -264,15 +264,15 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
             transition={{ duration: 0.5, delay: 0.1 }}
             className="space-y-1 mb-6"
           >
-            <div className="text-xl sm:text-2xl font-display font-bold text-[#444444] tracking-tight">
+            <div className="text-xl sm:text-2xl font-display font-bold text-neutral-500 tracking-tight">
               HEY. I'M ABDUL.
             </div>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold text-[#111111] leading-[0.95] tracking-tight">
-              I <span className="inline-block px-2.5 bg-[#FFF35C] rounded-xl border-2 border-[#111111] rotate-[-1deg] text-[#111111]">BUILD.</span>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold text-[#111111] leading-[0.98] tracking-tight">
+              I <span className="inline-block px-3 py-0.5 bg-[#FFF35C] rounded-2xl rotate-[-1deg] text-[#111111]">BUILD.</span>
               <br />
-              I <span className="inline-block px-2.5 bg-[#FFB7D5] rounded-xl border-2 border-[#111111] rotate-[1deg] text-[#111111]">DESIGN.</span>
+              I <span className="inline-block px-3 py-0.5 bg-[#FFB7D5] rounded-2xl rotate-[1deg] text-[#111111]">DESIGN.</span>
               <br />
-              I <span className="inline-block px-2.5 bg-[#C9B8FF] rounded-xl border-2 border-[#111111] rotate-[-1deg] text-[#111111]">CREATE.</span>
+              I <span className="inline-block px-3 py-0.5 bg-[#C9B8FF] rounded-2xl rotate-[-1deg] text-[#111111]">CREATE.</span>
             </h1>
           </motion.div>
 
@@ -286,7 +286,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
             <div className="font-display font-bold text-lg sm:text-xl text-[#111111]">
               {PERSONAL_INFO.titles}
             </div>
-            <p className="text-base sm:text-lg text-[#555555] leading-relaxed">
+            <p className="text-base sm:text-lg text-neutral-600 leading-relaxed">
               I combine engineering rigor, high-converting visual design, and augmented reality to build products and digital experiences that captivate people.
             </p>
           </motion.div>
@@ -304,7 +304,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
                 playSound('whoosh');
                 onExploreWork();
               }}
-              className="px-7 py-4 rounded-2xl bg-[#111111] hover:bg-[#222222] text-[#FFF35C] font-display font-bold text-base border-2 border-[#111111] active:scale-[0.98] transition-all flex items-center gap-2 cursor-pointer group"
+              className="px-7 py-4 rounded-2xl bg-[#111111] hover:bg-[#222222] text-[#FFF35C] font-display font-bold text-base active:scale-[0.98] transition-all flex items-center gap-2 cursor-pointer group"
             >
               <span>EXPLORE MY WORK</span>
               <ArrowDownRight className="w-5 h-5 text-[#FFF35C] group-hover:rotate-[-45deg] transition-transform" />
@@ -316,7 +316,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
                 playSound('pop');
                 onOpenContact();
               }}
-              className="px-6 py-4 rounded-2xl bg-white hover:bg-neutral-100 text-[#111111] font-display font-bold text-base border-2 border-[#111111] active:scale-[0.98] transition-all flex items-center gap-2 cursor-pointer"
+              className="px-6 py-4 rounded-2xl bg-white hover:bg-neutral-50 text-[#111111] font-display font-bold text-base border border-neutral-200/80 active:scale-[0.98] transition-all flex items-center gap-2 cursor-pointer"
             >
               <Mail className="w-5 h-5 text-[#111111]" />
               <span>CONTACT ME</span>
@@ -328,18 +328,18 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-8 flex flex-wrap items-center gap-2 pt-6 border-t border-[#E5E5DC] w-full"
+            className="mt-8 flex flex-wrap items-center gap-2 pt-6 border-t border-neutral-200/80 w-full"
           >
-            <span className="text-xs font-mono font-bold text-[#777777] uppercase mr-1">
+            <span className="text-xs font-mono font-bold text-neutral-400 uppercase mr-1">
               FOCUS AREAS:
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF35C]/60 border border-[#111111]/30 text-xs font-bold font-display text-[#111111]">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF35C]/50 border border-neutral-200/60 text-xs font-bold font-display text-[#111111]">
               <Terminal className="w-3.5 h-3.5" /> Full-Stack & AI
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFB7D5]/60 border border-[#111111]/30 text-xs font-bold font-display text-[#111111]">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFB7D5]/50 border border-neutral-200/60 text-xs font-bold font-display text-[#111111]">
               <Palette className="w-3.5 h-3.5" /> Canva & High-CTR Visuals
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C9B8FF]/60 border border-[#111111]/30 text-xs font-bold font-display text-[#111111]">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C9B8FF]/50 border border-neutral-200/60 text-xs font-bold font-display text-[#111111]">
               <Glasses className="w-3.5 h-3.5" /> Snapchat Lens Studio
             </span>
           </motion.div>
@@ -348,19 +348,19 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
         {/* Right Column: Interactive Reactive Canvas & Floating Badges */}
         <div className="lg:col-span-5 relative flex items-center justify-center min-h-[380px] sm:min-h-[460px]">
           {/* Card Frame containing interactive canvas */}
-          <div className="w-full h-full min-h-[380px] sm:min-h-[460px] rounded-3xl bg-white border-3 border-[#111111] relative overflow-hidden flex flex-col">
+          <div className="w-full h-full min-h-[380px] sm:min-h-[460px] rounded-3xl bg-white border border-neutral-200/80 relative overflow-hidden flex flex-col">
             {/* Top window bar */}
-            <div className="px-4 py-2.5 bg-white border-b-2 border-[#111111] flex items-center justify-between select-none">
+            <div className="px-4 py-2.5 bg-neutral-50/50 border-b border-neutral-200/80 flex items-center justify-between select-none">
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-[#FFB7D5] border border-[#111111]" />
-                <div className="w-3 h-3 rounded-full bg-[#FFF35C] border border-[#111111]" />
-                <div className="w-3 h-3 rounded-full bg-[#B9F5D0] border border-[#111111]" />
-                <span className="ml-2 font-mono text-[11px] font-bold text-[#555555]">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
+                <span className="ml-2 font-mono text-[11px] font-medium text-neutral-500">
                   interactive-orb.canvas
                 </span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="text-[10px] font-mono bg-[#FFF35C] text-[#111111] px-2 py-0.5 rounded-md font-bold border border-[#111111]">
+                <span className="text-[10px] font-mono bg-[#FFF35C] text-[#111111] px-2 py-0.5 rounded-md font-bold">
                   Click to Burst
                 </span>
               </div>
@@ -371,7 +371,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
               <canvas ref={canvasRef} className="w-full h-full block" />
 
               {/* Floating interactive hint badge */}
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-1.5 rounded-xl bg-white/90 backdrop-blur-sm border border-[#111111] text-[11px] font-mono text-[#333333]">
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-1.5 rounded-xl bg-white/95 backdrop-blur-sm border border-neutral-200/80 text-[11px] font-mono text-neutral-600">
                 <span>Move mouse & click anywhere to interact</span>
                 <span className="font-bold text-[#111111]">32 NODES</span>
               </div>
@@ -382,7 +382,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute -top-4 -right-2 sm:-right-4 px-3.5 py-2 rounded-2xl bg-[#FFF35C] border-2 border-[#111111] text-xs font-display font-extrabold text-[#111111] flex items-center gap-1.5 select-none"
+            className="absolute -top-4 -right-2 sm:-right-4 px-3.5 py-2 rounded-2xl bg-[#FFF35C] border border-neutral-200/80 text-xs font-display font-extrabold text-[#111111] flex items-center gap-1.5 select-none"
           >
             <Target className="w-3.5 h-3.5" /> 94.2% Model Accuracy
           </motion.div>
@@ -390,7 +390,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-            className="absolute -bottom-4 -left-2 sm:-left-4 px-3.5 py-2 rounded-2xl bg-[#C9B8FF] border-2 border-[#111111] text-xs font-display font-extrabold text-[#111111] flex items-center gap-1.5 select-none"
+            className="absolute -bottom-4 -left-2 sm:-left-4 px-3.5 py-2 rounded-2xl bg-[#C9B8FF] border border-neutral-200/80 text-xs font-display font-extrabold text-[#111111] flex items-center gap-1.5 select-none"
           >
             <Glasses className="w-3.5 h-3.5" /> 250K+ AR Impressions
           </motion.div>

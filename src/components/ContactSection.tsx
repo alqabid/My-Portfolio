@@ -60,7 +60,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="rounded-3xl bg-[#111111] text-white border-3 border-[#111111] p-6 sm:p-12 relative overflow-hidden">
+      <div className="rounded-3xl bg-[#111111] text-white border border-neutral-800 p-6 sm:p-12 relative overflow-hidden">
         {/* Ambient subtle pastel glow */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#FFF35C]/15 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#C9B8FF]/15 rounded-full blur-3xl pointer-events-none" />
@@ -182,16 +182,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           </div>
 
           {/* Right Column: Project Inquiry Form */}
-          <div className="lg:col-span-6 bg-white text-[#111111] p-6 sm:p-8 rounded-3xl border-2 border-white/20">
+          <div className="lg:col-span-6 bg-white text-[#111111] p-6 sm:p-8 rounded-3xl border border-neutral-200/80">
             {isSubmitted ? (
               <div className="py-12 text-center space-y-4">
-                <div className="w-16 h-16 rounded-2xl bg-[#B9F5D0] border-2 border-[#111111] flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 rounded-2xl bg-[#B9F5D0] flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-8 h-8 text-[#111111]" />
                 </div>
                 <h3 className="text-2xl font-display font-black text-[#111111]">
                   MESSAGE DISPATCHED!
                 </h3>
-                <p className="text-sm text-[#555555] max-w-xs mx-auto">
+                <p className="text-sm text-neutral-600 max-w-xs mx-auto">
                   Thank you for reaching out, {formData.name}. Abdul will get back to you within 24 hours.
                 </p>
                 <button
@@ -206,17 +206,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="flex items-center justify-between pb-2 border-b border-[#ECECE4]">
+                <div className="flex items-center justify-between pb-2 border-b border-neutral-200/80">
                   <span className="font-display font-extrabold text-base text-[#111111]">
                     PROJECT INQUIRY FORM
                   </span>
-                  <span className="text-[11px] font-mono text-[#777777]">
+                  <span className="text-[11px] font-mono text-neutral-400">
                     Typically replies in &lt; 24h
                   </span>
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-mono font-bold text-[#555555] uppercase block">
+                  <label className="text-xs font-mono font-bold text-neutral-600 uppercase block">
                     Your Name
                   </label>
                   <input
@@ -225,12 +225,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     placeholder="e.g. user"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-white border-2 border-[#111111] text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#FFF35C]"
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-neutral-200 text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:border-neutral-900"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-mono font-bold text-[#555555] uppercase block">
+                  <label className="text-xs font-mono font-bold text-neutral-600 uppercase block">
                     Your Email Address
                   </label>
                   <input
@@ -239,18 +239,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     placeholder="user@domain.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-white border-2 border-[#111111] text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#FFF35C]"
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-neutral-200 text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:border-neutral-900"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-mono font-bold text-[#555555] uppercase block">
+                  <label className="text-xs font-mono font-bold text-neutral-600 uppercase block">
                     Project Focus / Category
                   </label>
                   <select
                     value={formData.projectType}
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-white border-2 border-[#111111] text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#FFF35C] cursor-pointer"
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-neutral-200 text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:border-neutral-900 cursor-pointer"
                   >
                     <option value="Full-Stack Web App">Full-Stack Web App (React / FastAPI / Node)</option>
                     <option value="AI & Computer Vision Model">AI & Computer Vision Model</option>
@@ -262,7 +262,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-mono font-bold text-[#555555] uppercase block">
+                  <label className="text-xs font-mono font-bold text-neutral-600 uppercase block">
                     Project Scope / Details
                   </label>
                   <textarea
@@ -271,13 +271,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     placeholder="Tell me about your timeline, goals, or idea..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-white border-2 border-[#111111] text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#FFF35C] resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-neutral-200 text-xs sm:text-sm font-medium text-[#111111] focus:outline-none focus:border-neutral-900 resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-2xl bg-[#111111] hover:bg-[#222222] text-[#FFF35C] font-display font-bold text-xs tracking-wider uppercase border-2 border-[#111111] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-4 rounded-2xl bg-[#111111] hover:bg-neutral-800 text-[#FFF35C] font-display font-bold text-xs tracking-wider uppercase active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>TRANSMIT INQUIRY</span>
                   <Send className="w-4 h-4 text-[#FFF35C]" />

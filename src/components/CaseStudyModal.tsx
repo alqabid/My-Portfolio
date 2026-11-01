@@ -21,26 +21,26 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.95, opacity: 0, y: 20 }}
           transition={{ duration: 0.3 }}
-          className="relative w-full max-w-4xl bg-white border-3 border-[#111111] rounded-3xl overflow-hidden my-8 max-h-[90vh] flex flex-col"
+          className="relative w-full max-w-4xl bg-white border border-neutral-200/80 rounded-3xl overflow-hidden my-8 max-h-[90vh] flex flex-col"
         >
           {/* Header */}
-          <div className="p-6 sm:p-8 bg-white border-b-2 border-[#111111] flex items-start justify-between gap-4">
+          <div className="p-6 sm:p-8 bg-white border-b border-neutral-200/80 flex items-start justify-between gap-4">
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
                 <span
-                  className="px-3 py-1 rounded-md text-[10px] font-mono font-bold uppercase border border-[#111111]"
+                  className="px-3 py-1 rounded-md text-[10px] font-mono font-bold uppercase border border-neutral-200/80"
                   style={{ backgroundColor: project.accentColor, color: '#111111' }}
                 >
                   {project.category.toUpperCase()} CASE STUDY
                 </span>
-                <span className="text-xs font-mono text-[#666666]">
+                <span className="text-xs font-mono text-neutral-500">
                   Role: {project.role}
                 </span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-display font-black text-[#111111]">
                 {project.title}
               </h2>
-              <p className="text-sm font-display font-bold text-[#555555]">
+              <p className="text-sm font-display font-bold text-neutral-600">
                 {project.subtitle}
               </p>
             </div>
@@ -50,7 +50,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
                 playSound('pop');
                 onClose();
               }}
-              className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] hover:bg-neutral-100 transition-all cursor-pointer shrink-0"
+              className="w-10 h-10 rounded-2xl bg-white border border-neutral-200/80 flex items-center justify-center text-[#111111] hover:bg-neutral-50 transition-all cursor-pointer shrink-0"
             >
               <X className="w-5 h-5" />
             </button>
@@ -69,7 +69,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
                 allowLiveIframe={true}
               />
             ) : (
-              <div className="relative rounded-2xl overflow-hidden border-2 border-[#111111] p-6 bg-[#111111] text-white">
+              <div className="relative rounded-2xl overflow-hidden border border-neutral-800 p-6 bg-[#111111] text-white">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="px-2.5 py-0.5 rounded-full bg-[#C9B8FF] text-[#111111] text-[10px] font-mono font-bold">
                     SYSTEM SPECIFICATION
@@ -88,8 +88,8 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
             {project.metrics && project.metrics.length > 0 && (
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {project.metrics.map((m, idx) => (
-                  <div key={idx} className="p-4 rounded-2xl bg-white border-2 border-[#111111]">
-                    <span className="text-[10px] font-mono text-[#777777] uppercase block">{m.label}</span>
+                  <div key={idx} className="p-4 rounded-2xl bg-white border border-neutral-200/80">
+                    <span className="text-[10px] font-mono text-neutral-500 uppercase block">{m.label}</span>
                     <span className="font-display font-black text-2xl text-[#111111]">{m.value}</span>
                   </div>
                 ))}
@@ -98,20 +98,20 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
 
             {/* Problem & Solution Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-6 rounded-2xl bg-[#FFF35C]/15 border-2 border-[#111111]">
+              <div className="p-6 rounded-2xl bg-[#FFF35C]/15 border border-neutral-200/80">
                 <h3 className="font-display font-extrabold text-base text-[#111111] mb-2 uppercase">
                   THE CHALLENGE & PROBLEM
                 </h3>
-                <p className="text-xs sm:text-sm text-[#444444] leading-relaxed">
+                <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed">
                   {project.problem}
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-[#C9B8FF]/15 border-2 border-[#111111]">
+              <div className="p-6 rounded-2xl bg-[#C9B8FF]/15 border border-neutral-200/80">
                 <h3 className="font-display font-extrabold text-base text-[#111111] mb-2 uppercase">
                   THE ARCHITECTURAL SOLUTION
                 </h3>
-                <p className="text-xs sm:text-sm text-[#444444] leading-relaxed">
+                <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed">
                   {project.solution}
                 </p>
               </div>
@@ -123,7 +123,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
                 <h3 className="font-display font-extrabold text-sm text-[#111111] uppercase tracking-wider">
                   SYSTEM ARCHITECTURE & TECH SPECIFICATIONS
                 </h3>
-                <div className="p-5 rounded-2xl bg-[#111111] text-white space-y-2.5 font-mono text-xs border-2 border-[#111111]">
+                <div className="p-5 rounded-2xl bg-[#111111] text-white space-y-2.5 font-mono text-xs border border-neutral-800">
                   {project.architecture.map((arch, idx) => (
                     <div key={idx} className="flex items-start gap-2">
                       <span className="text-[#FFF35C] font-bold">▶</span>
@@ -141,7 +141,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {project.features.map((f, idx) => (
-                  <div key={idx} className="p-3.5 rounded-xl bg-white border border-[#111111] flex items-start gap-2 text-xs font-semibold text-[#333333]">
+                  <div key={idx} className="p-3.5 rounded-xl bg-white border border-neutral-200/80 flex items-start gap-2 text-xs font-semibold text-neutral-700">
                     <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
                     <span>{f}</span>
                   </div>
@@ -150,12 +150,12 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
             </div>
 
             {/* Technologies used pills */}
-            <div className="pt-4 border-t border-[#ECECE4] flex flex-wrap items-center gap-2">
-              <span className="text-xs font-mono font-bold text-[#777777] uppercase mr-2">
+            <div className="pt-4 border-t border-neutral-200/80 flex flex-wrap items-center gap-2">
+              <span className="text-xs font-mono font-bold text-neutral-500 uppercase mr-2">
                 TECH STACK:
               </span>
               {project.technologies.map((t, idx) => (
-                <span key={idx} className="px-3 py-1 rounded-lg bg-white border border-[#111111] font-mono text-xs font-bold text-[#111111]">
+                <span key={idx} className="px-3 py-1 rounded-lg bg-neutral-50 border border-neutral-200/80 font-mono text-xs font-bold text-[#111111]">
                   {t}
                 </span>
               ))}
@@ -163,14 +163,14 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
           </div>
 
           {/* Footer Actions */}
-          <div className="p-6 bg-white border-t-2 border-[#111111] flex flex-wrap items-center justify-between gap-4">
+          <div className="p-6 bg-white border-t border-neutral-200/80 flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-3">
               {project.liveUrl && (
                 <a
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2.5 rounded-xl bg-[#111111] hover:bg-[#222222] text-[#FFF35C] font-display font-bold text-xs border border-[#111111] flex items-center gap-2"
+                  className="px-5 py-2.5 rounded-xl bg-[#111111] hover:bg-[#222222] text-[#FFF35C] font-display font-bold text-xs flex items-center gap-2"
                 >
                   <span>VISIT LIVE PLATFORM</span>
                   <ExternalLink className="w-4 h-4" />
@@ -181,7 +181,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2.5 rounded-xl bg-white hover:bg-neutral-100 text-[#111111] font-display font-bold text-xs border border-[#111111] flex items-center gap-2"
+                  className="px-4 py-2.5 rounded-xl bg-white hover:bg-neutral-50 text-[#111111] font-display font-bold text-xs border border-neutral-200/80 flex items-center gap-2"
                 >
                   <Github className="w-4 h-4" />
                   <span>GitHub Repository</span>
@@ -194,7 +194,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
                 playSound('pop');
                 onClose();
               }}
-              className="px-6 py-2.5 rounded-xl bg-[#111111] text-white hover:text-[#FFF35C] font-display font-bold text-xs border border-[#111111] cursor-pointer transition-colors"
+              className="px-6 py-2.5 rounded-xl bg-[#111111] text-white hover:text-[#FFF35C] font-display font-bold text-xs cursor-pointer transition-colors"
             >
               Close Case Study
             </button>

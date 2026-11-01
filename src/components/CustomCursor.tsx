@@ -47,42 +47,42 @@ export const CustomCursor: React.FC<CustomCursorProps> = ({ cursorType, cursorTe
           size: 80,
           bg: 'bg-[#111111]',
           text: 'text-[#FFF35C] font-display text-xs font-bold tracking-widest uppercase',
-          border: 'border-2 border-[#FFF35C]'
+          border: 'border border-[#FFF35C]/60'
         };
       case 'try-lens':
         return {
           size: 90,
           bg: 'bg-[#FFF35C]',
           text: 'text-[#111111] font-display text-xs font-bold tracking-wider uppercase',
-          border: 'border-2 border-[#111111]'
+          border: 'border border-neutral-900/30'
         };
       case 'explore':
         return {
           size: 84,
           bg: 'bg-[#C9B8FF]',
           text: 'text-[#111111] font-display text-xs font-bold tracking-wider uppercase',
-          border: 'border-2 border-[#111111]'
+          border: 'border border-neutral-900/30'
         };
       case 'open':
         return {
           size: 74,
           bg: 'bg-[#FFB7D5]',
           text: 'text-[#111111] font-display text-xs font-bold tracking-wider uppercase',
-          border: 'border-2 border-[#111111]'
+          border: 'border border-neutral-900/30'
         };
       case 'play':
         return {
           size: 80,
           bg: 'bg-[#B9F5D0]',
           text: 'text-[#111111] font-display text-xs font-bold tracking-wider uppercase',
-          border: 'border-2 border-[#111111]'
+          border: 'border border-neutral-900/30'
         };
       case 'pointer':
         return {
           size: 36,
           bg: 'bg-[#111111]/20 backdrop-blur-sm',
           text: '',
-          border: 'border-2 border-[#111111]'
+          border: 'border border-[#111111]/40'
         };
       default:
         return {

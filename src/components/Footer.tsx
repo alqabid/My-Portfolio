@@ -65,7 +65,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="border-t-3 border-[#111111] bg-white py-12 px-4 sm:px-6 lg:px-8 select-none">
+    <footer className="border-t border-neutral-200 bg-white py-12 px-4 sm:px-6 lg:px-8 select-none">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Brand */}
         <div className="space-y-1 text-center md:text-left">
@@ -73,14 +73,14 @@ export const Footer: React.FC = () => {
             <span className="font-display font-black text-lg text-[#111111]">
               {PERSONAL_INFO.name}
             </span>
-            <span className="px-2 py-0.5 rounded-full bg-[#FFF35C] border border-[#111111] text-[10px] font-mono font-bold text-[#111111]">
+            <span className="px-2 py-0.5 rounded-full bg-[#FFF35C] border border-neutral-200/80 text-[10px] font-mono font-bold text-[#111111]">
               {PERSONAL_INFO.location}
             </span>
           </div>
-          <p className="font-display font-bold text-xs text-[#666666]">
+          <p className="font-display font-bold text-xs text-neutral-500">
             {PERSONAL_INFO.titles}
           </p>
-          <p className="text-[11px] font-mono text-[#888888]">
+          <p className="text-[11px] font-mono text-neutral-400">
             Local Time (Accra): <strong className="text-[#111111]">{ghanaTime || 'GMT'}</strong>
           </p>
         </div>
@@ -92,7 +92,7 @@ export const Footer: React.FC = () => {
               href={PERSONAL_INFO.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-white hover:bg-[#111111] text-[#111111] hover:text-white border-2 border-[#111111] flex items-center justify-center transition-all"
+              className="w-9 h-9 rounded-xl bg-white hover:bg-[#111111] text-[#111111] hover:text-white border border-neutral-200 hover:border-neutral-400 flex items-center justify-center transition-all"
               title="GitHub Profile"
             >
               <Github className="w-4 h-4" />
@@ -103,7 +103,7 @@ export const Footer: React.FC = () => {
               href={PERSONAL_INFO.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-white hover:bg-[#111111] text-[#111111] hover:text-white border-2 border-[#111111] flex items-center justify-center transition-all"
+              className="w-9 h-9 rounded-xl bg-white hover:bg-[#111111] text-[#111111] hover:text-white border border-neutral-200 hover:border-neutral-400 flex items-center justify-center transition-all"
               title="LinkedIn Profile"
             >
               <Linkedin className="w-4 h-4" />
@@ -114,7 +114,7 @@ export const Footer: React.FC = () => {
               href={PERSONAL_INFO.snapchatCreator}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-white hover:bg-[#FFF35C] text-[#111111] border-2 border-[#111111] flex items-center justify-center transition-all"
+              className="w-9 h-9 rounded-xl bg-white hover:bg-[#FFF35C] text-[#111111] border border-neutral-200 hover:border-neutral-400 flex items-center justify-center transition-all"
               title="Snapchat Lens Creator Hub"
             >
               <Glasses className="w-4 h-4" />
@@ -125,7 +125,7 @@ export const Footer: React.FC = () => {
               href={PERSONAL_INFO.snapchatAccount}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-white hover:bg-[#FFFC00] text-[#111111] border-2 border-[#111111] flex items-center justify-center transition-all"
+              className="w-9 h-9 rounded-xl bg-white hover:bg-[#FFFC00] text-[#111111] border border-neutral-200 hover:border-neutral-400 flex items-center justify-center transition-all"
               title={`Add @${PERSONAL_INFO.snapchatHandle} on Snapchat`}
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -138,7 +138,7 @@ export const Footer: React.FC = () => {
               href={PERSONAL_INFO.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-white hover:bg-[#25D366] text-[#111111] hover:text-white border-2 border-[#111111] flex items-center justify-center transition-all"
+              className="w-9 h-9 rounded-xl bg-white hover:bg-[#25D366] text-[#111111] hover:text-white border border-neutral-200 hover:border-neutral-400 flex items-center justify-center transition-all"
               title="WhatsApp Contact"
             >
               <MessageSquare className="w-4 h-4" />
@@ -147,7 +147,7 @@ export const Footer: React.FC = () => {
           {PERSONAL_INFO.email && (
             <a
               href={`mailto:${PERSONAL_INFO.email}`}
-              className="w-9 h-9 rounded-xl bg-white hover:bg-[#111111] text-[#111111] hover:text-white border-2 border-[#111111] flex items-center justify-center transition-all"
+              className="w-9 h-9 rounded-xl bg-white hover:bg-[#111111] text-[#111111] hover:text-white border border-neutral-200 hover:border-neutral-400 flex items-center justify-center transition-all"
               title="Direct Email"
             >
               <Mail className="w-4 h-4" />
@@ -160,7 +160,7 @@ export const Footer: React.FC = () => {
           {/* Back to top button */}
           <button
             onClick={scrollToTop}
-            className="px-4 py-2.5 rounded-2xl bg-white hover:bg-[#111111] text-[#111111] hover:text-[#FFF35C] border-2 border-[#111111] active:scale-95 font-display font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-all"
+            className="px-4 py-2.5 rounded-2xl bg-white hover:bg-[#111111] text-[#111111] hover:text-[#FFF35C] border border-neutral-200 hover:border-neutral-900 active:scale-95 font-display font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-all"
           >
             <span>BACK TO TOP</span>
             <ArrowUp className="w-3.5 h-3.5" />
