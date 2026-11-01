@@ -1,261 +1,121 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Network, Layers, ArrowRight, Code, Palette, Glasses, Brain } from 'lucide-react';
-import { SkillNode, CursorType } from '../types';
-import { usePortfolio } from '../context/PortfolioContext';
-import { playSound } from '../utils/sound';
+import { Code2, Server, Palette, Sparkles, Check } from 'lucide-react';
 
-interface SkillConstellationProps {
-  onSetCursor: (type: CursorType, text?: string) => void;
-}
-
-export const SkillConstellation: React.FC<SkillConstellationProps> = ({ onSetCursor }) => {
-  const {
-    skillNodes: SKILL_NODES,
-    buildProjects: BUILD_PROJECTS,
-    designItems: DESIGN_ITEMS,
-    arLenses: AR_LENSES
-  } = usePortfolio();
-  const [selectedSkill, setSelectedSkill] = useState<SkillNode>(SKILL_NODES[0] || {} as SkillNode);
-  const [hoveredSkill, setHoveredSkill] = useState<SkillNode | null>(null);
-
-  const activeSkill = hoveredSkill || selectedSkill;
-
-  const getCategoryColor = (cat: string) => {
-    switch (cat) {
-      case 'code':
-        return '#FFF35C';
-      case 'design':
-        return '#FFB7D5';
-      case 'ar':
-        return '#C9B8FF';
-      case 'ai':
-        return '#B9F5D0';
-      default:
-        return '#A9DDFF';
+export const SkillConstellation: React.FC = () => {
+  const skillCategories = [
+    {
+      title: 'Frontend Engineering',
+      icon: Code2,
+      description: 'Modern component-driven web interfaces, state management, and responsive layouts.',
+      skills: [
+        { name: 'React', level: 'Advanced' },
+        { name: 'TypeScript', level: 'Proficient' },
+        { name: 'JavaScript (ES6+)', level: 'Advanced' },
+        { name: 'Tailwind CSS', level: 'Advanced' },
+        { name: 'Vite', level: 'Proficient' },
+        { name: 'HTML5 & CSS3', level: 'Advanced' }
+      ]
+    },
+    {
+      title: 'Backend & APIs',
+      icon: Server,
+      description: 'REST API design, backend integration, and microservices.',
+      skills: [
+        { name: 'Python', level: 'Proficient' },
+        { name: 'FastAPI', level: 'Proficient' },
+        { name: 'REST APIs & Integration', level: 'Proficient' },
+        { name: 'SQL & Databases', level: 'Working' },
+        { name: 'Node.js', level: 'Working' },
+        { name: 'Java, C++, C#, PHP', level: 'Academic/Working' }
+      ]
+    },
+    {
+      title: 'UI/UX & Graphic Design',
+      icon: Palette,
+      description: 'High-converting promotional marketing materials, flyers, and interface design.',
+      skills: [
+        { name: 'Canva (Advanced)', level: 'Expert' },
+        { name: 'Figma', level: 'Proficient' },
+        { name: 'Adobe Photoshop', level: 'Proficient' },
+        { name: 'Visual Brand Identity', level: 'Advanced' },
+        { name: 'Event Flyer Design', level: 'Expert' },
+        { name: 'High-CTR Asset Creation', level: 'Advanced' }
+      ]
+    },
+    {
+      title: 'AI & Extended Reality',
+      icon: Sparkles,
+      description: 'Computer vision classification, augmented reality lenses, and rapid AI tooling.',
+      skills: [
+        { name: 'Snapchat Lens Studio', level: 'Advanced' },
+        { name: 'Computer Vision (CNNs)', level: 'Applied' },
+        { name: 'Prompt Engineering', level: 'Advanced' },
+        { name: 'Model Evaluation', level: 'Applied' },
+        { name: '3D AR Assets', level: 'Proficient' },
+        { name: 'Rapid Prototyping', level: 'Advanced' }
+      ]
     }
-  };
-
-  const getCategoryIcon = (cat: string) => {
-    switch (cat) {
-      case 'code':
-        return Code;
-      case 'design':
-        return Palette;
-      case 'ar':
-        return Glasses;
-      case 'ai':
-        return Brain;
-      default:
-        return Code;
-    }
-  };
-
-  // Find related projects to display
-  const getConnectedProjectsList = (projectIds: string[]) => {
-    const list: { title: string; category: string }[] = [];
-    projectIds.forEach((pid) => {
-      const b = BUILD_PROJECTS.find((p) => p.id === pid);
-      if (b) list.push({ title: b.title, category: 'Software/AI' });
-      const d = DESIGN_ITEMS.find((p) => p.id === pid);
-      if (d) list.push({ title: d.title, category: 'Visual Design' });
-      const a = AR_LENSES.find((p) => p.id === pid);
-      if (a) list.push({ title: a.name, category: 'AR Lens' });
-    });
-    return list;
-  };
+  ];
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Header */}
+    <section id="skills" className="py-20 px-4 sm:px-8 max-w-7xl mx-auto">
+      {/* Section Header */}
       <div className="mb-14">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#B9F5D0]/80 border border-neutral-200/80 text-xs font-mono font-bold text-neutral-900 uppercase tracking-wider mb-4">
-          <Network className="w-3.5 h-3.5" />
-          <span>INTERACTIVE CONSTELLATION // SKILL ARCHITECTURE</span>
-        </div>
-        <h2 className="text-4xl sm:text-6xl font-display font-extrabold text-[#111111] tracking-tight mb-4">
-          CONNECTING CODE, DESIGN & REALITY.
+        <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider block mb-2">
+          Competencies & Tools
+        </span>
+        <h2 className="text-3xl sm:text-5xl font-display font-bold text-neutral-950 tracking-tight mb-4">
+          Technical Expertise & Stack
         </h2>
-        <p className="text-base sm:text-xl text-neutral-600 max-w-3xl leading-relaxed">
-          Hover or click on any node in the constellation to trace technical connections, production proficiencies, and attached project case studies.
+        <p className="text-base sm:text-lg text-neutral-600 max-w-3xl leading-relaxed">
+          Combining computer science fundamentals with modern production frameworks, visual artistry, and augmented reality development.
         </p>
       </div>
 
-      {/* Main Graph & Detail Panel Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        {/* Left: Interactive Node Constellation Matrix */}
-        <div className="lg:col-span-7 rounded-3xl bg-white border border-neutral-200/80 p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden min-h-[440px]">
-          {/* Subtle background grid */}
-          <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
-
-          {/* Central Hub Badge */}
-          <div className="relative z-10 flex items-center justify-between pb-6 border-b border-neutral-200/80">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-[#111111] text-[#FFF35C] font-display font-extrabold text-sm flex items-center justify-center">
-                AQ
-              </div>
-              <div>
-                <span className="font-display font-black text-base text-[#111111]">
-                  ABDUL QABID SIAKA
-                </span>
-                <span className="text-[11px] font-mono text-neutral-500 block">
-                  Core Competency Constellation
-                </span>
-              </div>
-            </div>
-
-            <div className="text-right hidden sm:block">
-              <span className="text-xs font-mono font-bold text-[#111111]">12 ACTIVE NODES</span>
-              <span className="text-[10px] font-mono text-[#10B981] block font-bold">● Fully Integrated</span>
-            </div>
-          </div>
-
-          {/* Interactive Node Grid (Floating interactive pills) */}
-          <div className="relative z-10 py-8 flex flex-wrap gap-3 items-center justify-center">
-            {SKILL_NODES.map((node) => {
-              const isSelected = activeSkill.id === node.id;
-              const Icon = getCategoryIcon(node.category);
-              const nodeColor = getCategoryColor(node.category);
-
-              return (
-                <motion.button
-                  key={node.id}
-                  id={`skill-node-${node.id}`}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.96 }}
-                  onClick={() => {
-                    playSound('pop');
-                    setSelectedSkill(node);
-                  }}
-                  onMouseEnter={() => {
-                    setHoveredSkill(node);
-                    playSound('click');
-                    onSetCursor('explore', node.name.toUpperCase());
-                  }}
-                  onMouseLeave={() => {
-                    setHoveredSkill(null);
-                    onSetCursor('default');
-                  }}
-                  className={`px-4 py-2.5 rounded-2xl border font-display font-bold text-xs sm:text-sm flex items-center gap-2 cursor-pointer transition-all ${
-                    isSelected
-                      ? 'bg-[#111111] text-[#FFF35C] border-[#111111] -translate-y-1'
-                      : 'bg-white text-neutral-800 border-neutral-200/80 hover:border-neutral-400 hover:bg-neutral-50'
-                  }`}
-                >
-                  <span
-                    className="w-2.5 h-2.5 rounded-full"
-                    style={{ backgroundColor: nodeColor }}
-                  />
-                  <Icon className="w-3.5 h-3.5" />
-                  <span>{node.name}</span>
-                  <span className="text-[10px] font-mono font-normal opacity-80">
-                    {node.level}%
-                  </span>
-                </motion.button>
-              );
-            })}
-          </div>
-
-          {/* Category Legend */}
-          <div className="relative z-10 pt-4 border-t border-neutral-200/80 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-            <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1.5 text-neutral-600">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#FFF35C]" /> Software
-              </span>
-              <span className="flex items-center gap-1.5 text-neutral-600">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#FFB7D5]" /> Design
-              </span>
-              <span className="flex items-center gap-1.5 text-neutral-600">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#C9B8FF]" /> AR Lens
-              </span>
-              <span className="flex items-center gap-1.5 text-neutral-600">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#B9F5D0]" /> AI / ML
-              </span>
-            </div>
-            <span className="text-neutral-400">Click node for breakdown</span>
-          </div>
-        </div>
-
-        {/* Right: Active Node Deep Breakdown Panel */}
-        <div className="lg:col-span-5 rounded-3xl bg-white border border-neutral-200/80 p-6 sm:p-8 flex flex-col justify-between space-y-6">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeSkill.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25 }}
-              className="space-y-5"
+      {/* Categories Grid (Soft neutral cards, zero borders) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {skillCategories.map((category) => {
+          const Icon = category.icon;
+          return (
+            <div
+              key={category.title}
+              className="rounded-2xl bg-neutral-50 p-6 sm:p-8 flex flex-col justify-between"
             >
-              {/* Top Node Header */}
-              <div className="flex items-start justify-between">
-                <div>
-                  <span
-                    className="px-3 py-1 rounded-md text-[10px] font-mono font-bold uppercase border border-neutral-200/80 inline-block mb-2"
-                    style={{
-                      backgroundColor: getCategoryColor(activeSkill.category),
-                      color: '#111111'
-                    }}
-                  >
-                    {activeSkill.category.toUpperCase()} COMPETENCY
-                  </span>
-                  <h3 className="text-3xl font-display font-black text-[#111111]">
-                    {activeSkill.name}
-                  </h3>
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-neutral-900 text-white flex items-center justify-center">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-display font-bold text-neutral-950">
+                      {category.title}
+                    </h3>
+                    <p className="text-xs text-neutral-500">
+                      {category.description}
+                    </p>
+                  </div>
                 </div>
 
-                <div className="text-right">
-                  <span className="font-display font-black text-2xl text-[#111111]">
-                    {activeSkill.level}%
-                  </span>
-                  <span className="text-[10px] font-mono text-neutral-500 block">Proficiency</span>
-                </div>
-              </div>
-
-              {/* Progress Level Bar */}
-              <div className="w-full h-2.5 rounded-full bg-neutral-100 border border-neutral-200/80 overflow-hidden p-0.5">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${activeSkill.level}%` }}
-                  transition={{ duration: 0.6, ease: 'easeOut' }}
-                  className="h-full rounded-full bg-[#111111]"
-                />
-              </div>
-
-              {/* Narrative description */}
-              <p className="text-sm text-neutral-600 leading-relaxed font-medium">
-                {activeSkill.description}
-              </p>
-
-              {/* Connected Real-World Projects */}
-              <div className="pt-3 border-t border-neutral-200/80">
-                <span className="text-xs font-mono font-bold text-[#111111] uppercase block mb-2.5">
-                  DEPLOYED IN PORTFOLIO PROJECTS:
-                </span>
-                <div className="space-y-2">
-                  {getConnectedProjectsList(activeSkill.connectedProjects).map((proj, idx) => (
+                {/* Skills Grid */}
+                <div className="grid grid-cols-2 gap-2.5 pt-2">
+                  {category.skills.map((skill) => (
                     <div
-                      key={idx}
-                      className="p-2.5 rounded-xl bg-neutral-50/50 border border-neutral-200/80 flex items-center justify-between text-xs"
+                      key={skill.name}
+                      className="p-3 rounded-xl bg-white flex items-center justify-between"
                     >
-                      <span className="font-display font-bold text-[#111111]">
-                        {proj.title}
+                      <span className="text-xs font-medium text-neutral-900">
+                        {skill.name}
                       </span>
-                      <span className="text-[10px] font-mono bg-white px-2 py-0.5 rounded border border-neutral-200 text-neutral-600">
-                        {proj.category}
+                      <span className="text-[10px] text-neutral-400">
+                        {skill.level}
                       </span>
                     </div>
                   ))}
                 </div>
               </div>
-            </motion.div>
-          </AnimatePresence>
-
-          <div className="pt-4 border-t border-[#E0E0D8] flex items-center justify-between text-xs font-mono text-[#777777]">
-            <span>Validated across 30+ production deliverables</span>
-            <span className="text-[#111111] font-bold">2026 Core Stack</span>
-          </div>
-        </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

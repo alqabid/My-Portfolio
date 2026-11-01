@@ -49,20 +49,20 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
   };
 
   return (
-    <div className="w-full rounded-2xl border border-neutral-200/80 bg-[#111111] overflow-hidden flex flex-col">
+    <div className="w-full rounded-2xl bg-[#111111] overflow-hidden flex flex-col">
       {/* Realistic Browser Chrome / Navigation Header */}
-      <div className="bg-[#1C1C1C] px-3.5 py-2.5 border-b border-[#333333] flex items-center justify-between gap-3 select-none">
+      <div className="bg-[#1C1C1C] px-3.5 py-2.5 border-b border-[#2A2A2A] flex items-center justify-between gap-3 select-none">
         {/* Window controls */}
         <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-[#FF5F56] border border-[#E0443E]" />
-          <div className="w-3 h-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]" />
-          <div className="w-3 h-3 rounded-full bg-[#27C93F] border border-[#1AAB29]" />
+          <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
+          <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+          <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
         </div>
 
         {/* Address Bar */}
         <div
           onClick={handleCopyUrl}
-          className="flex-1 max-w-xl mx-auto px-3 py-1 rounded-lg bg-[#0D0D0D] hover:bg-[#151515] border border-[#333333] flex items-center justify-between gap-2 cursor-pointer transition-colors group"
+          className="flex-1 max-w-xl mx-auto px-3 py-1 rounded-lg bg-[#0D0D0D] hover:bg-[#151515] flex items-center justify-between gap-2 cursor-pointer transition-colors group"
           title="Click to copy live URL"
         >
           <div className="flex items-center gap-2 overflow-hidden">
@@ -80,7 +80,7 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
             </span>
           </div>
 
-          <span className="text-[10px] font-mono text-[#888888] group-hover:text-white shrink-0 hidden sm:inline">
+          <span className="text-[10px] font-mono text-neutral-400 group-hover:text-white shrink-0 hidden sm:inline">
             {copied ? 'COPIED!' : 'COPY'}
           </span>
         </div>
@@ -88,16 +88,13 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
         {/* Action Controls */}
         <div className="flex items-center gap-1.5">
           {allowLiveIframe && (
-            <div className="hidden sm:flex items-center bg-[#0D0D0D] border border-[#333333] rounded-lg p-0.5">
+            <div className="hidden sm:flex items-center bg-[#0D0D0D] rounded-lg p-0.5">
               <button
                 type="button"
-                onClick={() => {
-                  playSound('click');
-                  setViewMode('screenshot');
-                }}
-                className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold transition-all ${
+                onClick={() => setViewMode('screenshot')}
+                className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium transition-colors ${
                   viewMode === 'screenshot'
-                    ? 'bg-[#333333] text-white'
+                    ? 'bg-neutral-800 text-white'
                     : 'text-neutral-400 hover:text-white'
                 }`}
               >
@@ -105,13 +102,10 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
               </button>
               <button
                 type="button"
-                onClick={() => {
-                  playSound('pop');
-                  setViewMode('iframe');
-                }}
-                className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold transition-all ${
+                onClick={() => setViewMode('iframe')}
+                className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium transition-colors ${
                   viewMode === 'iframe'
-                    ? 'bg-[#FFF35C] text-[#111111]'
+                    ? 'bg-white text-neutral-900'
                     : 'text-neutral-400 hover:text-white'
                 }`}
               >
@@ -217,23 +211,20 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
                 {allowLiveIframe && (
                   <button
                     type="button"
-                    onClick={() => {
-                      playSound('pop');
-                      setViewMode('iframe');
-                    }}
-                    className="px-3 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 text-white font-mono text-xs backdrop-blur-sm border border-white/20 transition-all flex items-center gap-1.5 cursor-pointer"
+                    onClick={() => setViewMode('iframe')}
+                    className="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono text-xs backdrop-blur-sm transition-colors flex items-center gap-1.5 cursor-pointer"
                   >
-                    <Monitor className="w-3.5 h-3.5 text-[#FFF35C]" />
-                    <span>Live Interactive View</span>
+                    <Monitor className="w-3.5 h-3.5 text-white" />
+                    <span>Interactive View</span>
                   </button>
                 )}
                 <a
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3.5 py-1.5 rounded-lg bg-[#FFF35C] hover:bg-[#ffe338] text-[#111111] font-display font-bold text-xs flex items-center gap-1 transition-all"
+                  className="px-3.5 py-1.5 rounded-lg bg-white hover:bg-neutral-100 text-neutral-900 font-medium text-xs flex items-center gap-1 transition-colors"
                 >
-                  <span>VISIT SITE</span>
+                  <span>Visit Site</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>

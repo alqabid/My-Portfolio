@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { IntroScreen } from './components/IntroScreen';
-import { CustomCursor } from './components/CustomCursor';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { WorldSelector } from './components/WorldSelector';
@@ -12,37 +10,17 @@ import { AboutSection } from './components/AboutSection';
 import { ServicesSection } from './components/ServicesSection';
 import { RecruiterMode } from './components/RecruiterMode';
 import { CaseStudyModal } from './components/CaseStudyModal';
-import { EasterEggsModal } from './components/EasterEggsModal';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { AdminLoginModal } from './components/admin/AdminLoginModal';
 import { AdminPortal } from './components/admin/AdminPortal';
-import { Project, CursorType } from './types';
-import { setSoundEnabled, getSoundEnabled, playSound } from './utils/sound';
+import { Project } from './types';
 
 export function App() {
-  const [introCompleted, setIntroCompleted] = useState(false);
   const [isRecruiterMode, setIsRecruiterMode] = useState(false);
-  const [soundEnabled, setSoundState] = useState(false);
-  const [cursorType, setCursorType] = useState<CursorType>('default');
-  const [cursorText, setCursorText] = useState<string>('');
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<Project | null>(null);
-  const [isEasterEggOpen, setIsEasterEggOpen] = useState(false);
   const [initialServiceInterest, setInitialServiceInterest] = useState<string>('');
   const [activeSection, setActiveSection] = useState<string>('hero');
-
-  // Handle sound toggle
-  const handleToggleSound = () => {
-    const next = !soundEnabled;
-    setSoundState(next);
-    setSoundEnabled(next);
-  };
-
-  // Set custom cursor helper
-  const handleSetCursor = (type: CursorType, text = '') => {
-    setCursorType(type);
-    setCursorText(text);
-  };
 
   // Handle section scrolling
   const scrollToSection = (id: string) => {
@@ -51,25 +29,6 @@ export function App() {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  // Keyboard shortcut listener (Konami-style easter egg trigger)
-  useEffect(() => {
-    let keySequence: string[] = [];
-    const handleKeyDown = (e: KeyboardEvent) => {
-      keySequence.push(e.key.toLowerCase());
-      if (keySequence.length > 6) {
-        keySequence.shift();
-      }
-      // If user types 'abdul'
-      if (keySequence.join('').includes('abdul')) {
-        setIsEasterEggOpen(true);
-        keySequence = [];
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
 
   // Intersection Observer to track active section for navbar
   useEffect(() => {
@@ -100,26 +59,15 @@ export function App() {
     return () => {
       observers.forEach((o) => o.disconnect());
     };
-  }, [introCompleted, isRecruiterMode]);
+  }, [isRecruiterMode]);
 
   return (
-    <div className="relative min-h-screen bg-white text-[#111111] overflow-x-hidden">
-      {/* Intro Experience Screen */}
-      {!introCompleted && (
-        <IntroScreen onComplete={() => setIntroCompleted(true)} />
-      )}
-
-      {/* Custom Desktop Interactive Cursor */}
-      <CustomCursor cursorType={cursorType} cursorText={cursorText} />
-
+    <div className="relative min-h-screen bg-white text-neutral-900 antialiased selection:bg-neutral-900 selection:text-white">
       {/* Global Navigation Bar */}
       <Navbar
         isRecruiterMode={isRecruiterMode}
         onToggleRecruiterMode={() => setIsRecruiterMode(!isRecruiterMode)}
-        soundEnabled={soundEnabled}
-        onToggleSound={handleToggleSound}
         onOpenResume={() => setIsRecruiterMode(true)}
-        onTriggerEasterEgg={() => setIsEasterEggOpen(true)}
         activeSection={activeSection}
       />
 
@@ -130,36 +78,36 @@ export function App() {
         <main className="flex flex-col">
           {/* Hero Section */}
           <Hero
-            onExploreWork={() => scrollToSection('worlds')}
+            onExploreWork={() => scrollToSection('build')}
             onOpenContact={() => scrollToSection('contact')}
             onOpenResume={() => setIsRecruiterMode(true)}
           />
 
-          {/* World Selector */}
+          {/* Core Disciplines Overview */}
           <WorldSelector
             onSelectWorld={(worldId) => scrollToSection(worldId)}
-            onSetCursor={handleSetCursor}
+            onSetCursor={() => {}}
           />
 
-          {/* Build World (Software & AI) */}
+          {/* Software Engineering & Products (MedVision, Yugogoo, etc.) */}
           <BuildWorld
             onOpenCaseStudy={(project) => setSelectedCaseStudy(project)}
-            onSetCursor={handleSetCursor}
+            onSetCursor={() => {}}
           />
 
-          {/* Design World (Visual Content & Thumbnails) */}
-          <DesignWorld onSetCursor={handleSetCursor} />
+          {/* Brand & Visual Design */}
+          <DesignWorld onSetCursor={() => {}} />
 
-          {/* AR World (Snapchat Lens Studio) */}
-          <ARWorld onSetCursor={handleSetCursor} />
+          {/* Augmented Reality & 3D */}
+          <ARWorld onSetCursor={() => {}} />
 
-          {/* Skill Constellation Graph */}
-          <SkillConstellation onSetCursor={handleSetCursor} />
+          {/* Technical Skills & Technologies */}
+          <SkillConstellation onSetCursor={() => {}} />
 
-          {/* About Section */}
+          {/* About & National Service Experience at Juni Ghana Limited */}
           <AboutSection />
 
-          {/* Services Section */}
+          {/* Services & Collaboration */}
           <ServicesSection
             onSelectService={(serviceTitle) => {
               setInitialServiceInterest(serviceTitle);
@@ -184,13 +132,7 @@ export function App() {
         onClose={() => setSelectedCaseStudy(null)}
       />
 
-      {/* Secret Easter Egg Celebration Modal */}
-      <EasterEggsModal
-        isOpen={isEasterEggOpen}
-        onClose={() => setIsEasterEggOpen(false)}
-      />
-
-      {/* Admin Authentication & Login Modal */}
+      {/* Admin Authentication & Login Modal (Stealth: ?admin=true or Cmd+Shift+A) */}
       <AdminLoginModal />
 
       {/* Full-Screen Admin CMS & Backend Management Portal */}

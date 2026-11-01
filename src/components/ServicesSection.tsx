@@ -1,9 +1,6 @@
 import React from 'react';
-import { motion } from 'motion/react';
-import { Code2, Palette, Glasses, Brain, Check, ArrowRight, Layers } from 'lucide-react';
-import { ServiceItem } from '../types';
+import { Code2, Palette, Glasses, Brain, Check, ArrowRight } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
-import { playSound } from '../utils/sound';
 
 interface ServicesSectionProps {
   onSelectService: (serviceTitle: string) => void;
@@ -11,6 +8,7 @@ interface ServicesSectionProps {
 
 export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectService }) => {
   const { services: SERVICES } = usePortfolio();
+
   const getIcon = (name: string) => {
     switch (name) {
       case 'Code2':
@@ -27,66 +25,57 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
   };
 
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="services" className="py-20 px-4 sm:px-8 max-w-7xl mx-auto">
       {/* Section Header */}
       <div className="mb-14">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#A9DDFF]/80 border border-neutral-200/80 text-xs font-mono font-bold text-neutral-900 uppercase tracking-wider mb-4">
-          <Layers className="w-3.5 h-3.5" />
-          <span>CAPABILITIES & COLLABORATION</span>
-        </div>
-        <h2 className="text-4xl sm:text-6xl font-display font-extrabold text-[#111111] tracking-tight mb-4">
-          HOW WE CAN WORK TOGETHER.
+        <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider block mb-2">
+          Collaboration
+        </span>
+        <h2 className="text-3xl sm:text-5xl font-display font-bold text-neutral-950 tracking-tight mb-4">
+          Services & Capabilities
         </h2>
-        <p className="text-base sm:text-xl text-neutral-600 max-w-3xl leading-relaxed">
-          Whether you need a full-stack web application, scroll-stopping visual branding, or custom augmented reality lenses, I deliver end-to-end craftsmanship.
+        <p className="text-base sm:text-lg text-neutral-600 max-w-3xl leading-relaxed">
+          From full-stack web applications and backend API integration to high-converting visual branding and interactive augmented reality lenses.
         </p>
       </div>
 
-      {/* Services Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Services Grid (Zero borders, soft neutral surface) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {SERVICES.map((srv) => {
           const Icon = getIcon(srv.iconName);
 
           return (
-            <motion.div
+            <div
               key={srv.id}
-              id={`service-card-${srv.id}`}
-              whileHover={{ y: -6 }}
-              className="rounded-3xl bg-white border border-neutral-200/80 hover:border-neutral-400 p-6 sm:p-8 flex flex-col justify-between transition-all"
+              className="rounded-2xl bg-neutral-50 p-7 sm:p-8 flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center"
-                    style={{ backgroundColor: srv.accentColor }}
-                  >
-                    <Icon className="w-7 h-7 text-[#111111]" />
+                <div className="flex items-center gap-3.5 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-neutral-900 text-white flex items-center justify-center">
+                    <Icon className="w-5 h-5" />
                   </div>
-                  <span className="font-mono text-xs font-bold text-neutral-400">
-                    READY TO SHIP
-                  </span>
+                  <div>
+                    <h3 className="text-xl font-display font-bold text-neutral-950">
+                      {srv.title}
+                    </h3>
+                    <p className="text-xs font-medium text-neutral-500">
+                      {srv.tagline}
+                    </p>
+                  </div>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-[#111111] mb-1">
-                  {srv.title}
-                </h3>
-                <p className="text-sm font-display font-bold text-neutral-500 mb-4">
-                  {srv.tagline}
-                </p>
-                <p className="text-sm text-neutral-600 leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed mb-6">
                   {srv.description}
                 </p>
 
                 {/* Deliverables List */}
-                <div className="space-y-2.5 pt-4 border-t border-neutral-200/80">
-                  <span className="text-[11px] font-mono font-bold text-neutral-500 uppercase block">
-                    KEY DELIVERABLES:
+                <div className="space-y-2 pt-2">
+                  <span className="text-[11px] font-semibold text-neutral-500 uppercase tracking-wider block mb-1">
+                    Deliverables:
                   </span>
                   {srv.deliverables.map((deliv, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-xs font-semibold text-neutral-800">
-                      <div className="w-4 h-4 rounded-full bg-[#111111] text-white flex items-center justify-center shrink-0">
-                        <Check className="w-2.5 h-2.5" />
-                      </div>
+                    <div key={idx} className="flex items-center gap-2 text-xs text-neutral-700">
+                      <Check className="w-3.5 h-3.5 text-neutral-900 shrink-0" />
                       <span>{deliv}</span>
                     </div>
                   ))}
@@ -94,19 +83,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
               </div>
 
               {/* Action Button */}
-              <div className="mt-8 pt-4 border-t border-neutral-200/80">
+              <div className="mt-8 pt-2">
                 <button
-                  onClick={() => {
-                    playSound('pop');
-                    onSelectService(srv.title);
-                  }}
-                  className="w-full py-3.5 rounded-2xl bg-white hover:bg-[#111111] text-[#111111] hover:text-[#FFF35C] font-display font-bold text-xs uppercase tracking-wider border border-neutral-200/80 hover:border-neutral-900 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer group"
+                  onClick={() => onSelectService(srv.title)}
+                  className="w-full py-3 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white font-medium text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
                 >
-                  <span>INQUIRE ABOUT {srv.title}</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <span>Inquire for {srv.title}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
-            </motion.div>
+            </div>
           );
         })}
       </div>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp, Github, Linkedin, MessageSquare, Mail, Glasses } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
-import { playSound } from '../utils/sound';
 
 export const Footer: React.FC = () => {
   const {
@@ -51,12 +50,10 @@ export const Footer: React.FC = () => {
   }, [isAdminLoggedIn]);
 
   const scrollToTop = () => {
-    playSound('whoosh');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleOpenAdmin = () => {
-    playSound('click');
     if (isAdminLoggedIn) {
       setIsAdminPortalOpen(true);
     } else {
@@ -65,105 +62,81 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="border-t border-neutral-200 bg-white py-12 px-4 sm:px-6 lg:px-8 select-none">
+    <footer className="bg-white py-12 px-4 sm:px-8 select-none">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-        {/* Brand */}
+        {/* Brand & Quiet Details */}
         <div className="space-y-1 text-center md:text-left">
-          <div className="flex items-center justify-center md:justify-start gap-2">
-            <span className="font-display font-black text-lg text-[#111111]">
+          <div className="flex items-center justify-center md:justify-start gap-2 text-sm">
+            <span className="font-display font-bold text-neutral-900">
               {PERSONAL_INFO.name}
             </span>
-            <span className="px-2 py-0.5 rounded-full bg-[#FFF35C] border border-neutral-200/80 text-[10px] font-mono font-bold text-[#111111]">
+            <span aria-hidden="true" className="text-neutral-300">·</span>
+            <span className="text-xs text-neutral-500">
               {PERSONAL_INFO.location}
             </span>
           </div>
-          <p className="font-display font-bold text-xs text-neutral-500">
+          <p className="text-xs text-neutral-500">
             {PERSONAL_INFO.titles}
           </p>
-          <p className="text-[11px] font-mono text-neutral-400">
-            Local Time (Accra): <strong className="text-[#111111]">{ghanaTime || 'GMT'}</strong>
+          <p className="text-[11px] text-neutral-400">
+            Accra, Ghana · Local Time: <span className="text-neutral-700 font-medium">{ghanaTime || 'GMT'}</span>
           </p>
         </div>
 
-        {/* Social Icons Bar */}
-        <div className="flex flex-wrap items-center justify-center gap-2">
+        {/* Social Links Bar (Zero borders) */}
+        <div className="flex items-center justify-center gap-2">
           {PERSONAL_INFO.github && (
             <a
               href={PERSONAL_INFO.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-white hover:bg-[#111111] text-[#111111] hover:text-white border border-neutral-200 hover:border-neutral-400 flex items-center justify-center transition-all"
+              className="w-9 h-9 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-700 hover:text-neutral-900 flex items-center justify-center transition-colors"
               title="GitHub Profile"
             >
               <Github className="w-4 h-4" />
             </a>
           )}
+
           {PERSONAL_INFO.linkedin && (
             <a
               href={PERSONAL_INFO.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-white hover:bg-[#111111] text-[#111111] hover:text-white border border-neutral-200 hover:border-neutral-400 flex items-center justify-center transition-all"
+              className="w-9 h-9 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-700 hover:text-neutral-900 flex items-center justify-center transition-colors"
               title="LinkedIn Profile"
             >
               <Linkedin className="w-4 h-4" />
             </a>
           )}
-          {PERSONAL_INFO.snapchatCreator && (
-            <a
-              href={PERSONAL_INFO.snapchatCreator}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-white hover:bg-[#FFF35C] text-[#111111] border border-neutral-200 hover:border-neutral-400 flex items-center justify-center transition-all"
-              title="Snapchat Lens Creator Hub"
-            >
-              <Glasses className="w-4 h-4" />
-            </a>
-          )}
-          {PERSONAL_INFO.snapchatAccount && (
-            <a
-              href={PERSONAL_INFO.snapchatAccount}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-white hover:bg-[#FFFC00] text-[#111111] border border-neutral-200 hover:border-neutral-400 flex items-center justify-center transition-all"
-              title={`Add @${PERSONAL_INFO.snapchatHandle} on Snapchat`}
-            >
-              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M12.002 2c-3.57 0-6.19 2.522-6.19 5.86 0 1.258.423 2.54 1.135 3.396.115.14.16.27.135.39-.05.23-.393.37-.887.49-.667.16-1.572.4-1.95 1.07-.22.39-.183.85.12 1.34.46.74 1.48 1.1 2.53 1.28.18.03.3.16.32.32.06.63.35 1.05.8 1.26.47.22 1.12.18 1.83-.11.23-.1.49-.07.7.07.72.47 1.48.71 2.25.71.78 0 1.54-.24 2.27-.72.2-.14.47-.16.7-.06.7.29 1.36.33 1.83.11.45-.21.74-.63.8-1.26.02-.16.14-.29.32-.32 1.05-.18 2.07-.54 2.53-1.28.3-.49.34-.95.12-1.34-.38-.67-1.28-.91-1.95-1.07-.49-.12-.84-.26-.89-.49-.02-.12.02-.25.14-.39.71-.856 1.13-2.138 1.13-3.396 0-3.338-2.62-5.86-6.19-5.86z"/>
-              </svg>
-            </a>
-          )}
+
           {PERSONAL_INFO.whatsapp && (
             <a
               href={PERSONAL_INFO.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-white hover:bg-[#25D366] text-[#111111] hover:text-white border border-neutral-200 hover:border-neutral-400 flex items-center justify-center transition-all"
-              title="WhatsApp Contact"
+              className="w-9 h-9 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-700 hover:text-neutral-900 flex items-center justify-center transition-colors"
+              title="WhatsApp Direct"
             >
               <MessageSquare className="w-4 h-4" />
             </a>
           )}
+
           {PERSONAL_INFO.email && (
             <a
               href={`mailto:${PERSONAL_INFO.email}`}
-              className="w-9 h-9 rounded-xl bg-white hover:bg-[#111111] text-[#111111] hover:text-white border border-neutral-200 hover:border-neutral-400 flex items-center justify-center transition-all"
-              title="Direct Email"
+              className="w-9 h-9 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-700 hover:text-neutral-900 flex items-center justify-center transition-colors"
+              title="Email"
             >
               <Mail className="w-4 h-4" />
             </a>
           )}
-        </div>
 
-        {/* Action Column: Back to top button */}
-        <div className="flex flex-col items-center md:items-end">
-          {/* Back to top button */}
           <button
             onClick={scrollToTop}
-            className="px-4 py-2.5 rounded-2xl bg-white hover:bg-[#111111] text-[#111111] hover:text-[#FFF35C] border border-neutral-200 hover:border-neutral-900 active:scale-95 font-display font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-all"
+            className="w-9 h-9 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-700 hover:text-neutral-900 flex items-center justify-center transition-colors cursor-pointer ml-2"
+            title="Back to Top"
           >
-            <span>BACK TO TOP</span>
-            <ArrowUp className="w-3.5 h-3.5" />
+            <ArrowUp className="w-4 h-4" />
           </button>
         </div>
       </div>

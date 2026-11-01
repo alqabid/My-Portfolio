@@ -1,103 +1,74 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Briefcase, Compass, FileText } from 'lucide-react';
+import { Briefcase, Compass, FileText, ArrowUpRight } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
-import { playSound } from '../utils/sound';
 
 interface NavbarProps {
   isRecruiterMode: boolean;
   onToggleRecruiterMode: () => void;
-  soundEnabled: boolean;
-  onToggleSound: () => void;
   onOpenResume: () => void;
-  onTriggerEasterEgg: () => void;
   activeSection: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   isRecruiterMode,
   onToggleRecruiterMode,
-  soundEnabled,
-  onToggleSound,
   onOpenResume,
-  onTriggerEasterEgg,
   activeSection
 }) => {
   const { personalInfo } = usePortfolio();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [logoClicks, setLogoClicks] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleLogoClick = () => {
-    playSound('pop');
-    const newCount = logoClicks + 1;
-    setLogoClicks(newCount);
-    if (newCount >= 5) {
-      setLogoClicks(0);
-      onTriggerEasterEgg();
-    }
-  };
-
   const navLinks = [
-    { id: 'worlds', label: 'Worlds' },
-    { id: 'build', label: 'Build' },
+    { id: 'build', label: 'Projects' },
     { id: 'design', label: 'Design' },
-    { id: 'ar', label: 'AR' },
+    { id: 'ar', label: 'AR & 3D' },
     { id: 'skills', label: 'Skills' },
-    { id: 'services', label: 'Services' },
+    { id: 'about', label: 'About' },
     { id: 'contact', label: 'Contact' },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 px-3 sm:px-6 py-3 transition-all duration-300 pointer-events-none">
-      <div className="max-w-7xl mx-auto flex items-center justify-between pointer-events-auto">
-        {/* Brand Logo with Easter Egg Counter */}
-        <button
-          id="navbar-logo-btn"
-          onClick={handleLogoClick}
-          className={`flex items-center gap-2.5 px-3 sm:px-4 py-2 rounded-2xl border border-neutral-200/80 transition-all duration-200 cursor-pointer active:scale-95 ${
-            isScrolled ? 'bg-white/95 backdrop-blur-md' : 'bg-white'
-          }`}
-          title={logoClicks > 0 ? `${5 - logoClicks} clicks until secret mode!` : 'Abdul Qabid Siaka'}
+    <header className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-8 py-4 transition-all duration-300">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        {/* Brand Zone: Clean Wordmark (No pills, no borders) */}
+        <a
+          href="#hero"
+          className="flex items-center gap-3 group text-left"
         >
-          <div className="w-7 h-7 rounded-xl bg-[#FFF35C] flex items-center justify-center font-display font-extrabold text-sm text-[#111111]">
-            {personalInfo.name ? personalInfo.name.charAt(0).toUpperCase() : 'A'}
+          <div className="w-8 h-8 rounded-lg bg-neutral-900 text-white flex items-center justify-center font-display font-bold text-xs tracking-wider">
+            AQ
           </div>
-          <div className="text-left hidden xs:block">
-            <span className="font-display font-bold text-sm tracking-tight text-[#111111] block leading-none">
-              {personalInfo.name ? personalInfo.name.split(' ').slice(0, 2).join(' ') : 'ABDUL QABID'}
+          <div>
+            <span className="font-display font-bold text-sm tracking-tight text-neutral-900 block leading-tight">
+              {personalInfo.name || 'Abdul-Qabid Siaka'}
             </span>
-            <span className="text-[10px] font-mono text-neutral-500 tracking-wider uppercase leading-tight">
-              CREATIVE TECH
+            <span className="text-[11px] text-neutral-500 block leading-none">
+              Software Engineer · Accra
             </span>
           </div>
-          {logoClicks > 0 && (
-            <span className="text-[10px] font-mono bg-[#FFB7D5] text-[#111111] px-1.5 py-0.5 rounded-full font-bold animate-pulse">
-              {logoClicks}/5
-            </span>
-          )}
-        </button>
+        </a>
 
-        {/* Center Desktop Navigation Links */}
+        {/* Center Desktop Navigation Links (Clean text links with hover state, no borders) */}
         {!isRecruiterMode && (
-          <nav className="hidden lg:flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-neutral-200/80">
+          <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-neutral-600">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
                 <a
                   key={link.id}
                   href={`#${link.id}`}
-                  onClick={() => playSound('click')}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-display font-bold tracking-wide uppercase transition-all duration-150 ${
+                  className={`transition-colors whitespace-nowrap ${
                     isActive
-                      ? 'bg-[#111111] text-[#FFF35C]'
-                      : 'text-neutral-700 hover:bg-neutral-100 hover:text-[#111111]'
+                      ? 'text-neutral-950 font-semibold'
+                      : 'text-neutral-600 hover:text-neutral-950'
                   }`}
                 >
                   {link.label}
@@ -107,65 +78,37 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
         )}
 
-        {/* Right Actions: Mode Toggle, Sound & Resume */}
-        <div className="flex items-center gap-2 sm:gap-2.5">
-          {/* Sound Toggle */}
-          <button
-            id="navbar-sound-toggle-btn"
-            onClick={() => {
-              onToggleSound();
-              playSound('switch');
-            }}
-            className="w-10 h-10 rounded-2xl bg-white border border-neutral-200/80 flex items-center justify-center text-[#111111] hover:bg-neutral-100 active:scale-95 transition-all cursor-pointer"
-            title={soundEnabled ? 'Mute Sound Effects' : 'Enable Interactive Sound FX'}
-          >
-            {soundEnabled ? (
-              <Volume2 className="w-4 h-4 text-[#111111]" />
-            ) : (
-              <VolumeX className="w-4 h-4 text-neutral-400" />
-            )}
-          </button>
-
-          {/* Mode Switcher Button (Recruiter vs Explore) */}
+        {/* Right Actions: Clean Recruiter Toggle & Resume (Zero borders) */}
+        <div className="flex items-center gap-2.5">
           <button
             id="navbar-recruiter-mode-btn"
-            onClick={() => {
-              playSound('switch');
-              onToggleRecruiterMode();
-            }}
-            className={`px-3 sm:px-4 py-2 rounded-2xl border font-display font-bold text-xs flex items-center gap-2 active:scale-95 transition-all cursor-pointer ${
+            onClick={onToggleRecruiterMode}
+            className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer ${
               isRecruiterMode
-                ? 'bg-[#111111] text-[#FFF35C] border-transparent'
-                : 'bg-[#FFF35C] text-[#111111] border-neutral-200 hover:bg-[#ffee38]'
+                ? 'bg-neutral-900 text-white hover:bg-neutral-800'
+                : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-800'
             }`}
           >
             {isRecruiterMode ? (
               <>
-                <Compass className="w-4 h-4 text-[#FFF35C]" />
-                <span className="hidden sm:inline">EXPLORE MODE</span>
-                <span className="sm:hidden">EXPLORE</span>
+                <Compass className="w-3.5 h-3.5" />
+                <span>Standard View</span>
               </>
             ) : (
               <>
-                <Briefcase className="w-4 h-4 text-[#111111]" />
-                <span className="hidden sm:inline">RECRUITER MODE</span>
-                <span className="sm:hidden">RECRUITER</span>
+                <Briefcase className="w-3.5 h-3.5 text-neutral-600" />
+                <span>Recruiter View</span>
               </>
             )}
           </button>
 
-          {/* Resume Action */}
-          <button
-            id="navbar-resume-btn"
-            onClick={() => {
-              playSound('pop');
-              onOpenResume();
-            }}
-            className="px-3 sm:px-4 py-2 rounded-2xl bg-white border border-neutral-200/80 font-display font-bold text-xs text-[#111111] flex items-center gap-1.5 hover:bg-neutral-100 active:scale-95 transition-all cursor-pointer"
+          <a
+            href="#contact"
+            className="hidden sm:inline-flex px-4 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold transition-colors items-center gap-1.5 cursor-pointer"
           >
-            <FileText className="w-4 h-4 text-[#111111]" />
-            <span className="hidden md:inline">RESUME</span>
-          </button>
+            <span>Get in Touch</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
         </div>
       </div>
     </header>
