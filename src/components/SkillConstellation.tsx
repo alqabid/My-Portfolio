@@ -69,7 +69,7 @@ export const SkillConstellation: React.FC<SkillConstellationProps> = ({ onSetCur
     <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Header */}
       <div className="mb-14">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#B9F5D0] border-2 border-[#111111] text-xs font-mono font-bold text-[#111111] shadow-[2px_2px_0px_0px_#111111] uppercase tracking-wider mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#B9F5D0] border-2 border-[#111111] text-xs font-mono font-bold text-[#111111] uppercase tracking-wider mb-4">
           <Network className="w-3.5 h-3.5" />
           <span>INTERACTIVE CONSTELLATION // SKILL ARCHITECTURE</span>
         </div>
@@ -84,14 +84,14 @@ export const SkillConstellation: React.FC<SkillConstellationProps> = ({ onSetCur
       {/* Main Graph & Detail Panel Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         {/* Left: Interactive Node Constellation Matrix */}
-        <div className="lg:col-span-7 rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-8 shadow-[8px_8px_0px_0px_#111111] flex flex-col justify-between relative overflow-hidden min-h-[440px]">
+        <div className="lg:col-span-7 rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden min-h-[440px]">
           {/* Subtle background grid */}
           <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
 
           {/* Central Hub Badge */}
           <div className="relative z-10 flex items-center justify-between pb-6 border-b border-[#ECECE4]">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-[#111111] text-[#FFF35C] font-display font-extrabold text-sm flex items-center justify-center border-2 border-[#111111] shadow-[2px_2px_0px_0px_#FFF35C]">
+              <div className="w-10 h-10 rounded-2xl bg-[#111111] text-[#FFF35C] font-display font-extrabold text-sm flex items-center justify-center border-2 border-[#111111]">
                 AQ
               </div>
               <div>
@@ -138,8 +138,8 @@ export const SkillConstellation: React.FC<SkillConstellationProps> = ({ onSetCur
                   }}
                   className={`px-4 py-2.5 rounded-2xl border-2 font-display font-bold text-xs sm:text-sm flex items-center gap-2 cursor-pointer transition-all ${
                     isSelected
-                      ? 'bg-[#111111] text-[#FFF35C] border-[#111111] shadow-[4px_4px_0px_0px_#FFF35C] -translate-y-1'
-                      : 'bg-white text-[#111111] border-[#111111] hover:bg-neutral-100 shadow-[2px_2px_0px_0px_#111111]'
+                      ? 'bg-[#111111] text-[#FFF35C] border-[#111111] -translate-y-1'
+                      : 'bg-white text-[#111111] border-[#111111] hover:bg-neutral-100'
                   }`}
                 >
                   <span
@@ -177,7 +177,7 @@ export const SkillConstellation: React.FC<SkillConstellationProps> = ({ onSetCur
         </div>
 
         {/* Right: Active Node Deep Breakdown Panel */}
-        <div className="lg:col-span-5 rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-8 shadow-[8px_8px_0px_0px_#111111] flex flex-col justify-between space-y-6">
+        <div className="lg:col-span-5 rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-8 flex flex-col justify-between space-y-6">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSkill.id}

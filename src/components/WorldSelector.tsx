@@ -100,7 +100,7 @@ export const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onS
                 playSound('whoosh');
                 onSelectWorld(w.id);
               }}
-              className={`group relative rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-8 flex flex-col justify-between cursor-pointer transition-all duration-300 shadow-[6px_6px_0px_0px_#111111] active:translate-x-1 active:translate-y-1 active:shadow-none overflow-hidden`}
+              className={`group relative rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-8 flex flex-col justify-between cursor-pointer transition-all duration-300 active:scale-[0.98] overflow-hidden`}
               style={{
                 backgroundColor: isHovered ? `${w.accent}15` : '#FFFFFF'
               }}
@@ -108,7 +108,7 @@ export const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onS
               {/* Top Accent corner badge */}
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-3">
-                  <div className={`w-12 h-12 rounded-2xl ${w.iconColor} border-2 border-[#111111] flex items-center justify-center shadow-[3px_3px_0px_0px_#111111]`}>
+                  <div className={`w-12 h-12 rounded-2xl ${w.iconColor} border-2 border-[#111111] flex items-center justify-center`}>
                     <Icon className="w-6 h-6 text-[#111111]" />
                   </div>
                   <div>

@@ -61,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <button
           id="navbar-logo-btn"
           onClick={handleLogoClick}
-          className={`flex items-center gap-2.5 px-3 sm:px-4 py-2 rounded-2xl border-2 border-[#111111] transition-all duration-200 cursor-pointer shadow-[3px_3px_0px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none ${
+          className={`flex items-center gap-2.5 px-3 sm:px-4 py-2 rounded-2xl border-2 border-[#111111] transition-all duration-200 cursor-pointer active:scale-95 ${
             isScrolled ? 'bg-white/95 backdrop-blur-md' : 'bg-white'
           }`}
           title={logoClicks > 0 ? `${5 - logoClicks} clicks until secret mode!` : 'Abdul Qabid Siaka'}
@@ -86,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Center Desktop Navigation Links */}
         {!isRecruiterMode && (
-          <nav className="hidden lg:flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111]">
+          <nav className="hidden lg:flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border-2 border-[#111111]">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -116,7 +116,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onToggleSound();
               playSound('switch');
             }}
-            className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] shadow-[2px_2px_0px_0px_#111111] hover:bg-neutral-100 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
+            className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] hover:bg-neutral-100 active:scale-95 transition-all cursor-pointer"
             title={soundEnabled ? 'Mute Sound Effects' : 'Enable Interactive Sound FX'}
           >
             {soundEnabled ? (
@@ -133,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               playSound('switch');
               onToggleRecruiterMode();
             }}
-            className={`px-3 sm:px-4 py-2 rounded-2xl border-2 border-[#111111] font-display font-bold text-xs flex items-center gap-2 shadow-[3px_3px_0px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer ${
+            className={`px-3 sm:px-4 py-2 rounded-2xl border-2 border-[#111111] font-display font-bold text-xs flex items-center gap-2 active:scale-95 transition-all cursor-pointer ${
               isRecruiterMode
                 ? 'bg-[#111111] text-[#FFF35C]'
                 : 'bg-[#FFF35C] text-[#111111] hover:bg-[#ffee38]'
@@ -161,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               playSound('pop');
               onOpenResume();
             }}
-            className="px-3 sm:px-4 py-2 rounded-2xl bg-white border-2 border-[#111111] font-display font-bold text-xs text-[#111111] flex items-center gap-1.5 shadow-[3px_3px_0px_0px_#111111] hover:bg-neutral-100 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
+            className="px-3 sm:px-4 py-2 rounded-2xl bg-white border-2 border-[#111111] font-display font-bold text-xs text-[#111111] flex items-center gap-1.5 hover:bg-neutral-100 active:scale-95 transition-all cursor-pointer"
           >
             <FileText className="w-4 h-4 text-[#111111]" />
             <span className="hidden md:inline">RESUME</span>

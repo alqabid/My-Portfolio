@@ -50,7 +50,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
     <section id="ar" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Section Header */}
       <div className="mb-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C9B8FF] border-2 border-[#111111] text-xs font-mono font-bold text-[#111111] shadow-[2px_2px_0px_0px_#111111] uppercase tracking-wider mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C9B8FF] border-2 border-[#111111] text-xs font-mono font-bold text-[#111111] uppercase tracking-wider mb-4">
           <Glasses className="w-3.5 h-3.5" />
           <span>AR WORLD // SNAPCHAT LENS STUDIO & 3D REALMS</span>
         </div>
@@ -64,13 +64,13 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
         {/* Aggregate Stats & Direct Account Badges */}
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Stat 1 */}
-          <div className="p-4 rounded-2xl bg-white border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111]">
+          <div className="p-4 rounded-2xl bg-white border-2 border-[#111111]">
             <span className="font-display font-black text-2xl text-[#111111]">{AR_LENSES.length}+</span>
             <span className="text-xs font-mono text-[#666666] block uppercase mt-0.5">Created Lenses</span>
           </div>
 
           {/* Stat 2 */}
-          <div className="p-4 rounded-2xl bg-white border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111]">
+          <div className="p-4 rounded-2xl bg-white border-2 border-[#111111]">
             <span className="font-display font-black text-2xl text-[#111111]">850,000+</span>
             <span className="text-xs font-mono text-[#666666] block uppercase mt-0.5">Total Lens Views</span>
           </div>
@@ -80,7 +80,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
             href={PERSONAL_INFO.snapchatCreator}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-4 rounded-2xl bg-[#FFF35C] hover:bg-[#faee37] border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-between group cursor-pointer"
+            className="p-4 rounded-2xl bg-[#FFF35C] hover:bg-[#faee37] border-2 border-[#111111] active:scale-95 transition-all flex items-center justify-between group cursor-pointer"
             title="Visit Snapchat Creator Hub"
           >
             <div>
@@ -100,7 +100,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
             href={PERSONAL_INFO.snapchatAccount}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-4 rounded-2xl bg-[#FFFC00] hover:bg-[#f0ec00] border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-between group cursor-pointer"
+            className="p-4 rounded-2xl bg-[#FFFC00] hover:bg-[#f0ec00] border-2 border-[#111111] active:scale-95 transition-all flex items-center justify-between group cursor-pointer"
             title="Add @big_qabid on Snapchat"
           >
             <div>
@@ -118,7 +118,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
       </div>
 
       {/* Filter and Search Controls */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-3xl bg-white border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111]">
+      <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-3xl bg-white border-2 border-[#111111]">
         {/* Category Pills */}
         <div className="flex flex-wrap items-center gap-2">
           {categories.map((cat) => (
@@ -178,7 +178,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
                 onMouseLeave={() => onSetCursor('default')}
                 className={`p-3 rounded-2xl border-2 text-left transition-all flex flex-col justify-between gap-2 cursor-pointer ${
                   isSelected
-                    ? 'bg-white border-[#111111] shadow-[3px_3px_0px_0px_#111111] ring-2 ring-[#FFF35C]'
+                    ? 'bg-white border-[#111111] ring-2 ring-[#FFF35C]'
                     : 'bg-white border-neutral-200 hover:border-[#111111]'
                 }`}
               >
@@ -212,7 +212,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
       {/* Main AR Studio Viewport */}
       <div className="space-y-8 mb-16">
         {/* Active Lens Live Viewport Window */}
-        <div className="rounded-3xl bg-white border-3 border-[#111111] p-6 shadow-[8px_8px_0px_0px_#111111] space-y-6">
+        <div className="rounded-3xl bg-white border-3 border-[#111111] p-6 space-y-6">
           {/* Header bar of selected lens */}
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b-2 border-[#111111] pb-4">
             <div className="space-y-1">
@@ -240,7 +240,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
             <div className="flex flex-wrap items-center gap-2 shrink-0">
               <button
                 onClick={handleCopyLensLink}
-                className="px-3.5 py-2 rounded-xl bg-white hover:bg-neutral-100 text-[#111111] font-mono text-xs font-bold border border-[#111111] flex items-center gap-1.5 cursor-pointer shadow-sm"
+                className="px-3.5 py-2 rounded-xl bg-white hover:bg-neutral-100 text-[#111111] font-mono text-xs font-bold border border-[#111111] flex items-center gap-1.5 cursor-pointer"
               >
                 {copiedLink ? (
                   <>
@@ -260,7 +260,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
                   playSound('whoosh');
                   setSelectedMobileSnapcode(activeLens);
                 }}
-                className="px-3.5 py-2 rounded-xl bg-[#FFF35C] hover:bg-[#faee37] text-[#111111] font-display font-bold text-xs border border-[#111111] shadow-[2px_2px_0px_0px_#111111] flex items-center gap-1.5 cursor-pointer"
+                className="px-3.5 py-2 rounded-xl bg-[#FFF35C] hover:bg-[#faee37] text-[#111111] font-display font-bold text-xs border border-[#111111] flex items-center gap-1.5 cursor-pointer"
               >
                 <QrCode className="w-3.5 h-3.5" />
                 <span>Scan Snapcode</span>
@@ -270,7 +270,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
                 href={activeLens.lensUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl bg-[#111111] hover:bg-neutral-800 text-[#FFFC00] font-display font-bold text-xs border border-[#111111] shadow-[2px_2px_0px_0px_#FFFC00] flex items-center gap-1.5 cursor-pointer"
+                className="px-4 py-2 rounded-xl bg-[#111111] hover:bg-neutral-800 text-[#FFFC00] font-display font-bold text-xs border border-[#111111] flex items-center gap-1.5 cursor-pointer"
               >
                 <Glasses className="w-3.5 h-3.5" />
                 <span>Unlock on Snapchat</span>
@@ -305,7 +305,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
           {/* Mobile Scan & Creator Strip */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
             {/* Box 1: Quick QR Code */}
-            <div className="p-4 rounded-2xl bg-[#FFFC00] border-2 border-[#111111] flex items-center gap-4 shadow-[3px_3px_0px_0px_#111111]">
+            <div className="p-4 rounded-2xl bg-[#FFFC00] border-2 border-[#111111] flex items-center gap-4">
               <div className="w-20 h-20 bg-white border border-[#111111] rounded-xl p-1.5 shrink-0 flex items-center justify-center">
                 <img
                   src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(activeLens.lensUrl || '')}`}
@@ -328,7 +328,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
             </div>
 
             {/* Box 2: Snapchat Account Link */}
-            <div className="p-4 rounded-2xl bg-[#C9B8FF] border-2 border-[#111111] flex items-center justify-between gap-3 shadow-[3px_3px_0px_0px_#111111]">
+            <div className="p-4 rounded-2xl bg-[#C9B8FF] border-2 border-[#111111] flex items-center justify-between gap-3">
               <div className="space-y-1">
                 <span className="text-[10px] font-mono font-bold text-[#111111] uppercase block">
                   ADD CREATOR ACCOUNT
@@ -352,7 +352,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
             </div>
 
             {/* Box 3: Official Creator Hub */}
-            <div className="p-4 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-between gap-3 shadow-[3px_3px_0px_0px_#111111]">
+            <div className="p-4 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-between gap-3">
               <div className="space-y-1">
                 <span className="text-[10px] font-mono font-bold text-[#666666] uppercase block">
                   ALL LENSES CATALOG
@@ -386,10 +386,10 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-md bg-white border-3 border-[#111111] rounded-3xl shadow-[8px_8px_0px_0px_#111111] p-6 text-center space-y-6"
+              className="relative w-full max-w-md bg-white border-3 border-[#111111] rounded-3xl p-6 text-center space-y-6"
             >
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-[#FFF35C] border-2 border-[#111111] flex items-center justify-center mx-auto mb-3 shadow-[2px_2px_0px_0px_#111111]">
+                <div className="w-12 h-12 rounded-2xl bg-[#FFF35C] border-2 border-[#111111] flex items-center justify-center mx-auto mb-3">
                   <Glasses className="w-6 h-6 text-[#111111]" />
                 </div>
                 <span className="text-[10px] font-mono text-[#777777] uppercase font-bold">
@@ -404,7 +404,7 @@ export const ARWorld: React.FC<ARWorldProps> = ({ onSetCursor }) => {
               </div>
 
               {/* Snapcode Box with Real QR Code */}
-              <div className="p-6 rounded-2xl bg-[#FFFC00] border-3 border-[#111111] flex flex-col items-center justify-center shadow-[4px_4px_0px_0px_#111111] max-w-xs mx-auto">
+              <div className="p-6 rounded-2xl bg-[#FFFC00] border-3 border-[#111111] flex flex-col items-center justify-center max-w-xs mx-auto">
                 <div className="w-44 h-44 bg-white border-2 border-[#111111] rounded-xl flex items-center justify-center p-3">
                   <img
                     src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(selectedMobileSnapcode.lensUrl || '')}`}

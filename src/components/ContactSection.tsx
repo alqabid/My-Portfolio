@@ -60,7 +60,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="rounded-3xl bg-[#111111] text-white border-3 border-[#111111] p-6 sm:p-12 shadow-[8px_8px_0px_0px_#FFF35C] relative overflow-hidden">
+      <div className="rounded-3xl bg-[#111111] text-white border-3 border-[#111111] p-6 sm:p-12 relative overflow-hidden">
         {/* Ambient subtle pastel glow */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#FFF35C]/15 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#C9B8FF]/15 rounded-full blur-3xl pointer-events-none" />
@@ -119,7 +119,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             <div className="flex flex-wrap gap-2 pt-2">
               <a
                 href={`mailto:${PERSONAL_INFO.email}?subject=Project%20Inquiry%20from%20Portfolio`}
-                className="px-4 py-2.5 rounded-xl bg-[#FFF35C] text-[#111111] font-display font-bold text-xs flex items-center gap-1.5 shadow-sm hover:bg-[#ffee38] transition-all"
+                className="px-4 py-2.5 rounded-xl bg-[#FFF35C] text-[#111111] font-display font-bold text-xs flex items-center gap-1.5 hover:bg-[#ffee38] active:scale-95 transition-all"
               >
                 <Mail className="w-4 h-4" />
                 <span>EMAIL DIRECTLY</span>
@@ -129,7 +129,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 href={PERSONAL_INFO.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-[#111111] font-display font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all"
+                className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-[#111111] font-display font-bold text-xs flex items-center gap-1.5 active:scale-95 transition-all"
                 title="Chat on WhatsApp"
               >
                 <MessageSquare className="w-4 h-4" />
@@ -182,10 +182,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           </div>
 
           {/* Right Column: Project Inquiry Form */}
-          <div className="lg:col-span-6 bg-white text-[#111111] p-6 sm:p-8 rounded-3xl border-2 border-white/20 shadow-xl">
+          <div className="lg:col-span-6 bg-white text-[#111111] p-6 sm:p-8 rounded-3xl border-2 border-white/20">
             {isSubmitted ? (
               <div className="py-12 text-center space-y-4">
-                <div className="w-16 h-16 rounded-2xl bg-[#B9F5D0] border-2 border-[#111111] flex items-center justify-center mx-auto shadow-[3px_3px_0px_0px_#111111]">
+                <div className="w-16 h-16 rounded-2xl bg-[#B9F5D0] border-2 border-[#111111] flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-8 h-8 text-[#111111]" />
                 </div>
                 <h3 className="text-2xl font-display font-black text-[#111111]">
@@ -277,7 +277,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-2xl bg-[#111111] hover:bg-[#222222] text-[#FFF35C] font-display font-bold text-xs tracking-wider uppercase border-2 border-[#111111] shadow-[3px_3px_0px_0px_#FFF35C] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-4 rounded-2xl bg-[#111111] hover:bg-[#222222] text-[#FFF35C] font-display font-bold text-xs tracking-wider uppercase border-2 border-[#111111] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>TRANSMIT INQUIRY</span>
                   <Send className="w-4 h-4 text-[#FFF35C]" />

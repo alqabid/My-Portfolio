@@ -42,7 +42,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
     <div className="min-h-screen bg-white pt-24 pb-20 px-4 sm:px-6 lg:px-8 print:p-0 print:bg-white">
       <div className="max-w-4xl mx-auto space-y-8 print:space-y-6">
         {/* Top Control Strip (Hidden in Print) */}
-        <div className="print:hidden flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-white border-2 border-[#111111] shadow-[4px_4px_0px_0px_#111111]">
+        <div className="print:hidden flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-white border-2 border-[#111111]">
           <div className="flex items-center gap-2">
             <span className="w-3 h-3 rounded-full bg-[#10B981] animate-pulse" />
             <span className="font-display font-extrabold text-sm text-[#111111]">
@@ -53,7 +53,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrint}
-              className="px-3.5 py-2 rounded-xl bg-white hover:bg-neutral-100 text-[#111111] font-display font-bold text-xs border border-[#111111] shadow-sm flex items-center gap-1.5 cursor-pointer"
+              className="px-3.5 py-2 rounded-xl bg-white hover:bg-neutral-100 text-[#111111] font-display font-bold text-xs border border-[#111111] flex items-center gap-1.5 cursor-pointer"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>Print / Save PDF</span>
@@ -64,7 +64,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                 playSound('switch');
                 onExitRecruiterMode();
               }}
-              className="px-4 py-2 rounded-xl bg-[#111111] text-[#FFF35C] font-display font-bold text-xs border border-[#111111] shadow-[2px_2px_0px_0px_#FFF35C] flex items-center gap-1.5 cursor-pointer"
+              className="px-4 py-2 rounded-xl bg-[#111111] text-[#FFF35C] font-display font-bold text-xs border border-[#111111] flex items-center gap-1.5 cursor-pointer"
             >
               <Compass className="w-3.5 h-3.5" />
               <span>Return to Explore Mode</span>
@@ -73,7 +73,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
         </div>
 
         {/* The Printable Resume Container */}
-        <div className="rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-12 shadow-[8px_8px_0px_0px_#111111] print:shadow-none print:border-none print:p-0 space-y-10">
+        <div className="rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-12 print:border-none print:p-0 space-y-10">
           
           {/* Header */}
           <div className="border-b-2 border-[#111111] pb-8 flex flex-col sm:flex-row sm:items-start justify-between gap-6">
@@ -110,7 +110,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
             <div className="flex flex-wrap sm:flex-col gap-2 print:hidden shrink-0">
               <a
                 href={`mailto:${RECRUITER_DATA.email}?subject=Recruiter%20Inquiry%20for%20Abdul%20Qabid`}
-                className="px-4 py-2 rounded-xl bg-[#FFF35C] hover:bg-[#ffee38] text-[#111111] font-display font-bold text-xs border border-[#111111] shadow-[2px_2px_0px_0px_#111111] text-center transition-all flex items-center justify-center gap-1.5"
+                className="px-4 py-2 rounded-xl bg-[#FFF35C] hover:bg-[#ffee38] text-[#111111] font-display font-bold text-xs border border-[#111111] text-center transition-all flex items-center justify-center gap-1.5"
               >
                 <Mail className="w-3.5 h-3.5" />
                 <span>Direct Email</span>
@@ -119,7 +119,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                 href={`https://wa.me/233238318021`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-[#111111] font-display font-bold text-xs border border-[#111111] shadow-[2px_2px_0px_0px_#111111] text-center transition-all flex items-center justify-center gap-1.5"
+                className="px-4 py-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-[#111111] font-display font-bold text-xs border border-[#111111] text-center transition-all flex items-center justify-center gap-1.5"
               >
                 <Phone className="w-3.5 h-3.5" />
                 <span>WhatsApp: {RECRUITER_DATA.whatsappNumber}</span>
@@ -374,7 +374,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                     key={idx}
                     className={`p-5 rounded-2xl border ${
                       isJuni
-                        ? 'bg-white border-2 border-[#111111] shadow-[4px_4px_0px_0px_#FFF35C]'
+                        ? 'bg-white border-2 border-[#111111]'
                         : 'bg-white border-[#111111]'
                     } space-y-3`}
                   >
@@ -531,7 +531,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
               {RECRUITER_DATA.expertiseOverview.map((item, idx) => (
                 <span
                   key={idx}
-                  className="px-3 py-1.5 rounded-xl bg-[#FFF35C] border border-[#111111] text-xs font-display font-extrabold text-[#111111] shadow-[2px_2px_0px_0px_#111111]"
+                  className="px-3 py-1.5 rounded-xl bg-[#FFF35C] border border-[#111111] text-xs font-display font-extrabold text-[#111111]"
                 >
                   {item}
                 </span>

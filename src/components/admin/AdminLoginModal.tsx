@@ -64,7 +64,7 @@ export const AdminLoginModal: React.FC = () => {
         initial={{ opacity: 0, scale: 0.96, y: 8 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96, y: 8 }}
-        className="relative w-full max-w-md bg-[#0F0F11] text-[#EDEDED] border border-neutral-800 rounded-2xl shadow-2xl p-6 sm:p-7 space-y-5 overflow-hidden font-sans"
+        className="relative w-full max-w-md bg-[#0F0F11] text-[#EDEDED] border border-neutral-800 rounded-2xl p-6 sm:p-7 space-y-5 overflow-hidden font-sans"
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-neutral-800 pb-4">

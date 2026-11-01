@@ -79,13 +79,13 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onComplete }) => {
               transition={{ type: 'spring', damping: 15, stiffness: 200, delay: 0.1 }}
               className="flex items-center gap-2 mb-6"
             >
-              <div className="w-12 h-12 rounded-2xl bg-[#FFF35C] border-2 border-[#111111] flex items-center justify-center shadow-[3px_3px_0px_0px_#111111] rotate-[-6deg]">
+              <div className="w-12 h-12 rounded-2xl bg-[#FFF35C] border-2 border-[#111111] flex items-center justify-center rotate-[-6deg]">
                 <Code className="w-6 h-6 text-[#111111]" />
               </div>
-              <div className="w-12 h-12 rounded-2xl bg-[#FFB7D5] border-2 border-[#111111] flex items-center justify-center shadow-[3px_3px_0px_0px_#111111] rotate-[4deg]">
+              <div className="w-12 h-12 rounded-2xl bg-[#FFB7D5] border-2 border-[#111111] flex items-center justify-center rotate-[4deg]">
                 <Palette className="w-6 h-6 text-[#111111]" />
               </div>
-              <div className="w-12 h-12 rounded-2xl bg-[#C9B8FF] border-2 border-[#111111] flex items-center justify-center shadow-[3px_3px_0px_0px_#111111] rotate-[-3deg]">
+              <div className="w-12 h-12 rounded-2xl bg-[#C9B8FF] border-2 border-[#111111] flex items-center justify-center rotate-[-3deg]">
                 <Glasses className="w-6 h-6 text-[#111111]" />
               </div>
             </motion.div>
@@ -134,7 +134,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onComplete }) => {
               <button
                 id="enter-experience-btn"
                 onClick={handleEnter}
-                className="w-full sm:w-auto px-8 py-4 bg-[#111111] hover:bg-[#222222] text-[#FFF35C] font-display font-bold text-base rounded-2xl flex items-center justify-center gap-3 shadow-[5px_5px_0px_0px_#FFF35C] border-2 border-[#111111] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer group"
+                className="w-full sm:w-auto px-8 py-4 bg-[#111111] hover:bg-[#222222] text-[#FFF35C] font-display font-bold text-base rounded-2xl flex items-center justify-center gap-3 border-2 border-[#111111] active:scale-[0.98] transition-all cursor-pointer group"
               >
                 <span>ENTER EXPERIENCE</span>
                 <ArrowRight className="w-5 h-5 text-[#FFF35C] group-hover:translate-x-1 transition-transform" />
@@ -143,7 +143,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onComplete }) => {
               <button
                 id="skip-intro-btn"
                 onClick={handleSkip}
-                className="w-full sm:w-auto px-6 py-4 bg-white hover:bg-neutral-100 text-[#111111] font-display font-medium text-sm rounded-2xl flex items-center justify-center gap-2 border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
+                className="w-full sm:w-auto px-6 py-4 bg-white hover:bg-neutral-100 text-[#111111] font-display font-medium text-sm rounded-2xl flex items-center justify-center gap-2 border-2 border-[#111111] active:scale-[0.98] transition-all cursor-pointer"
               >
                 <FastForward className="w-4 h-4 text-[#777777]" />
                 <span>Skip intro for recruiters</span>

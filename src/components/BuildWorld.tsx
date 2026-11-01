@@ -36,7 +36,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
     <section id="build" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Section Header */}
       <div className="mb-16">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFF35C] border-2 border-[#111111] text-xs font-mono font-bold text-[#111111] shadow-[2px_2px_0px_0px_#111111] uppercase tracking-wider mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFF35C] border-2 border-[#111111] text-xs font-mono font-bold text-[#111111] uppercase tracking-wider mb-4">
           <Terminal className="w-3.5 h-3.5" />
           <span>BUILD MODE // SOFTWARE & AI SYSTEMS</span>
         </div>
@@ -49,7 +49,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
       </div>
 
       {/* FEATURED PROJECT 1: MEDVISION with Real Live Link Preview */}
-      <div className="mb-16 rounded-3xl bg-white border-3 border-[#111111] shadow-[8px_8px_0px_0px_#111111] overflow-hidden">
+      <div className="mb-16 rounded-3xl bg-white border-3 border-[#111111] overflow-hidden">
         <div className="p-6 sm:p-10 border-b-2 border-[#111111] bg-white flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -75,7 +75,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
                 playSound('pop');
                 onOpenCaseStudy(BUILD_PROJECTS[0]);
               }}
-              className="px-5 py-2.5 rounded-2xl bg-[#111111] hover:bg-[#222222] text-[#FFF35C] font-display font-bold text-xs border-2 border-[#111111] shadow-[3px_3px_0px_0px_#FFF35C] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer flex items-center gap-2"
+              className="px-5 py-2.5 rounded-2xl bg-[#111111] hover:bg-[#222222] text-[#FFF35C] font-display font-bold text-xs border-2 border-[#111111] active:scale-95 transition-all cursor-pointer flex items-center gap-2"
             >
               <span>FULL CASE STUDY</span>
               <ArrowRight className="w-4 h-4" />
@@ -84,7 +84,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
               href="https://medvision1.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2.5 rounded-2xl bg-[#FFF35C] hover:bg-[#ffe338] text-[#111111] font-display font-bold text-xs border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all flex items-center gap-1.5"
+              className="px-4 py-2.5 rounded-2xl bg-[#FFF35C] hover:bg-[#ffe338] text-[#111111] font-display font-bold text-xs border-2 border-[#111111] active:scale-95 transition-all flex items-center gap-1.5"
               title="Visit MedVision Live Web App"
             >
               <span>VISIT LIVE</span>
@@ -94,7 +94,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
               href="https://github.com/alqabid"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] shadow-[2px_2px_0px_0px_#111111] hover:bg-neutral-100 transition-all"
+              className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] hover:bg-neutral-100 transition-all"
               title="View on GitHub"
             >
               <Github className="w-5 h-5" />
@@ -116,7 +116,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
       </div>
 
       {/* FEATURED PROJECT 2: YUGOGOO with Live Link Preview */}
-      <div className="mb-16 rounded-3xl bg-white border-3 border-[#111111] shadow-[8px_8px_0px_0px_#111111] overflow-hidden">
+      <div className="mb-16 rounded-3xl bg-white border-3 border-[#111111] overflow-hidden">
         <div className="p-6 sm:p-10 border-b-2 border-[#111111] bg-white flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -142,7 +142,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
                 playSound('pop');
                 onOpenCaseStudy(BUILD_PROJECTS[1]);
               }}
-              className="px-5 py-2.5 rounded-2xl bg-[#111111] hover:bg-[#222222] text-[#A9DDFF] font-display font-bold text-xs border-2 border-[#111111] shadow-[3px_3px_0px_0px_#A9DDFF] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer flex items-center gap-2"
+              className="px-5 py-2.5 rounded-2xl bg-[#111111] hover:bg-[#222222] text-[#A9DDFF] font-display font-bold text-xs border-2 border-[#111111] active:scale-95 transition-all cursor-pointer flex items-center gap-2"
             >
               <span>FULL CASE STUDY</span>
               <ArrowRight className="w-4 h-4" />
@@ -151,7 +151,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
               href="http://yugogoo-website.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2.5 rounded-2xl bg-[#A9DDFF] hover:bg-[#8ecefa] text-[#111111] font-display font-bold text-xs border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all flex items-center gap-1.5"
+              className="px-4 py-2.5 rounded-2xl bg-[#A9DDFF] hover:bg-[#8ecefa] text-[#111111] font-display font-bold text-xs border-2 border-[#111111] active:scale-95 transition-all flex items-center gap-1.5"
               title="Visit Yugogoo Live Web Platform"
             >
               <span>VISIT LIVE</span>
@@ -161,7 +161,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
               href="https://github.com/alqabid"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] shadow-[2px_2px_0px_0px_#111111] hover:bg-neutral-100 transition-all"
+              className="w-10 h-10 rounded-2xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] hover:bg-neutral-100 transition-all"
               title="View on GitHub"
             >
               <Github className="w-5 h-5" />
@@ -185,7 +185,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
       {/* ADDITIONAL PRODUCTION PROJECTS GRID (UGOGO, GRANDIOSE GLAM) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* UGOGO */}
-        <div className="rounded-3xl bg-white border-2 border-[#111111] p-5 flex flex-col justify-between shadow-[4px_4px_0px_0px_#111111] transition-all hover:-translate-y-1">
+        <div className="rounded-3xl bg-white border-2 border-[#111111] p-5 flex flex-col justify-between transition-all hover:border-black">
           <div className="space-y-3">
             {/* Live Link Preview Browser Header */}
             <div className="rounded-xl overflow-hidden border border-[#111111] bg-[#111111]">
@@ -263,7 +263,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy, onSetCu
         </div>
 
         {/* GRANDIOSE GLAM */}
-        <div className="rounded-3xl bg-white border-2 border-[#111111] p-5 flex flex-col justify-between shadow-[4px_4px_0px_0px_#111111] transition-all hover:-translate-y-1">
+        <div className="rounded-3xl bg-white border-2 border-[#111111] p-5 flex flex-col justify-between transition-all hover:border-black">
           <div className="space-y-3">
             {/* Live Link Preview Browser Header */}
             <div className="rounded-xl overflow-hidden border border-[#111111] bg-[#111111]">

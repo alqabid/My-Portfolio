@@ -56,7 +56,7 @@ export const AboutSection: React.FC = () => {
   return (
     <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
       {/* Container with bold neo-brutalist border and soft background */}
-      <div className="rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-12 shadow-[8px_8px_0px_0px_#111111] relative overflow-hidden">
+      <div className="rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-12 relative overflow-hidden">
         {/* Subtle decorative background shapes */}
         <div className="absolute -top-16 -right-16 w-80 h-80 rounded-full bg-[#FFF35C]/25 blur-3xl pointer-events-none" />
         <div className="absolute -bottom-16 -left-16 w-80 h-80 rounded-full bg-[#C9B8FF]/25 blur-3xl pointer-events-none" />
@@ -89,7 +89,7 @@ export const AboutSection: React.FC = () => {
             </div>
 
             {/* THE FORMULA CARD */}
-            <div className="p-5 rounded-2xl bg-white border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111]">
+            <div className="p-5 rounded-2xl bg-white border-2 border-[#111111]">
               <span className="text-[10px] font-mono text-[#777777] uppercase font-bold block mb-3">
                 THE MULTIDISCIPLINARY EQUATION
               </span>
@@ -122,10 +122,10 @@ export const AboutSection: React.FC = () => {
                 <motion.div
                   key={idx}
                   whileHover={{ x: 6 }}
-                  className="p-5 rounded-2xl bg-white border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111] flex items-start gap-4 transition-all"
+                  className="p-5 rounded-2xl bg-white border-2 border-[#111111] flex items-start gap-4 transition-all"
                 >
                   <div
-                    className="w-12 h-12 rounded-2xl border-2 border-[#111111] flex items-center justify-center shrink-0 shadow-[2px_2px_0px_0px_#111111]"
+                    className="w-12 h-12 rounded-2xl border-2 border-[#111111] flex items-center justify-center shrink-0"
                     style={{ backgroundColor: pil.bg }}
                   >
                     <Icon className="w-6 h-6 text-[#111111]" />
@@ -147,10 +147,10 @@ export const AboutSection: React.FC = () => {
 
       {/* CURRENT EXPERIENCE SPOTLIGHT: JUNI GHANA LIMITED */}
       {currentExp && (
-        <div className="rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-10 shadow-[8px_8px_0px_0px_#111111] space-y-6">
+        <div className="rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-10 space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-2 border-[#111111] pb-6">
             <div className="space-y-1">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#10B981] text-white text-xs font-mono font-bold uppercase tracking-wider mb-2 shadow-[2px_2px_0px_0px_#111111]">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#10B981] text-white text-xs font-mono font-bold uppercase tracking-wider mb-2">
                 <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                 <span>CURRENT ROLE & NATIONAL SERVICE</span>
               </div>
@@ -207,7 +207,7 @@ export const AboutSection: React.FC = () => {
               {currentExp.technologies.map((tech, tIdx) => (
                 <span
                   key={tIdx}
-                  className="px-3 py-1 rounded-xl bg-white border border-[#111111] text-xs font-mono font-bold text-[#111111] shadow-[2px_2px_0px_0px_#111111]"
+                  className="px-3 py-1 rounded-xl bg-white border border-[#111111] text-xs font-mono font-bold text-[#111111]"
                 >
                   {tech}
                 </span>
@@ -223,7 +223,7 @@ export const AboutSection: React.FC = () => {
                   playSound('pop');
                   setShowAllExperience(!showAllExperience);
                 }}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-neutral-100 border-2 border-[#111111] text-xs sm:text-sm font-display font-bold text-[#111111] shadow-[3px_3px_0px_0px_#111111] hover:shadow-[1px_1px_0px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-neutral-100 border-2 border-[#111111] text-xs sm:text-sm font-display font-bold text-[#111111] active:scale-95 transition-all cursor-pointer"
               >
                 <Briefcase className="w-4 h-4 text-[#111111]" />
                 <span>

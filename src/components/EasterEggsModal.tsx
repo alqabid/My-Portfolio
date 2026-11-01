@@ -35,19 +35,19 @@ export const EasterEggsModal: React.FC<EasterEggsModalProps> = ({ isOpen, onClos
           initial={{ scale: 0.85, opacity: 0, rotate: -3 }}
           animate={{ scale: 1, opacity: 1, rotate: 0 }}
           exit={{ scale: 0.85, opacity: 0, rotate: 3 }}
-          className="relative w-full max-w-lg bg-[#FFF35C] border-4 border-[#111111] rounded-3xl p-6 sm:p-8 shadow-[12px_12px_0px_0px_#111111] text-center space-y-6"
+          className="relative w-full max-w-lg bg-[#FFF35C] border-4 border-[#111111] rounded-3xl p-6 sm:p-8 text-center space-y-6"
         >
           <button
             onClick={() => {
               playSound('pop');
               onClose();
             }}
-            className="absolute top-4 right-4 w-9 h-9 rounded-xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] hover:bg-neutral-100 shadow-[2px_2px_0px_0px_#111111] transition-all cursor-pointer"
+            className="absolute top-4 right-4 w-9 h-9 rounded-xl bg-white border-2 border-[#111111] flex items-center justify-center text-[#111111] hover:bg-neutral-100 transition-all cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
 
-          <div className="w-16 h-16 rounded-3xl bg-white border-3 border-[#111111] flex items-center justify-center mx-auto shadow-[4px_4px_0px_0px_#111111] rotate-6">
+          <div className="w-16 h-16 rounded-3xl bg-white border-3 border-[#111111] flex items-center justify-center mx-auto rotate-6">
             <Trophy className="w-8 h-8 text-[#111111]" />
           </div>
 
@@ -64,7 +64,7 @@ export const EasterEggsModal: React.FC<EasterEggsModalProps> = ({ isOpen, onClos
           </div>
 
           {/* Special Secret Badge */}
-          <div className="p-4 rounded-2xl bg-white border-2 border-[#111111] text-left shadow-[3px_3px_0px_0px_#111111] space-y-2">
+          <div className="p-4 rounded-2xl bg-white border-2 border-[#111111] text-left space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-mono font-bold text-[#777777] uppercase">
                 PASSKEY: CREATIVE_EXPLORER
@@ -86,14 +86,14 @@ export const EasterEggsModal: React.FC<EasterEggsModalProps> = ({ isOpen, onClos
                   confetti({ particleCount: 50, spread: 60, origin: { y: 0.5 } });
                 } catch {}
               }}
-              className="px-4 py-2.5 rounded-xl bg-[#111111] text-white hover:bg-neutral-800 font-display font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-[2px_2px_0px_0px_#FFFFFF]"
+              className="px-4 py-2.5 rounded-xl bg-[#111111] text-white hover:bg-neutral-800 font-display font-bold text-xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all"
             >
               <Zap className="w-3.5 h-3.5 text-[#FFF35C]" />
               <span>Fire Laser Synth</span>
             </button>
             <button
               onClick={onClose}
-              className="px-6 py-2.5 rounded-xl bg-white text-[#111111] font-display font-bold text-xs border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] cursor-pointer"
+              className="px-6 py-2.5 rounded-xl bg-white text-[#111111] font-display font-bold text-xs border-2 border-[#111111] active:scale-95 transition-all cursor-pointer"
             >
               Back to Experience
             </button>

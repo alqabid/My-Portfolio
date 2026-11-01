@@ -30,7 +30,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
     <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Section Header */}
       <div className="mb-14">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#A9DDFF] border-2 border-[#111111] text-xs font-mono font-bold text-[#111111] shadow-[2px_2px_0px_0px_#111111] uppercase tracking-wider mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#A9DDFF] border-2 border-[#111111] text-xs font-mono font-bold text-[#111111] uppercase tracking-wider mb-4">
           <Layers className="w-3.5 h-3.5" />
           <span>CAPABILITIES & COLLABORATION</span>
         </div>
@@ -52,12 +52,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
               key={srv.id}
               id={`service-card-${srv.id}`}
               whileHover={{ y: -6 }}
-              className="rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-8 shadow-[6px_6px_0px_0px_#111111] flex flex-col justify-between transition-all"
+              className="rounded-3xl bg-white border-3 border-[#111111] p-6 sm:p-8 flex flex-col justify-between transition-all"
             >
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <div
-                    className="w-14 h-14 rounded-2xl border-2 border-[#111111] flex items-center justify-center shadow-[3px_3px_0px_0px_#111111]"
+                    className="w-14 h-14 rounded-2xl border-2 border-[#111111] flex items-center justify-center"
                     style={{ backgroundColor: srv.accentColor }}
                   >
                     <Icon className="w-7 h-7 text-[#111111]" />
@@ -100,7 +100,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                     playSound('pop');
                     onSelectService(srv.title);
                   }}
-                  className="w-full py-3.5 rounded-2xl bg-white hover:bg-[#111111] text-[#111111] hover:text-[#FFF35C] font-display font-bold text-xs uppercase tracking-wider border-2 border-[#111111] shadow-[2px_2px_0px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-2 cursor-pointer group"
+                  className="w-full py-3.5 rounded-2xl bg-white hover:bg-[#111111] text-[#111111] hover:text-[#FFF35C] font-display font-bold text-xs uppercase tracking-wider border-2 border-[#111111] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer group"
                 >
                   <span>INQUIRE ABOUT {srv.title}</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

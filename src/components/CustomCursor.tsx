@@ -100,7 +100,7 @@ export const CustomCursor: React.FC<CustomCursorProps> = ({ cursorType, cursorTe
 
   return (
     <motion.div
-      className={`fixed top-0 left-0 pointer-events-none z-50 rounded-full flex items-center justify-center shadow-lg transition-colors duration-200 ${style.bg} ${style.border}`}
+      className={`fixed top-0 left-0 pointer-events-none z-50 rounded-full flex items-center justify-center transition-colors duration-200 ${style.bg} ${style.border}`}
       style={{
         width: style.size,
         height: style.size,

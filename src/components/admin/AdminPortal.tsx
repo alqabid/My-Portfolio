@@ -718,7 +718,7 @@ export const AdminPortal: React.FC = () => {
                     playSound('click');
                     setIsNewDesignModal(true);
                   }}
-                  className="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-mono font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-sm transition-colors"
+                  className="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-mono font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-colors"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Upload Flyer / Design</span>
@@ -1909,7 +1909,7 @@ const DesignModal: React.FC<DesignModalProps> = ({ design, isNew, onClose, onSav
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
-      <div className="relative w-full max-w-2xl bg-[#14151B] text-neutral-200 border border-neutral-800 rounded-xl p-5 sm:p-6 space-y-4 font-mono text-xs max-h-[92vh] overflow-y-auto shadow-2xl">
+      <div className="relative w-full max-w-2xl bg-[#14151B] text-neutral-200 border border-neutral-800 rounded-xl p-5 sm:p-6 space-y-4 font-mono text-xs max-h-[92vh] overflow-y-auto">
         <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
           <div>
             <h3 className="font-bold text-sm text-white flex items-center gap-2">
@@ -2219,7 +2219,7 @@ const DesignModal: React.FC<DesignModalProps> = ({ design, isNew, onClose, onSav
             </button>
             <button
               type="submit"
-              className="px-4 py-2 rounded bg-emerald-500 text-neutral-950 font-bold hover:bg-emerald-400 transition-colors flex items-center gap-1.5 shadow-md cursor-pointer"
+              className="px-4 py-2 rounded bg-emerald-500 text-neutral-950 font-bold hover:bg-emerald-400 transition-colors flex items-center gap-1.5 cursor-pointer"
             >
               <Check className="w-3.5 h-3.5" />
               <span>{isNew ? 'Publish Flyer' : 'Save Changes'}</span>
