@@ -22,6 +22,13 @@ export interface PersonalInfo {
   whatsapp: string;
   availability: string;
   bio: string;
+  currentRole?: {
+    company: string;
+    role: string;
+    period: string;
+    location: string;
+    industry?: string;
+  };
   equation: {
     part1: string;
     part2: string;
@@ -56,16 +63,19 @@ export interface Project {
 export interface DesignItem {
   id: string;
   title: string;
-  category: 'thumbnails' | 'social' | 'branding' | 'posters' | 'flyers' | 'ui' | 'marketing';
-  clientOrProject: string;
-  role: string;
-  tools: string[];
-  process: string[];
+  category: 'thumbnails' | 'social' | 'branding' | 'posters' | 'flyers' | 'ui' | 'marketing' | string;
+  clientOrProject?: string;
+  role?: string;
+  tools?: string[];
+  process?: string[];
   imageUrl: string;
-  aspectRatio: string;
-  accentColor: string;
+  aspectRatio?: string;
+  accentColor?: string;
   metrics?: string;
   tags: string[];
+  description?: string;
+  previewUrl?: string;
+  previewLinkLabel?: string;
 }
 
 export interface ARLens {

@@ -3,11 +3,11 @@ import { Project, DesignItem, ARLens, SkillNode, ServiceItem, ExperienceItem } f
 export const PERSONAL_INFO = {
   name: 'ABDUL QABID SIAKA',
   shortName: 'Abdul Qabid',
-  titles: 'Computer Science & Engineering | Software Developer | Graphic Designer | AI & Prompt Engineer | AR Creator',
-  positioning: 'Creative Technologist',
+  titles: 'Computer Science & Engineering Graduate | Software Engineer @ Juni Ghana Limited | Full-Stack Developer | Graphic Designer | AR Creator',
+  positioning: 'Creative Technologist & Software Engineer',
   brandStatement: 'I BUILD. I DESIGN. I CREATE EXPERIENCES.',
   tagline: 'Turning complex engineering into accessible, visual, and intelligent reality.',
-  location: 'Takoradi, Ghana 🇬🇭',
+  location: 'Accra, Ghana 🇬🇭',
   phone: '020 613 6004',
   whatsappNumber: '023 831 8021',
   portfolioUrl: 'https://aqsmyportfolio.vercel.app',
@@ -19,13 +19,28 @@ export const PERSONAL_INFO = {
   snapchatAccount: 'https://www.snapchat.com/add/big_qabid?share_id=Y2N5s5T8SAGlHF13qzE7qA&locale=en_GH',
   snapchatHandle: 'big_qabid',
   whatsapp: 'https://wa.me/233238318021', // direct WhatsApp link: 023 831 8021
-  availability: 'Available for Full-Stack, AI Engineering, Graphic Design & AR Roles',
-  bio: `Dynamic and technically proficient Computer Science & Engineering student with a proven track record in full-stack software development, advanced graphic design, artificial intelligence, and prompt engineering. Combines rigorous engineering principles with creative design strategies to architect scalable web applications, deploy machine learning models, and produce high-impact digital branding.`,
+  availability: 'National Service Software Engineer @ Juni Ghana Limited | Open for Scalable Software & High-Impact Digital Products',
+  currentRole: {
+    company: 'JUNI GHANA LIMITED',
+    role: 'National Service Personnel | Software Engineer',
+    period: 'October 2026 – Present',
+    location: 'Accra, Ghana',
+    industry: 'FinTech / Software Development'
+  },
+  bio: `Computer Science & Engineering graduate and Software Developer currently undertaking National Service at Juni Ghana Limited, with practical exposure to software development in a FinTech environment.
+
+Experienced in web application development, frontend engineering, API integration, UI/UX design, graphic design, artificial intelligence and digital product development. Proficient in modern development technologies including React, JavaScript, TypeScript, Vite, HTML, CSS, Python and FastAPI, with additional programming experience in Java, C++, C#, PHP and SQL.
+
+Combines software engineering knowledge with strong creative capabilities in web design, graphic design and digital content creation. An advanced Canva designer with experience creating professional marketing materials, promotional graphics, social media content and visual brand assets. Also experienced in Figma, Adobe Photoshop and Snapchat Lens Studio for interface design and augmented-reality content creation.
+
+Entrepreneurial and product-oriented, with experience co-founding digital products, developing software projects and applying AI tools and prompt engineering to accelerate development, research, prototyping and problem-solving.
+
+Interested in building scalable digital products and using technology, creativity and innovation to solve practical business and societal challenges.`,
   equation: {
-    part1: 'ENGINEERING (React, Python, FastAPI, AWS)',
+    part1: 'ENGINEERING (React, TypeScript, Python, FastAPI)',
     part2: 'DESIGN & AI (Canva, Figma, Prompt Engineering)',
     part3: 'AR (Lens Studio & 3D Shaders)',
-    result: 'CREATIVE TECHNOLOGIST'
+    result: 'CREATIVE TECHNOLOGIST & SOFTWARE ENGINEER'
   }
 };
 
@@ -234,116 +249,8 @@ export const BUILD_PROJECTS: Project[] = [
   }
 ];
 
-export const DESIGN_ITEMS: DesignItem[] = [
-  {
-    id: 'thumb-ai-breakthrough',
-    title: 'The AI Shift Nobody Saw Coming',
-    category: 'thumbnails',
-    clientOrProject: 'Tech YouTube Creator Channel',
-    role: 'Visual Content Designer',
-    tools: ['Canva Advanced', 'Photoshop'],
-    process: ['Visual Storyboarding', 'High-contrast Face Isolation', 'Dramatic Rim Lighting', 'Bold Negative Space Typography'],
-    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
-    aspectRatio: '16/9',
-    accentColor: '#FFF35C',
-    metrics: '14.8% Click-Through Rate',
-    tags: ['YouTube Thumbnail', 'High CTR', 'Tech Media', 'Canva Pro']
-  },
-  {
-    id: 'thumb-dev-roadmap',
-    title: '2026 Developer Roadmap: Zero to Senior',
-    category: 'thumbnails',
-    clientOrProject: 'Code Mastery Stream',
-    role: 'Lead Visual Designer',
-    tools: ['Canva Advanced', 'Figma'],
-    process: ['Geometric Grid Setup', '3D Badge Integration', 'Complementary Color Balancing', 'Visual Hierarchy Hierarchy'],
-    imageUrl: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
-    aspectRatio: '16/9',
-    accentColor: '#C9B8FF',
-    metrics: '250K+ Impressions',
-    tags: ['Thumbnail', 'Education', 'Code Architecture']
-  },
-  {
-    id: 'brand-tech-fest',
-    title: 'Accra Future Tech Summit 2026',
-    category: 'branding',
-    clientOrProject: 'Pan-African Developer Forum',
-    role: 'Brand & Graphic Designer',
-    tools: ['Canva Advanced', 'Photoshop', 'Figma'],
-    process: ['Logo Identity System', 'Social Grid Templates', 'Stage Banner Vectors', 'Color Guideline Manual'],
-    imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
-    aspectRatio: '4/3',
-    accentColor: '#FFB7D5',
-    metrics: 'Complete Brand Suite',
-    tags: ['Brand Identity', 'Event System', 'Typography']
-  },
-  {
-    id: 'poster-cyber-beats',
-    title: 'Afro-Futurism Sound & Vision',
-    category: 'posters',
-    clientOrProject: 'Digital Art Showcase',
-    role: 'Graphic Designer & Visual Artist',
-    tools: ['Photoshop', 'Canva Advanced'],
-    process: ['Layer Blending Modes', 'Halftone Texturing', 'Custom Display Typography', 'Vibrant Contrast Ratios'],
-    imageUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
-    aspectRatio: '3/4',
-    accentColor: '#A9DDFF',
-    tags: ['Poster Art', 'Print & Digital', 'Afro-Futurism']
-  },
-  {
-    id: 'social-product-drop',
-    title: 'Drop 04: Minimalist Audio Wear',
-    category: 'social',
-    clientOrProject: 'Lifestyle Tech Brand',
-    role: 'Social Media Content Creator',
-    tools: ['Canva Advanced', 'Figma'],
-    process: ['Product Silhouette Clipping', 'Motion Story Storyboards', 'Carousel Carousel Pacing', 'Engagement Hooks'],
-    imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80',
-    aspectRatio: '1/1',
-    accentColor: '#B9F5D0',
-    metrics: '3.4x Engagement Surge',
-    tags: ['Instagram Carousel', 'Social Ads', 'E-commerce']
-  },
-  {
-    id: 'flyer-developer-hackathon',
-    title: 'Hack The Future: 48H Buildathon',
-    category: 'flyers',
-    clientOrProject: 'Campus Tech Alliance',
-    role: 'Visual Designer',
-    tools: ['Canva Advanced', 'Photoshop'],
-    process: ['Information Hierarchy', 'Sponsor Badge Placement', 'Schedule Timeline Graphic', 'High DPI Output'],
-    imageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
-    aspectRatio: '4/5',
-    accentColor: '#FFF35C',
-    tags: ['Flyer Design', 'Hackathon', 'Community']
-  },
-  {
-    id: 'ui-crypto-lens',
-    title: 'PulseFi: Mobile Asset Management',
-    category: 'ui',
-    clientOrProject: 'Fintech Concept Exploration',
-    role: 'UI/UX & Visual Designer',
-    tools: ['Figma', 'Canva Advanced'],
-    process: ['Component Architecture', 'Dark UI Contrast Auditing', 'Tactile Micro-interactions', 'Design Tokens'],
-    imageUrl: 'https://images.unsplash.com/photo-1616077168079-7e09a677fb2c?auto=format&fit=crop&w=800&q=80',
-    aspectRatio: '16/10',
-    accentColor: '#C9B8FF',
-    tags: ['UI/UX', 'Mobile App', 'Fintech']
-  },
-  {
-    id: 'marketing-creator-kit',
-    title: 'Creator Kit 2026: The Ultimate Visual Pack',
-    category: 'marketing',
-    clientOrProject: 'Digital Asset Studio',
-    role: 'Product Visual Creator',
-    tools: ['Canva Advanced', 'Photoshop'],
-    process: ['3D Mockup Rendering', 'Value Proposition Callouts', 'Conversion Banner Funnels'],
-    imageUrl: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
-    aspectRatio: '16/9',
-    accentColor: '#FFB7D5',
-    tags: ['Marketing Suite', 'Conversion Design', 'Ad Creative']
-  }
-];
+export const DESIGN_ITEMS: DesignItem[] = [];
+
 
 export const AR_LENSES: ARLens[] = [
   {
@@ -651,8 +558,8 @@ export const SKILL_NODES: SkillNode[] = [
   { id: 'fastapi', name: 'FastAPI', category: 'code', level: 92, description: 'High-throughput asynchronous microservices, Pydantic data schemas, RESTful API architecture.', connectedProjects: ['medvision', 'ugogo'] },
   { id: 'genai_prompt', name: 'GenAI & Prompt Engineering', category: 'ai', level: 96, description: 'ChatGPT, Claude, Google Gemini, GitHub Copilot, Lovable, system prompt structuring, rapid prototyping.', connectedProjects: ['medvision', 'ugogo'] },
   { id: 'tensorflow_ml', name: 'TensorFlow & ML', category: 'ai', level: 88, description: 'MobileNetV2, CNN architectures, transfer learning, image classification, OpenCV, evaluation benchmarks.', connectedProjects: ['medvision'] },
-  { id: 'canva_advanced', name: 'Canva (Advanced)', category: 'design', level: 99, description: 'Elite visual communication, high-CTR YouTube thumbnails, digital branding, corporate decks, marketing campaigns.', connectedProjects: ['thumb-ai-breakthrough', 'thumb-dev-roadmap', 'brand-tech-fest', 'social-product-drop'] },
-  { id: 'photoshop_figma', name: 'Photoshop & Figma', category: 'design', level: 90, description: 'UI/UX wireframing, design tokens, photo manipulation, raster compositing, color theory.', connectedProjects: ['ui-crypto-lens', 'brand-tech-fest', 'poster-cyber-beats'] },
+  { id: 'canva_advanced', name: 'Canva (Advanced)', category: 'design', level: 99, description: 'Elite visual communication, promotional event flyers, high-CTR YouTube thumbnails, digital branding, corporate decks, marketing campaigns.', connectedProjects: ['grandiose-glam', 'yugogoo'] },
+  { id: 'photoshop_figma', name: 'Photoshop & Figma', category: 'design', level: 90, description: 'UI/UX wireframing, design tokens, photo manipulation, raster compositing, color theory.', connectedProjects: ['grandiose-glam', 'yugogoo'] },
   { id: 'lensstudio_ar', name: 'Snapchat Lens Studio', category: 'ar', level: 94, description: '3D face & world tracking, segmentation shaders, visual scripting, spatial AR filters, particle VFX.', connectedProjects: ['lens-cyber-hud', 'lens-aura-bloom', 'lens-retro-shades', 'lens-ghana-portal'] },
   { id: 'databases_sql', name: 'PostgreSQL, MySQL & SQL', category: 'code', level: 86, description: 'Relational database schemas, ACID transactions, data querying, indexing, ORMs.', connectedProjects: ['ugogo', 'medvision'] },
   { id: 'aws_cloud', name: 'AWS Cloud & Infrastructure', category: 'code', level: 82, description: 'EC2, S3, RDS, CloudFront, XAMPP, deployment pipelines, virtualized environments.', connectedProjects: ['ugogo', 'medvision'] },
@@ -701,24 +608,32 @@ export const SERVICES: ServiceItem[] = [
 
 export const RECRUITER_DATA = {
   name: 'ABDUL QABID SIAKA',
-  title: 'Computer Science & Engineering | Software Developer | Graphic Designer | AI & Prompt Engineer | AR Creator',
-  location: 'Takoradi, Ghana',
+  title: 'Software Engineer @ Juni Ghana Limited | Computer Science & Engineering Graduate | Full-Stack Developer | Graphic Designer | AR Creator',
+  location: 'Accra, Ghana',
   phone: '020 613 6004',
   whatsappNumber: '023 831 8021',
   portfolioUrl: 'https://aqsmyportfolio.vercel.app',
   email: 'siakaabdulqabid@gmail.com',
   linkedin: 'https://www.linkedin.com/in/abdulqabidsiaka/',
   github: 'https://github.com/alqabid',
-  summary: 'Dynamic and technically proficient Computer Science & Engineering student with a proven track record in full-stack software development, advanced graphic design, artificial intelligence, and prompt engineering. Combines rigorous engineering principles with creative design strategies to architect scalable web applications, deploy machine learning models, and produce high-impact digital branding. Demonstrated ability to lead product development lifecycles from ideation to deployment, utilizing modern tech stacks (React, Python, FastAPI, AWS) and generative AI to drive innovation and solve complex real-world challenges. Highly skilled in translating complex technical concepts into accessible, functional, and visually striking user experiences through expert-level command of UI/UX and graphic design tools including Canva, Figma, and Adobe Photoshop.',
+  summary: `Computer Science & Engineering graduate and Software Developer currently undertaking National Service at Juni Ghana Limited, with practical exposure to software development in a FinTech environment.
+
+Experienced in web application development, frontend engineering, API integration, UI/UX design, graphic design, artificial intelligence and digital product development. Proficient in modern development technologies including React, JavaScript, TypeScript, Vite, HTML, CSS, Python and FastAPI, with additional programming experience in Java, C++, C#, PHP and SQL.
+
+Combines software engineering knowledge with strong creative capabilities in web design, graphic design and digital content creation. An advanced Canva designer with experience creating professional marketing materials, promotional graphics, social media content and visual brand assets. Also experienced in Figma, Adobe Photoshop and Snapchat Lens Studio for interface design and augmented-reality content creation.
+
+Entrepreneurial and product-oriented, with experience co-founding digital products, developing software projects and applying AI tools and prompt engineering to accelerate development, research, prototyping and problem-solving.
+
+Interested in building scalable digital products and using technology, creativity and innovation to solve practical business and societal challenges.`,
   skills: {
-    programming: ['Python', 'JavaScript', 'TypeScript', 'Java', 'C++', 'C#', 'PHP', 'SQL', 'PostgreSQL', 'MySQL'],
-    genai: ['ChatGPT', 'Claude', 'Google Gemini', 'GitHub Copilot', 'Lovable', 'AI-Assisted Rapid Prototyping'],
-    frontend: ['HTML5', 'CSS3', 'React', 'Vite', 'Tailwind CSS', 'Bootstrap', 'jQuery'],
-    design_uiux: ['Advanced Canva Design', 'Figma', 'Adobe Photoshop', 'Digital Branding', 'Web Design'],
-    backend_cloud: ['FastAPI', 'RESTful APIs', 'AWS (EC2, S3, RDS, CloudFront)', 'XAMPP'],
-    ar_creative: ['Snapchat Lens Studio', 'AR Lens Creation', 'Cinema 4D (3D Typography)'],
-    ai_ml: ['TensorFlow', 'OpenCV', 'Transfer Learning (MobileNetV2)', 'Image Classification'],
-    tooling: ['Git', 'GitHub', 'VS Code', 'NetBeans', 'VirtualBox', 'WSL']
+    programming: ['React', 'JavaScript', 'TypeScript', 'Python', 'FastAPI', 'Java', 'C++', 'C#', 'PHP', 'SQL', 'PostgreSQL', 'MySQL'],
+    genai: ['ChatGPT', 'Claude', 'Google Gemini', 'GitHub Copilot', 'Lovable', 'Prompt Engineering', 'AI-Assisted Rapid Prototyping'],
+    frontend: ['React', 'JavaScript', 'TypeScript', 'Vite', 'HTML5', 'CSS3', 'Tailwind CSS', 'Bootstrap'],
+    design_uiux: ['Advanced Canva Design', 'Figma', 'Adobe Photoshop', 'Snapchat Lens Studio', 'Digital Branding', 'Web Design', 'UI/UX Design'],
+    backend_cloud: ['FastAPI', 'REST APIs', 'Backend Integration', 'API Testing & Documentation', 'PostgreSQL', 'AWS (EC2, S3, RDS)', 'FinTech Systems'],
+    ar_creative: ['Snapchat Lens Studio', 'AR Lens Creation', 'Augmented Reality Filters', 'Cinema 4D (3D Typography)'],
+    ai_ml: ['TensorFlow', 'OpenCV', 'Transfer Learning (MobileNetV2)', 'Image Classification', 'Deep Learning'],
+    tooling: ['Git', 'GitHub', 'VS Code', 'API Testing Tools', 'NetBeans', 'VirtualBox', 'WSL']
   },
   softwareProjects: [
     {
@@ -787,6 +702,22 @@ export const RECRUITER_DATA = {
   ],
   entrepreneurialAndCorporate: [
     {
+      period: 'October 2026 – Present',
+      role: 'National Service Personnel | Software Engineer',
+      company: 'JUNI GHANA LIMITED',
+      location: 'Accra, Ghana',
+      highlights: [
+        "Contribute to software development activities within the company's IT and software development environment.",
+        "Participate in the development of web applications using modern frontend technologies.",
+        "Work with React, JavaScript and TypeScript to develop and improve web application interfaces.",
+        "Assist with backend integration, REST API consumption and communication between frontend applications and backend services.",
+        "Work with API documentation and testing tools to understand, test and integrate application endpoints.",
+        "Apply problem-solving and debugging techniques to identify and address software development issues.",
+        "Collaborate with technical team members on application development, testing and implementation.",
+        "Explore full-stack development concepts through practical exposure to frontend and backend systems."
+      ]
+    },
+    {
       period: '2022 — Present',
       role: 'Technology Entrepreneur & Digital Marketing Strategist (Founder & CEO)',
       company: 'DREAM CHASERS LAPTOPS (DC LAPTOPS)',
@@ -820,11 +751,11 @@ export const RECRUITER_DATA = {
   ],
   education: [
     {
-      degree: 'Bachelor of Science (BSc.) in Computer Science & Engineering',
+      degree: 'Bachelor of Science (BSc.) in Computer Science & Engineering (Graduate)',
       institution: 'UNIVERSITY OF MINES AND TECHNOLOGY (UMaT) — GHANA',
       school: 'School of Railways and Infrastructure Development (SRID)',
       location: 'Takoradi / Essikado, Ghana',
-      period: 'Expected Graduation: 2026',
+      period: 'Class of 2026',
       coursework: [
         'Software Engineering',
         'Data Structures & Algorithms',
@@ -863,6 +794,24 @@ export const RECRUITER_DATA = {
 };
 
 export const EXPERIENCE: ExperienceItem[] = [
+  {
+    period: 'October 2026 – Present',
+    role: 'National Service Personnel | Software Engineer',
+    company: 'JUNI GHANA LIMITED',
+    location: 'Accra, Ghana',
+    category: 'software',
+    highlights: [
+      "Contribute to software development activities within the company's IT and software development environment.",
+      "Participate in the development of web applications using modern frontend technologies.",
+      "Work with React, JavaScript and TypeScript to develop and improve web application interfaces.",
+      "Assist with backend integration, REST API consumption and communication between frontend applications and backend services.",
+      "Work with API documentation and testing tools to understand, test and integrate application endpoints.",
+      "Apply problem-solving and debugging techniques to identify and address software development issues.",
+      "Collaborate with technical team members on application development, testing and implementation.",
+      "Explore full-stack development concepts through practical exposure to frontend and backend systems."
+    ],
+    technologies: ['React', 'JavaScript', 'TypeScript', 'REST APIs', 'Frontend Engineering', 'Backend Integration', 'API Testing', 'FinTech']
+  },
   {
     period: '2024 — Present',
     role: 'Co-founder & Product Lead',

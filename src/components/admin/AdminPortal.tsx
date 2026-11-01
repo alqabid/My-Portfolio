@@ -29,7 +29,9 @@ import {
   Terminal,
   FileCode,
   Tag,
-  AlertCircle
+  AlertCircle,
+  Image as ImageIcon,
+  Link as LinkIcon
 } from 'lucide-react';
 import { usePortfolio } from '../../context/PortfolioContext';
 import { Project, DesignItem, ARLens, SkillNode, ServiceItem, ExperienceItem } from '../../types';
@@ -118,6 +120,8 @@ export const AdminPortal: React.FC = () => {
 
   // Search queries for lists
   const [searchQuery, setSearchQuery] = useState('');
+  const [designSearch, setDesignSearch] = useState('');
+  const [designCategoryFilter, setDesignCategoryFilter] = useState('all');
 
   if (!isAdminPortalOpen) return null;
 
@@ -699,11 +703,14 @@ export const AdminPortal: React.FC = () => {
             <div className="max-w-5xl mx-auto space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-neutral-800 pb-3">
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-mono font-bold text-white tracking-tight">
-                    Design World
+                  <h2 className="text-xl sm:text-2xl font-mono font-bold text-white tracking-tight flex items-center gap-2">
+                    <span>Flyers & Design Showcase</span>
+                    <span className="px-2 py-0.5 rounded text-xs bg-neutral-800 text-neutral-400 font-mono">
+                      {designItems.length} items
+                    </span>
                   </h2>
                   <p className="text-xs text-neutral-400 font-mono">
-                    Manage visual assets, YouTube thumbnails, brand identities, and CTR metrics.
+                    Upload flyers locally, showcase event posters, YouTube thumbnails, and configure live preview links.
                   </p>
                 </div>
                 <button
@@ -711,71 +718,183 @@ export const AdminPortal: React.FC = () => {
                     playSound('click');
                     setIsNewDesignModal(true);
                   }}
-                  className="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-mono font-bold text-xs flex items-center gap-1.5 cursor-pointer"
+                  className="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-mono font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-sm transition-colors"
                 >
                   <Plus className="w-3.5 h-3.5" />
-                  <span>Add Asset</span>
+                  <span>Upload Flyer / Design</span>
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {designItems.map((design) => (
-                  <div
-                    key={design.id}
-                    className="p-3.5 rounded-xl bg-[#14151B] border border-neutral-800 space-y-2.5 flex flex-col justify-between"
-                  >
-                    <div className="space-y-1.5">
-                      <div className="w-full h-32 rounded-lg bg-neutral-900 overflow-hidden border border-neutral-800">
-                        <img
-                          src={design.imageUrl}
-                          alt={design.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono font-bold text-xs text-white">
-                          {design.title}
-                        </span>
-                        <span className="px-1.5 py-0.2 rounded text-[9px] font-mono bg-neutral-900 text-neutral-400 border border-neutral-800 uppercase">
-                          {design.category}
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-neutral-400 font-mono line-clamp-2">
-                        {design.description}
-                      </p>
-                    </div>
+              {/* Filters & Search */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+                <div className="relative flex-1">
+                  <Search className="w-3.5 h-3.5 text-neutral-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="text"
+                    placeholder="Search flyers, thumbnails, client..."
+                    value={designSearch}
+                    onChange={(e) => setDesignSearch(e.target.value)}
+                    className="w-full pl-8 pr-3 py-1.5 rounded-lg bg-neutral-900 border border-neutral-800 text-white font-mono text-xs placeholder:text-neutral-600 focus:outline-none focus:border-neutral-700"
+                  />
+                  {designSearch && (
+                    <button
+                      onClick={() => setDesignSearch('')}
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-white"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  )}
+                </div>
 
-                    <div className="flex items-center justify-between pt-1 border-t border-neutral-800/80">
-                      <span className="text-[10px] font-mono text-emerald-400">
-                        {design.metrics || 'Visual Asset'}
-                      </span>
-                      <div className="flex items-center gap-1.5">
-                        <button
-                          onClick={() => {
-                            playSound('click');
-                            setEditingDesign(design);
-                          }}
-                          className="p-1 rounded bg-neutral-900 hover:bg-neutral-800 text-neutral-300 text-xs font-mono"
-                        >
-                          <Edit className="w-3 h-3" />
-                        </button>
-                        <button
-                          onClick={() => {
-                            if (confirm(`Delete "${design.title}"?`)) {
-                              playSound('pop');
-                              deleteDesignItem(design.id);
-                              showToast('Design asset removed.');
-                            }
-                          }}
-                          className="p-1 rounded bg-neutral-900 hover:bg-rose-950 text-neutral-500 hover:text-rose-400"
-                        >
-                          <Trash2 className="w-3 h-3" />
-                        </button>
+                <div className="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+                  {[
+                    { id: 'all', label: 'All' },
+                    { id: 'flyers', label: 'Flyers' },
+                    { id: 'posters', label: 'Posters' },
+                    { id: 'thumbnails', label: 'Thumbnails' },
+                    { id: 'branding', label: 'Branding' },
+                    { id: 'social', label: 'Social' }
+                  ].map((cat) => (
+                    <button
+                      key={cat.id}
+                      onClick={() => setDesignCategoryFilter(cat.id)}
+                      className={`px-2.5 py-1 rounded text-[11px] font-mono whitespace-nowrap transition-colors ${
+                        designCategoryFilter === cat.id
+                          ? 'bg-neutral-200 text-neutral-950 font-bold'
+                          : 'bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800'
+                      }`}
+                    >
+                      {cat.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Design & Flyer Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {designItems
+                  .filter((item) => {
+                    const matchesCategory =
+                      designCategoryFilter === 'all' || item.category === designCategoryFilter;
+                    const matchesSearch =
+                      !designSearch ||
+                      item.title.toLowerCase().includes(designSearch.toLowerCase()) ||
+                      (item.description || '').toLowerCase().includes(designSearch.toLowerCase()) ||
+                      (item.clientOrProject || '').toLowerCase().includes(designSearch.toLowerCase()) ||
+                      item.tags.some((t) => t.toLowerCase().includes(designSearch.toLowerCase()));
+                    return matchesCategory && matchesSearch;
+                  })
+                  .map((design) => (
+                    <div
+                      key={design.id}
+                      className="p-3.5 rounded-xl bg-[#14151B] border border-neutral-800 space-y-2.5 flex flex-col justify-between hover:border-neutral-700 transition-colors"
+                    >
+                      <div className="space-y-2">
+                        {/* Flyer / Design Thumbnail */}
+                        <div className="relative w-full h-40 rounded-lg bg-neutral-900 overflow-hidden border border-neutral-800 group">
+                          <img
+                            src={design.imageUrl}
+                            alt={design.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                          <div className="absolute top-2 left-2 flex items-center gap-1.5">
+                            <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-black/80 backdrop-blur-sm text-white border border-white/10 uppercase">
+                              {design.category}
+                            </span>
+                            {design.aspectRatio && (
+                              <span className="px-1 py-0.5 rounded text-[9px] font-mono bg-neutral-900/90 text-neutral-300 border border-neutral-700">
+                                {design.aspectRatio}
+                              </span>
+                            )}
+                          </div>
+                          {design.imageUrl?.startsWith('data:') && (
+                            <span className="absolute bottom-2 left-2 px-1.5 py-0.5 rounded text-[9px] font-mono bg-emerald-950/90 text-emerald-400 border border-emerald-800/60">
+                              Local Upload
+                            </span>
+                          )}
+                        </div>
+
+                        <div>
+                          <div className="flex items-start justify-between gap-1">
+                            <h4 className="font-mono font-bold text-xs text-white line-clamp-1">
+                              {design.title}
+                            </h4>
+                          </div>
+                          {design.clientOrProject && (
+                            <p className="text-[10px] text-neutral-400 font-mono line-clamp-1">
+                              {design.clientOrProject}
+                            </p>
+                          )}
+                          <p className="text-[11px] text-neutral-400 font-mono line-clamp-2 mt-1">
+                            {design.description || 'No description provided.'}
+                          </p>
+                        </div>
+
+                        {/* Preview link status badge */}
+                        {design.previewUrl && (
+                          <div className="flex items-center gap-1.5 text-[10px] font-mono text-emerald-400 bg-emerald-950/30 border border-emerald-900/50 rounded px-2 py-1">
+                            <LinkIcon className="w-3 h-3 shrink-0" />
+                            <span className="truncate flex-1">
+                              {design.previewLinkLabel || 'Preview Link'}
+                            </span>
+                            <a
+                              href={design.previewUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-neutral-400 hover:text-emerald-300"
+                              title="Test open preview link"
+                            >
+                              <ExternalLink className="w-3 h-3" />
+                            </a>
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex items-center justify-between pt-2 border-t border-neutral-800/80">
+                        <span className="text-[10px] font-mono text-neutral-400">
+                          {design.metrics || (design.tags && design.tags[0]) || 'Visual Asset'}
+                        </span>
+                        <div className="flex items-center gap-1.5">
+                          <button
+                            onClick={() => {
+                              playSound('click');
+                              setEditingDesign(design);
+                            }}
+                            className="p-1.5 rounded bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white text-xs font-mono transition-colors"
+                            title="Edit design"
+                          >
+                            <Edit className="w-3 h-3" />
+                          </button>
+                          <button
+                            onClick={() => {
+                              if (confirm(`Delete "${design.title}"?`)) {
+                                playSound('pop');
+                                deleteDesignItem(design.id);
+                                showToast('Design asset removed.');
+                              }
+                            }}
+                            className="p-1.5 rounded bg-neutral-900 hover:bg-rose-950 text-neutral-500 hover:text-rose-400 transition-colors"
+                            title="Delete design"
+                          >
+                            <Trash2 className="w-3 h-3" />
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
+
+              {designItems.length === 0 && (
+                <div className="p-8 text-center rounded-xl bg-neutral-900/50 border border-neutral-800 font-mono space-y-2">
+                  <p className="text-neutral-400 text-xs">No design assets or flyers found.</p>
+                  <button
+                    onClick={() => setIsNewDesignModal(true)}
+                    className="px-3 py-1.5 rounded bg-emerald-500 text-neutral-950 font-bold text-xs"
+                  >
+                    Upload Your First Flyer
+                  </button>
+                </div>
+              )}
             </div>
           )}
 
@@ -1692,26 +1811,116 @@ interface DesignModalProps {
 const DesignModal: React.FC<DesignModalProps> = ({ design, isNew, onClose, onSave }) => {
   const [formData, setFormData] = useState<DesignItem>(
     design || {
-      id: `des_${Date.now()}`,
+      id: `flyer_${Date.now()}`,
       title: '',
-      category: 'youtube-thumbnail',
-      imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80',
+      category: 'flyers',
+      clientOrProject: '',
+      role: 'Visual Designer',
+      tools: ['Canva Advanced', 'Photoshop'],
+      process: ['Visual Storyboarding', 'High-Contrast Typography'],
+      imageUrl: '',
+      aspectRatio: '4/5',
+      accentColor: '#FFF35C',
       description: '',
+      previewUrl: '',
+      previewLinkLabel: 'Preview Live',
       metrics: '',
-      tags: ['CTR Optimized', 'Visuals']
+      tags: ['Flyer Design', 'Print & Digital']
     }
   );
 
-  const [tagsInput, setTagsInput] = useState(formData.tags.join(', '));
+  const [imageSourceMode, setImageSourceMode] = useState<'upload' | 'url'>('upload');
+  const [tagsInput, setTagsInput] = useState((formData.tags || []).join(', '));
+  const [toolsInput, setToolsInput] = useState((formData.tools || []).join(', '));
+  const [uploadStatus, setUploadStatus] = useState<string>('');
+  const [isDragOver, setIsDragOver] = useState(false);
+
+  // Compress & read local image file
+  const processImageFile = (file: File) => {
+    if (!file.type.startsWith('image/')) {
+      alert('Please upload an image file (JPG, PNG, WEBP, SVG, etc.).');
+      return;
+    }
+
+    setUploadStatus('Optimizing image for fast preview...');
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const src = e.target?.result as string;
+      const img = new Image();
+      img.onload = () => {
+        // Max dimension 1280px to preserve crisp detail while keeping storage compact
+        const maxDim = 1280;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > maxDim || height > maxDim) {
+          if (width > height) {
+            height = Math.round((height * maxDim) / width);
+            width = maxDim;
+          } else {
+            width = Math.round((width * maxDim) / height);
+            height = maxDim;
+          }
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height);
+          const mimeType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+          const compressed = canvas.toDataURL(mimeType, 0.86);
+          const isVertical = height > width * 1.1;
+          setFormData((prev) => ({
+            ...prev,
+            imageUrl: compressed,
+            aspectRatio: prev.aspectRatio || (isVertical ? '4/5' : '16/9')
+          }));
+          setUploadStatus(`Uploaded "${file.name}" (${Math.round(compressed.length / 1024)} KB)`);
+        } else {
+          setFormData((prev) => ({ ...prev, imageUrl: src }));
+          setUploadStatus(`Uploaded "${file.name}"`);
+        }
+      };
+      img.onerror = () => {
+        setUploadStatus('Failed to read image file.');
+      };
+      img.src = src;
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      processImageFile(file);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      processImageFile(file);
+    }
+  };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-      <div className="relative w-full max-w-lg bg-[#14151B] text-neutral-200 border border-neutral-800 rounded-xl p-5 space-y-4 font-mono text-xs">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+      <div className="relative w-full max-w-2xl bg-[#14151B] text-neutral-200 border border-neutral-800 rounded-xl p-5 sm:p-6 space-y-4 font-mono text-xs max-h-[92vh] overflow-y-auto shadow-2xl">
         <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
-          <h3 className="font-bold text-sm text-white">
-            {isNew ? 'New Design Item' : `Edit: ${formData.title}`}
-          </h3>
-          <button onClick={onClose} className="text-neutral-500 hover:text-white">
+          <div>
+            <h3 className="font-bold text-sm text-white flex items-center gap-2">
+              <Palette className="w-4 h-4 text-emerald-400" />
+              <span>{isNew ? 'Post New Flyer or Design' : `Edit Design: ${formData.title}`}</span>
+            </h3>
+            <p className="text-[11px] text-neutral-400">
+              Upload local flyer images and configure interactive preview links.
+            </p>
+          </div>
+          <button onClick={onClose} className="p-1 rounded text-neutral-500 hover:text-white hover:bg-neutral-850">
             <X className="w-4 h-4" />
           </button>
         </div>
@@ -1719,93 +1928,301 @@ const DesignModal: React.FC<DesignModalProps> = ({ design, isNew, onClose, onSav
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            if (!formData.imageUrl) {
+              alert('Please select and upload your flyer image, or paste an image URL.');
+              return;
+            }
             onSave({
               ...formData,
+              tools: toolsInput.split(',').map((s) => s.trim()).filter(Boolean),
               tags: tagsInput.split(',').map((s) => s.trim()).filter(Boolean)
             });
           }}
-          className="space-y-3"
+          className="space-y-4"
         >
-          <div>
-            <label className="block text-[10px] text-neutral-400 uppercase mb-1">Title</label>
-            <input
-              type="text"
-              required
-              value={formData.title}
-              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              className="w-full px-3 py-1.5 rounded bg-neutral-900 border border-neutral-700 text-white"
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
+          {/* Title & Category */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="sm:col-span-2">
+              <label className="block text-[10px] text-neutral-400 uppercase tracking-wider mb-1">
+                Design / Flyer Title *
+              </label>
+              <input
+                type="text"
+                required
+                placeholder="e.g. Hack The Future 48H Buildathon Flyer"
+                value={formData.title}
+                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                className="w-full px-3 py-2 rounded bg-neutral-900 border border-neutral-700 text-white focus:border-emerald-500 focus:outline-none"
+              />
+            </div>
             <div>
-              <label className="block text-[10px] text-neutral-400 uppercase mb-1">Category</label>
+              <label className="block text-[10px] text-neutral-400 uppercase tracking-wider mb-1">
+                Category *
+              </label>
               <select
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
-                className="w-full px-3 py-1.5 rounded bg-neutral-900 border border-neutral-700 text-white"
+                className="w-full px-3 py-2 rounded bg-neutral-900 border border-neutral-700 text-white focus:border-emerald-500 focus:outline-none"
               >
-                <option value="youtube-thumbnail">YouTube Thumbnail</option>
-                <option value="branding">Branding & Identity</option>
-                <option value="poster">Poster & Key Visual</option>
-                <option value="social">Social Graphics</option>
+                <option value="flyers">Flyer / Event Poster</option>
+                <option value="posters">Key Visual / Art Poster</option>
+                <option value="thumbnails">YouTube Thumbnail</option>
+                <option value="branding">Brand Identity & Kit</option>
+                <option value="social">Social Media Graphic</option>
+                <option value="marketing">Marketing Suite</option>
+                <option value="ui">UI / Digital Mockup</option>
               </select>
             </div>
+          </div>
+
+          {/* Client & Aspect Ratio */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-[10px] text-neutral-400 uppercase mb-1">Metrics / Tag</label>
+              <label className="block text-[10px] text-neutral-400 uppercase tracking-wider mb-1">
+                Client / Project Name
+              </label>
               <input
                 type="text"
-                value={formData.metrics || ''}
-                onChange={(e) => setFormData({ ...formData, metrics: e.target.value })}
-                className="w-full px-3 py-1.5 rounded bg-neutral-900 border border-neutral-700 text-white"
+                placeholder="e.g. Campus Tech Alliance / Creator Channel"
+                value={formData.clientOrProject || ''}
+                onChange={(e) => setFormData({ ...formData, clientOrProject: e.target.value })}
+                className="w-full px-3 py-1.5 rounded bg-neutral-900 border border-neutral-700 text-white focus:border-emerald-500 focus:outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-[10px] text-neutral-400 uppercase tracking-wider mb-1">
+                Aspect Ratio
+              </label>
+              <select
+                value={formData.aspectRatio || '4/5'}
+                onChange={(e) => setFormData({ ...formData, aspectRatio: e.target.value })}
+                className="w-full px-3 py-1.5 rounded bg-neutral-900 border border-neutral-700 text-white focus:border-emerald-500 focus:outline-none"
+              >
+                <option value="4/5">Vertical Flyer (4:5 Portrait)</option>
+                <option value="3/4">Classic Poster (3:4 Portrait)</option>
+                <option value="9/16">Story / Status (9:16 Vertical)</option>
+                <option value="1/1">Square Post (1:1 Instagram)</option>
+                <option value="16/9">Landscape / Video (16:9)</option>
+                <option value="4/3">Banner (4:3)</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Image Upload / URL Selector */}
+          <div className="p-3.5 rounded-lg bg-neutral-900/90 border border-neutral-800 space-y-3">
+            <div className="flex items-center justify-between">
+              <label className="text-[10px] text-neutral-300 uppercase tracking-wider font-bold flex items-center gap-1.5">
+                <ImageIcon className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Flyer / Design Image</span>
+              </label>
+              <div className="flex items-center rounded bg-neutral-950 p-0.5 border border-neutral-800">
+                <button
+                  type="button"
+                  onClick={() => setImageSourceMode('upload')}
+                  className={`px-2.5 py-0.5 rounded text-[10px] transition-colors ${
+                    imageSourceMode === 'upload'
+                      ? 'bg-neutral-800 text-white font-bold'
+                      : 'text-neutral-400 hover:text-white'
+                  }`}
+                >
+                  Upload File
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setImageSourceMode('url')}
+                  className={`px-2.5 py-0.5 rounded text-[10px] transition-colors ${
+                    imageSourceMode === 'url'
+                      ? 'bg-neutral-800 text-white font-bold'
+                      : 'text-neutral-400 hover:text-white'
+                  }`}
+                >
+                  Paste URL
+                </button>
+              </div>
+            </div>
+
+            {imageSourceMode === 'upload' ? (
+              <div
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  setIsDragOver(true);
+                }}
+                onDragLeave={() => setIsDragOver(false)}
+                onDrop={handleDrop}
+                className={`relative border-2 border-dashed rounded-lg p-4 text-center transition-colors cursor-pointer ${
+                  isDragOver
+                    ? 'border-emerald-500 bg-emerald-950/20'
+                    : 'border-neutral-700 hover:border-neutral-600 bg-neutral-950/50'
+                }`}
+              >
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+                />
+                <div className="space-y-1.5">
+                  <div className="w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 mx-auto flex items-center justify-center text-neutral-300">
+                    <Upload className="w-4 h-4 text-emerald-400" />
+                  </div>
+                  <p className="text-white text-xs font-bold">
+                    Click to select flyer file or drag and drop here
+                  </p>
+                  <p className="text-[10px] text-neutral-400">
+                    Supports PNG, JPG, WEBP, SVG. Auto-scaled for smooth preview storage.
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <input
+                  type="text"
+                  placeholder="https://images.unsplash.com/... or https://..."
+                  value={formData.imageUrl}
+                  onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
+                  className="w-full px-3 py-1.5 rounded bg-neutral-950 border border-neutral-700 text-white text-xs focus:border-emerald-500 focus:outline-none"
+                />
+              </div>
+            )}
+
+            {uploadStatus && (
+              <p className="text-[10px] text-emerald-400 font-mono">{uploadStatus}</p>
+            )}
+
+            {/* Thumbnail preview */}
+            {formData.imageUrl && (
+              <div className="flex items-center gap-3 pt-2 border-t border-neutral-800">
+                <div className="relative w-16 h-20 rounded bg-black overflow-hidden border border-neutral-700 shrink-0">
+                  <img
+                    src={formData.imageUrl}
+                    alt="Preview"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="space-y-1 flex-1 min-w-0">
+                  <p className="text-[11px] text-white font-bold truncate">Image Preview Loaded</p>
+                  <p className="text-[10px] text-neutral-400">
+                    {formData.imageUrl.startsWith('data:')
+                      ? 'Local file stored in browser'
+                      : 'Remote web image'}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData({ ...formData, imageUrl: '' });
+                      setUploadStatus('');
+                    }}
+                    className="text-[10px] text-rose-400 hover:text-rose-300 underline"
+                  >
+                    Remove / Change Image
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Preview Link Section */}
+          <div className="p-3.5 rounded-lg bg-neutral-900/90 border border-neutral-800 space-y-2.5">
+            <label className="text-[10px] text-neutral-300 uppercase tracking-wider font-bold flex items-center gap-1.5">
+              <LinkIcon className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Preview Link / Project Link (Optional)</span>
+            </label>
+            <p className="text-[10px] text-neutral-400">
+              Add a link for visitors to preview the live project (e.g. Canva design share link, Figma view link, Google Drive flyer, or website).
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <div className="sm:col-span-2">
+                <input
+                  type="url"
+                  placeholder="https://www.canva.com/design/... or https://figma.com/..."
+                  value={formData.previewUrl || ''}
+                  onChange={(e) => setFormData({ ...formData, previewUrl: e.target.value })}
+                  className="w-full px-3 py-1.5 rounded bg-neutral-950 border border-neutral-700 text-white text-xs focus:border-emerald-500 focus:outline-none"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Button Label (e.g. View on Canva)"
+                  value={formData.previewLinkLabel || ''}
+                  onChange={(e) => setFormData({ ...formData, previewLinkLabel: e.target.value })}
+                  className="w-full px-3 py-1.5 rounded bg-neutral-950 border border-neutral-700 text-white text-xs focus:border-emerald-500 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            {formData.previewUrl && (
+              <div className="flex items-center gap-2 pt-1">
+                <a
+                  href={formData.previewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[11px] text-emerald-400 hover:text-emerald-300 underline font-bold"
+                >
+                  <span>Test Link in New Tab</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            )}
+          </div>
+
+          {/* Description */}
+          <div>
+            <label className="block text-[10px] text-neutral-400 uppercase tracking-wider mb-1">
+              Description & Purpose
+            </label>
+            <textarea
+              rows={2}
+              placeholder="What this flyer or design was created for (e.g. Campus hackathon event flyer designed for WhatsApp status and print)..."
+              value={formData.description || ''}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              className="w-full px-3 py-2 rounded bg-neutral-900 border border-neutral-700 text-white focus:border-emerald-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Tools & Tags */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-[10px] text-neutral-400 uppercase tracking-wider mb-1">
+                Tools Used (comma separated)
+              </label>
+              <input
+                type="text"
+                placeholder="Canva Advanced, Photoshop, Figma"
+                value={toolsInput}
+                onChange={(e) => setToolsInput(e.target.value)}
+                className="w-full px-3 py-1.5 rounded bg-neutral-900 border border-neutral-700 text-white focus:border-emerald-500 focus:outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-[10px] text-neutral-400 uppercase tracking-wider mb-1">
+                Tags / Badges (comma separated)
+              </label>
+              <input
+                type="text"
+                placeholder="Flyer, Hackathon, Community, Print"
+                value={tagsInput}
+                onChange={(e) => setTagsInput(e.target.value)}
+                className="w-full px-3 py-1.5 rounded bg-neutral-900 border border-neutral-700 text-white focus:border-emerald-500 focus:outline-none"
               />
             </div>
           </div>
 
-          <div>
-            <label className="block text-[10px] text-neutral-400 uppercase mb-1">Image URL</label>
-            <input
-              type="text"
-              required
-              value={formData.imageUrl}
-              onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-              className="w-full px-3 py-1.5 rounded bg-neutral-900 border border-neutral-700 text-white"
-            />
-          </div>
-
-          <div>
-            <label className="block text-[10px] text-neutral-400 uppercase mb-1">Description</label>
-            <textarea
-              rows={2}
-              value={formData.description}
-              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              className="w-full px-3 py-1.5 rounded bg-neutral-900 border border-neutral-700 text-white"
-            />
-          </div>
-
-          <div>
-            <label className="block text-[10px] text-neutral-400 uppercase mb-1">Tags (comma separated)</label>
-            <input
-              type="text"
-              value={tagsInput}
-              onChange={(e) => setTagsInput(e.target.value)}
-              className="w-full px-3 py-1.5 rounded bg-neutral-900 border border-neutral-700 text-white"
-            />
-          </div>
-
-          <div className="flex justify-end gap-2 pt-2 border-t border-neutral-800">
+          {/* Actions */}
+          <div className="flex justify-end gap-2 pt-3 border-t border-neutral-800">
             <button
               type="button"
               onClick={onClose}
-              className="px-3 py-1.5 rounded bg-neutral-900 text-neutral-400 hover:text-white"
+              className="px-4 py-2 rounded bg-neutral-900 text-neutral-400 hover:text-white transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-3 py-1.5 rounded bg-emerald-500 text-neutral-950 font-bold hover:bg-emerald-400"
+              className="px-4 py-2 rounded bg-emerald-500 text-neutral-950 font-bold hover:bg-emerald-400 transition-colors flex items-center gap-1.5 shadow-md cursor-pointer"
             >
-              Save Asset
+              <Check className="w-3.5 h-3.5" />
+              <span>{isNew ? 'Publish Flyer' : 'Save Changes'}</span>
             </button>
           </div>
         </form>

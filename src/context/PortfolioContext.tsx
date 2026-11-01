@@ -21,7 +21,7 @@ import {
   EXPERIENCE as DEFAULT_EXPERIENCE
 } from '../data/portfolioData';
 
-const STORAGE_KEY = 'abdul_portfolio_cms_v4';
+const STORAGE_KEY = 'abdul_portfolio_cms_v10';
 const AUTH_STORAGE_KEY = 'abdul_portfolio_auth_session';
 
 const DEFAULT_ADMIN_CONFIG: AdminConfig = {
@@ -113,7 +113,8 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   // Load initial from localStorage or defaults
   const loadSavedData = (): FullPortfolioData => {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
+      // Check current or previous storage keys
+      const stored = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('abdul_portfolio_cms_v7') || localStorage.getItem('abdul_portfolio_cms_v8');
       if (stored) {
         const parsed = JSON.parse(stored);
         const storedMessages: ContactMessage[] = Array.isArray(parsed.contactMessages)
@@ -121,14 +122,38 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
               (m: ContactMessage) => m && m.id && !m.id.startsWith('msg-sample-')
             )
           : [];
+
+        // Ensure experience contains Juni Ghana Limited at the beginning
+        let expList: ExperienceItem[] = Array.isArray(parsed.experience) ? parsed.experience : DEFAULT_EXPERIENCE;
+        const hasJuni = expList.some(
+          (e) => e.company && e.company.toUpperCase().includes('JUNI GHANA')
+        );
+        if (!hasJuni) {
+          expList = [DEFAULT_EXPERIENCE[0], ...expList];
+        }
+
+        // Ensure bio is updated if missing Juni Ghana reference
+        let pInfo = parsed.personalInfo || DEFAULT_PERSONAL_INFO;
+        if (!pInfo.bio || !pInfo.bio.includes('Juni Ghana Limited')) {
+          pInfo = {
+            ...pInfo,
+            ...DEFAULT_PERSONAL_INFO,
+            location: DEFAULT_PERSONAL_INFO.location,
+            titles: DEFAULT_PERSONAL_INFO.titles,
+            availability: DEFAULT_PERSONAL_INFO.availability,
+            currentRole: DEFAULT_PERSONAL_INFO.currentRole,
+            bio: DEFAULT_PERSONAL_INFO.bio
+          };
+        }
+
         return {
-          personalInfo: parsed.personalInfo || DEFAULT_PERSONAL_INFO,
+          personalInfo: pInfo,
           buildProjects: parsed.buildProjects || DEFAULT_BUILD_PROJECTS,
           designItems: parsed.designItems || DEFAULT_DESIGN_ITEMS,
           arLenses: parsed.arLenses || DEFAULT_AR_LENSES,
           skillNodes: parsed.skillNodes || DEFAULT_SKILL_NODES,
           services: parsed.services || DEFAULT_SERVICES,
-          experience: parsed.experience || DEFAULT_EXPERIENCE,
+          experience: expList,
           contactMessages: storedMessages,
           adminConfig: parsed.adminConfig || DEFAULT_ADMIN_CONFIG
         };

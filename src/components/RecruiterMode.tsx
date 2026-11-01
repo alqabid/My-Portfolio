@@ -31,7 +31,7 @@ interface RecruiterModeProps {
 }
 
 export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMode }) => {
-  const { personalInfo: PERSONAL_INFO } = usePortfolio();
+  const { personalInfo: PERSONAL_INFO, experience } = usePortfolio();
 
   const handlePrint = () => {
     playSound('pop');
@@ -79,15 +79,15 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
           <div className="border-b-2 border-[#111111] pb-8 flex flex-col sm:flex-row sm:items-start justify-between gap-6">
             <div className="space-y-2">
               <h1 className="text-3xl sm:text-4xl font-display font-black text-[#111111] tracking-tight">
-                {RECRUITER_DATA.name}
+                {PERSONAL_INFO.name || RECRUITER_DATA.name}
               </h1>
               <p className="text-sm sm:text-base font-display font-extrabold text-[#333333] max-w-2xl leading-snug">
-                {RECRUITER_DATA.title}
+                {PERSONAL_INFO.titles || RECRUITER_DATA.title}
               </p>
               
               <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs font-mono text-[#555555] pt-2">
                 <span className="flex items-center gap-1 font-semibold text-[#111111]">
-                  <MapPin className="w-3.5 h-3.5 text-[#111111]" /> {RECRUITER_DATA.location}
+                  <MapPin className="w-3.5 h-3.5 text-[#111111]" /> {(PERSONAL_INFO.location || RECRUITER_DATA.location).replace('🇬🇭', '').trim()}
                 </span>
                 <span className="flex items-center gap-1">
                   <Phone className="w-3.5 h-3.5 text-[#111111]" /> {RECRUITER_DATA.phone}
@@ -150,9 +150,11 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
             <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-[#FAFAF7] px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
               01 // PROFESSIONAL SUMMARY
             </h2>
-            <p className="text-sm sm:text-base text-[#333333] leading-relaxed">
-              {RECRUITER_DATA.summary}
-            </p>
+            <div className="space-y-2.5 text-sm sm:text-base text-[#333333] leading-relaxed">
+              {(PERSONAL_INFO.bio || RECRUITER_DATA.summary).split('\n\n').map((para, pIdx) => (
+                <p key={pIdx}>{para}</p>
+              ))}
+            </div>
           </div>
 
           {/* 02 // CORE TECHNICAL & CREATIVE COMPETENCIES */}
@@ -356,38 +358,82 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
             </div>
           </div>
 
-          {/* 05 // PROFESSIONAL & ENTREPRENEURIAL EXPERIENCE */}
+          {/* 05 // PROFESSIONAL & CAREER EXPERIENCE */}
           <div className="space-y-4">
             <h2 className="text-xs font-mono font-bold tracking-wider text-[#111111] uppercase bg-[#FAFAF7] px-3 py-1 rounded-md border border-[#E0E0D8] inline-block">
-              05 // PROFESSIONAL & ENTREPRENEURIAL EXPERIENCE
+              05 // PROFESSIONAL & CAREER EXPERIENCE
             </h2>
 
             <div className="space-y-4">
-              {RECRUITER_DATA.entrepreneurialAndCorporate.map((item, idx) => (
-                <div key={idx} className="p-4 rounded-2xl bg-[#FAFAF7] border border-[#111111] space-y-2">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                    <div>
-                      <h4 className="font-display font-extrabold text-sm text-[#111111]">
-                        {item.company}
-                      </h4>
-                      <p className="text-xs text-[#555555]">
-                        {item.role} · {item.location}
-                      </p>
+              {(experience && experience.length > 0 ? experience : RECRUITER_DATA.entrepreneurialAndCorporate).map((item, idx) => {
+                const isJuni = item.company.toUpperCase().includes('JUNI GHANA');
+                const hasTechs = 'technologies' in item && Array.isArray((item as any).technologies) && (item as any).technologies.length > 0;
+
+                return (
+                  <div
+                    key={idx}
+                    className={`p-5 rounded-2xl border ${
+                      isJuni
+                        ? 'bg-[#FFFDF0] border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111]'
+                        : 'bg-[#FAFAF7] border-[#111111]'
+                    } space-y-3`}
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+                      <div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h4 className="font-display font-extrabold text-base text-[#111111]">
+                            {item.company}
+                          </h4>
+                          {isJuni && (
+                            <span className="px-2 py-0.5 rounded-full bg-[#10B981] text-white text-[10px] font-mono font-bold uppercase tracking-wider">
+                              CURRENT ROLE
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs sm:text-sm font-semibold text-[#333333] pt-0.5">
+                          {item.role}
+                        </p>
+                        <p className="text-xs text-[#666666] font-mono">
+                          {item.location}
+                        </p>
+                      </div>
+                      <span className="px-2.5 py-1 rounded-lg bg-white border border-[#111111] text-xs font-mono font-bold text-[#111111] shrink-0 self-start">
+                        {item.period}
+                      </span>
                     </div>
-                    <span className="text-xs font-mono font-bold text-[#111111]">
-                      {item.period}
-                    </span>
+
+                    <ul className="space-y-1.5 text-xs sm:text-sm text-[#444444]">
+                      {item.highlights.map((hl, hIdx) => (
+                        <li key={hIdx} className="flex items-start gap-2">
+                          <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${isJuni ? 'bg-[#10B981]' : 'bg-[#111111]'}`} />
+                          <span>
+                            {hl.includes('React, JavaScript and TypeScript') ? (
+                              <>
+                                Work with <strong className="text-[#111111]">React, JavaScript and TypeScript</strong> to develop and improve web application interfaces.
+                              </>
+                            ) : (
+                              hl
+                            )}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {hasTechs && (
+                      <div className="pt-1 flex flex-wrap gap-1">
+                        {(item as any).technologies.map((t: string, tIdx: number) => (
+                          <span
+                            key={tIdx}
+                            className="px-2 py-0.5 rounded bg-white text-[10px] font-mono border border-[#D0D0C8] text-[#222222]"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  <ul className="space-y-1 text-xs sm:text-sm text-[#444444]">
-                    {item.highlights.map((hl, hIdx) => (
-                      <li key={hIdx} className="flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#111111] mt-1.5 shrink-0" />
-                        <span>{hl}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
