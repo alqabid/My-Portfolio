@@ -325,7 +325,7 @@ export const DesignWorld: React.FC<DesignWorldProps> = () => {
 
                 <div className="pt-6 border-t border-neutral-800 space-y-2">
                   <a
-                    href={`https://wa.me/233238318021?text=Hi%20Abdul,%20I%20saw%20your%20design%20"${encodeURIComponent(selectedDesign.title)}"%20and%20would%20like%20to%20discuss%20a%20commission.`}
+                    href={`https://wa.me/233257030060?text=Hi%20Abdul,%20I%20saw%20your%20design%20"${encodeURIComponent(selectedDesign.title)}"%20and%20would%20like%20to%20discuss%20a%20commission.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full py-3 rounded-xl bg-white hover:bg-neutral-100 text-neutral-950 font-semibold text-xs flex items-center justify-center gap-2 transition-colors"

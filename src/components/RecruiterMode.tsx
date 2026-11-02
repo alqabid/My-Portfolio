@@ -102,7 +102,7 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
                 <span>Direct Email</span>
               </a>
               <a
-                href={`https://wa.me/233238318021`}
+                href={PERSONAL_INFO.whatsapp || `https://wa.me/233257030060`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium text-center transition-colors flex items-center justify-center gap-1.5"

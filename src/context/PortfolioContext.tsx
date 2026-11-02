@@ -21,7 +21,7 @@ import {
   EXPERIENCE as DEFAULT_EXPERIENCE
 } from '../data/portfolioData';
 
-const STORAGE_KEY = 'abdul_portfolio_cms_v10';
+const STORAGE_KEY = 'abdul_portfolio_cms_v11';
 const AUTH_STORAGE_KEY = 'abdul_portfolio_auth_session';
 
 const DEFAULT_ADMIN_CONFIG: AdminConfig = {
@@ -143,6 +143,15 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
             availability: DEFAULT_PERSONAL_INFO.availability,
             currentRole: DEFAULT_PERSONAL_INFO.currentRole,
             bio: DEFAULT_PERSONAL_INFO.bio
+          };
+        }
+
+        // Always sync latest WhatsApp number and link
+        if (!pInfo.whatsapp || pInfo.whatsapp.includes('238318021') || !pInfo.whatsappNumber || pInfo.whatsappNumber.includes('831 8021')) {
+          pInfo = {
+            ...pInfo,
+            whatsapp: DEFAULT_PERSONAL_INFO.whatsapp,
+            whatsappNumber: DEFAULT_PERSONAL_INFO.whatsappNumber
           };
         }
 

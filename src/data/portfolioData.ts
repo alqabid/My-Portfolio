@@ -9,7 +9,7 @@ export const PERSONAL_INFO = {
   tagline: 'Turning complex engineering into accessible, visual, and intelligent reality.',
   location: 'Accra, Ghana 🇬🇭',
   phone: '020 613 6004',
-  whatsappNumber: '023 831 8021',
+  whatsappNumber: '+233 25 703 0060',
   portfolioUrl: 'https://aqsmyportfolio.vercel.app',
   email: 'siakaabdulqabid@gmail.com',
   github: 'https://github.com/alqabid',
@@ -18,7 +18,7 @@ export const PERSONAL_INFO = {
   snapchatCreator: 'https://creator.snapchat.com/creator/zVAqoADqQn9UCriV-MlElg',
   snapchatAccount: 'https://www.snapchat.com/add/big_qabid?share_id=Y2N5s5T8SAGlHF13qzE7qA&locale=en_GH',
   snapchatHandle: 'big_qabid',
-  whatsapp: 'https://wa.me/233238318021', // direct WhatsApp link: 023 831 8021
+  whatsapp: 'https://wa.me/233257030060', // direct WhatsApp link: +233 25 703 0060
   availability: 'National Service Software Engineer @ Juni Ghana Limited | Open for Scalable Software & High-Impact Digital Products',
   currentRole: {
     company: 'JUNI GHANA LIMITED',
@@ -611,7 +611,7 @@ export const RECRUITER_DATA = {
   title: 'Software Engineer @ Juni Ghana Limited | Computer Science & Engineering Graduate | Full-Stack Developer | Graphic Designer | AR Creator',
   location: 'Accra, Ghana',
   phone: '020 613 6004',
-  whatsappNumber: '023 831 8021',
+  whatsappNumber: '+233 25 703 0060',
   portfolioUrl: 'https://aqsmyportfolio.vercel.app',
   email: 'siakaabdulqabid@gmail.com',
   linkedin: 'https://www.linkedin.com/in/abdulqabidsiaka/',
