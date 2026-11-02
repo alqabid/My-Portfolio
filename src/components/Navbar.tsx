@@ -7,13 +7,15 @@ interface NavbarProps {
   onToggleRecruiterMode: () => void;
   onOpenResume: () => void;
   activeSection: string;
+  onSelectTab?: (tab: 'build' | 'design' | 'ar' | 'skills') => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   isRecruiterMode,
   onToggleRecruiterMode,
   onOpenResume,
-  activeSection
+  activeSection,
+  onSelectTab
 }) => {
   const { personalInfo } = usePortfolio();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,16 +29,16 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const navLinks = [
-    { id: 'build', label: 'Projects' },
-    { id: 'design', label: 'Design' },
-    { id: 'ar', label: 'AR & 3D' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'about', label: 'About' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'build', label: 'Projects', isTab: true },
+    { id: 'design', label: 'Design', isTab: true },
+    { id: 'ar', label: 'AR & 3D', isTab: true },
+    { id: 'skills', label: 'Skills', isTab: true },
+    { id: 'about', label: 'Experience', isTab: false },
+    { id: 'contact', label: 'Contact', isTab: false },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-8 py-4 transition-all duration-300">
+    <header className="print:hidden fixed top-0 left-0 right-0 z-40 px-4 sm:px-8 py-4 transition-all duration-300">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Brand Zone: Clean Wordmark (No pills, no borders) */}
         <a
@@ -64,8 +66,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               return (
                 <a
                   key={link.id}
-                  href={`#${link.id}`}
-                  className={`transition-colors whitespace-nowrap ${
+                  href={`#${link.isTab ? 'work' : link.id}`}
+                  onClick={(e) => {
+                    if (link.isTab && onSelectTab) {
+                      onSelectTab(link.id as any);
+                    }
+                  }}
+                  className={`transition-colors whitespace-nowrap cursor-pointer ${
                     isActive
                       ? 'text-neutral-950 font-semibold'
                       : 'text-neutral-600 hover:text-neutral-950'

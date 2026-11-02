@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { WorldSelector } from './components/WorldSelector';
-import { BuildWorld } from './components/BuildWorld';
-import { DesignWorld } from './components/DesignWorld';
-import { ARWorld } from './components/ARWorld';
-import { SkillConstellation } from './components/SkillConstellation';
+import { ShowcaseHub, ShowcaseTabType } from './components/ShowcaseHub';
 import { AboutSection } from './components/AboutSection';
-import { ServicesSection } from './components/ServicesSection';
+import { ContactSection } from './components/ContactSection';
 import { RecruiterMode } from './components/RecruiterMode';
 import { CaseStudyModal } from './components/CaseStudyModal';
-import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
+import { InteractiveStickman } from './components/InteractiveStickman';
 import { AdminLoginModal } from './components/admin/AdminLoginModal';
 import { AdminPortal } from './components/admin/AdminPortal';
 import { Project } from './types';
@@ -21,6 +17,7 @@ export function App() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<Project | null>(null);
   const [initialServiceInterest, setInitialServiceInterest] = useState<string>('');
   const [activeSection, setActiveSection] = useState<string>('hero');
+  const [activeShowcaseTab, setActiveShowcaseTab] = useState<ShowcaseTabType>('build');
 
   // Handle section scrolling
   const scrollToSection = (id: string) => {
@@ -30,11 +27,16 @@ export function App() {
     }
   };
 
+  const handleSelectTab = (tab: 'build' | 'design' | 'ar' | 'skills') => {
+    setActiveShowcaseTab(tab);
+    scrollToSection('work');
+  };
+
   // Intersection Observer to track active section for navbar
   useEffect(() => {
     if (isRecruiterMode) return;
 
-    const sectionIds = ['hero', 'worlds', 'build', 'design', 'ar', 'skills', 'about', 'services', 'contact'];
+    const sectionIds = ['hero', 'work', 'about', 'contact'];
     const observers: IntersectionObserver[] = [];
 
     sectionIds.forEach((id) => {
@@ -69,6 +71,7 @@ export function App() {
         onToggleRecruiterMode={() => setIsRecruiterMode(!isRecruiterMode)}
         onOpenResume={() => setIsRecruiterMode(true)}
         activeSection={activeSection}
+        onSelectTab={handleSelectTab}
       />
 
       {/* Mode Switcher Container */}
@@ -76,44 +79,21 @@ export function App() {
         <RecruiterMode onExitRecruiterMode={() => setIsRecruiterMode(false)} />
       ) : (
         <main className="flex flex-col">
-          {/* Hero Section */}
+          {/* Hero Section with Interactive Abdul Stickman Stage Avatar */}
           <Hero
-            onExploreWork={() => scrollToSection('build')}
+            onExploreWork={() => scrollToSection('work')}
             onOpenContact={() => scrollToSection('contact')}
             onOpenResume={() => setIsRecruiterMode(true)}
           />
 
-          {/* Core Disciplines Overview */}
-          <WorldSelector
-            onSelectWorld={(worldId) => scrollToSection(worldId)}
-            onSetCursor={() => {}}
+          {/* Streamlined Interactive Showcase Hub (Tabs: Software & AI, Design, AR Lenses, Skills) */}
+          <ShowcaseHub
+            activeTab={activeShowcaseTab}
+            onSelectCaseStudy={(project) => setSelectedCaseStudy(project)}
           />
 
-          {/* Software Engineering & Products (MedVision, Yugogoo, etc.) */}
-          <BuildWorld
-            onOpenCaseStudy={(project) => setSelectedCaseStudy(project)}
-            onSetCursor={() => {}}
-          />
-
-          {/* Brand & Visual Design */}
-          <DesignWorld onSetCursor={() => {}} />
-
-          {/* Augmented Reality & 3D */}
-          <ARWorld onSetCursor={() => {}} />
-
-          {/* Technical Skills & Technologies */}
-          <SkillConstellation onSetCursor={() => {}} />
-
-          {/* About & National Service Experience at Juni Ghana Limited */}
+          {/* Crisp Experience & Education (Juni Ghana Limited National Service + BSc Degree) */}
           <AboutSection />
-
-          {/* Services & Collaboration */}
-          <ServicesSection
-            onSelectService={(serviceTitle) => {
-              setInitialServiceInterest(serviceTitle);
-              scrollToSection('contact');
-            }}
-          />
 
           {/* Contact Section */}
           <ContactSection
@@ -123,8 +103,17 @@ export function App() {
         </main>
       )}
 
-      {/* Global Footer */}
+      {/* Global Footer (Print-hidden, stealth admin login) */}
       <Footer />
+
+      {/* Floating Interactive Stickman Companion (Abdul Characterized) */}
+      {!isRecruiterMode && (
+        <InteractiveStickman
+          variant="floating"
+          onOpenResume={() => setIsRecruiterMode(true)}
+          onNavigateSection={scrollToSection}
+        />
+      )}
 
       {/* Full Case Study Modal */}
       <CaseStudyModal
@@ -140,5 +129,6 @@ export function App() {
     </div>
   );
 }
+
 
 export default App;

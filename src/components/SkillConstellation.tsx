@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Code2, Server, Palette, Sparkles, Check } from 'lucide-react';
+import { Code2, Server, Palette, Cpu, Check } from 'lucide-react';
 
 export const SkillConstellation: React.FC = () => {
   const skillCategories = [
@@ -44,7 +44,7 @@ export const SkillConstellation: React.FC = () => {
     },
     {
       title: 'AI & Extended Reality',
-      icon: Sparkles,
+      icon: Cpu,
       description: 'Computer vision classification, augmented reality lenses, and rapid AI tooling.',
       skills: [
         { name: 'Snapchat Lens Studio', level: 'Advanced' },

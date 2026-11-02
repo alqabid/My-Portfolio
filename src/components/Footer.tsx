@@ -62,7 +62,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-white py-12 px-4 sm:px-8 select-none">
+    <footer className="print:hidden bg-white py-12 px-4 sm:px-8 select-none">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Brand & Quiet Details */}
         <div className="space-y-1 text-center md:text-left">

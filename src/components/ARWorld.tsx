@@ -9,7 +9,7 @@ import {
   Search,
   Maximize2,
   X,
-  Sparkles,
+  CheckCircle2,
   Eye,
   Share2,
   Play
@@ -342,7 +342,7 @@ export const ARWorld: React.FC<ARWorldProps> = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {activeLens.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-xs text-neutral-700">
-                      <Sparkles className="w-3.5 h-3.5 text-neutral-900 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-neutral-900 shrink-0" />
                       <span>{feature}</span>
                     </div>
                   ))}
