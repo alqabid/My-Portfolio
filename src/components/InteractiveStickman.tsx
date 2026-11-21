@@ -11,13 +11,13 @@ interface InteractiveStickmanProps {
 type PoseType = 'idle' | 'waving' | 'coding' | 'glasses' | 'coffee';
 
 const ABDUL_QUOTES = [
-  "Hey! I'm Abdul. Welcome to my creative tech workspace! 👋",
-  "Currently doing National Service at Juni Ghana Limited as a Software Engineer.",
-  "I engineered MedVision AI to classify pneumonia in chest X-rays with 94.2% accuracy! 🫁",
-  "Over 18 Snapchat Lenses published with 850,000+ views worldwide! 👻",
-  "I write TypeScript by day and design high-converting flyers by night. 🎨",
-  "Check out Yugogoo below for real-time event discovery and QR passes! 🎟️",
-  "Need a full-stack web app or custom AR lens? Let's build it together!"
+  "Hey! I'm Abdul. Welcome to my creative tech workspace!",
+  "Currently building Wonkyendi — a football gaming app! Preview it live below.",
+  "Doing National Service at Juni Ghana Limited as a Software Engineer.",
+  "I engineered MedVision AI to classify pneumonia in chest X-rays with 94.2% accuracy!",
+  "Over 18 Snapchat Lenses published with 850,000+ views worldwide!",
+  "I build apps in React & TypeScript and design visuals in Affinity & Canva.",
+  "Need a web app, game UI, or custom AR lens? Let's build it together!"
 ];
 
 export const InteractiveStickman: React.FC<InteractiveStickmanProps> = ({

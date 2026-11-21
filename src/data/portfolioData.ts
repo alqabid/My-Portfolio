@@ -31,7 +31,7 @@ export const PERSONAL_INFO = {
 
 Experienced in web application development, frontend engineering, API integration, UI/UX design, graphic design, artificial intelligence and digital product development. Proficient in modern development technologies including React, JavaScript, TypeScript, Vite, HTML, CSS, Python and FastAPI, with additional programming experience in Java, C++, C#, PHP and SQL.
 
-Combines software engineering knowledge with strong creative capabilities in web design, graphic design and digital content creation. An advanced Canva designer with experience creating professional marketing materials, promotional graphics, social media content and visual brand assets. Also experienced in Figma, Adobe Photoshop and Snapchat Lens Studio for interface design and augmented-reality content creation.
+Combines software engineering knowledge with strong creative capabilities in web design, graphic design and digital content creation. An advanced Canva designer with experience creating professional marketing materials, promotional graphics, social media content and visual brand assets. Also proficient in Affinity, Figma and Snapchat Lens Studio for graphic design, interface design and augmented-reality content creation.
 
 Entrepreneurial and product-oriented, with experience co-founding digital products, developing software projects and applying AI tools and prompt engineering to accelerate development, research, prototyping and problem-solving.
 
@@ -45,6 +45,40 @@ Interested in building scalable digital products and using technology, creativit
 };
 
 export const BUILD_PROJECTS: Project[] = [
+  {
+    id: 'wonkyendi',
+    title: 'Wonkyendi',
+    category: 'build',
+    subtitle: 'Football Gaming Application · Personal Project | Ongoing Development',
+    tagline: 'Engaging digital football gaming experience built for intuitive, interactive play.',
+    description: 'Developing a football-themed gaming application focused on delivering an engaging digital football experience. Responsible for product concept development, UI/UX design, and application development, with an emphasis on creating an intuitive and interactive user experience.',
+    problem: 'Many web-based football games feel cluttered or sluggish on mobile and desktop browsers, lacking smooth interactive controls and modern sports presentation.',
+    solution: 'Designing and developing Wonkyendi end-to-end — from original product concept and crisp sports UI/UX to responsive interactive gameplay architecture deployed on Vercel.',
+    architecture: [
+      'Product & Concept: End-to-end game loop design, user journeys, and football-themed mechanics',
+      'UI/UX Design: Intuitive, high-contrast interactive sports interface crafted for quick engagement',
+      'Frontend Stack: Modern web application architecture with responsive state & animation handling',
+      'Deployment: Continuous delivery via Vercel Edge Network (Ongoing Development)'
+    ],
+    features: [
+      'Engaging football-themed interactive gameplay experience',
+      'Intuitive, mobile-friendly sports UI/UX designed for immediate playability',
+      'Responsive state-driven interactions and real-time visual feedback',
+      'Active iterative development with regular feature updates on Vercel'
+    ],
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'UI/UX Design', 'Interactive Web App', 'Vercel'],
+    metrics: [
+      { label: 'Status', value: 'Ongoing Dev' },
+      { label: 'Category', value: 'Football Game' },
+      { label: 'Role', value: 'Creator & Dev' }
+    ],
+    previewType: 'interactive',
+    previewUrl: 'https://api.microlink.io?url=https%3A%2F%2Fwonkyendi.vercel.app&screenshot=true&meta=false&embed=screenshot.url',
+    accentColor: '#10B981',
+    role: 'Product Concept, UI/UX & Application Developer',
+    liveUrl: 'https://wonkyendi.vercel.app',
+    githubUrl: 'https://github.com/alqabid'
+  },
   {
     id: 'medvision',
     title: 'MedVision',
@@ -559,7 +593,7 @@ export const SKILL_NODES: SkillNode[] = [
   { id: 'genai_prompt', name: 'GenAI & Prompt Engineering', category: 'ai', level: 96, description: 'ChatGPT, Claude, Google Gemini, GitHub Copilot, Lovable, system prompt structuring, rapid prototyping.', connectedProjects: ['medvision', 'ugogo'] },
   { id: 'tensorflow_ml', name: 'TensorFlow & ML', category: 'ai', level: 88, description: 'MobileNetV2, CNN architectures, transfer learning, image classification, OpenCV, evaluation benchmarks.', connectedProjects: ['medvision'] },
   { id: 'canva_advanced', name: 'Canva (Advanced)', category: 'design', level: 99, description: 'Elite visual communication, promotional event flyers, high-CTR YouTube thumbnails, digital branding, corporate decks, marketing campaigns.', connectedProjects: ['grandiose-glam', 'yugogoo'] },
-  { id: 'photoshop_figma', name: 'Photoshop & Figma', category: 'design', level: 90, description: 'UI/UX wireframing, design tokens, photo manipulation, raster compositing, color theory.', connectedProjects: ['grandiose-glam', 'yugogoo'] },
+  { id: 'affinity_figma', name: 'Affinity & Figma', category: 'design', level: 93, description: 'Proficient vector & raster graphic design in Affinity, UI/UX wireframing, design tokens, photo editing, compositing, and color theory.', connectedProjects: ['wonkyendi', 'grandiose-glam', 'yugogoo'] },
   { id: 'lensstudio_ar', name: 'Snapchat Lens Studio', category: 'ar', level: 94, description: '3D face & world tracking, segmentation shaders, visual scripting, spatial AR filters, particle VFX.', connectedProjects: ['lens-cyber-hud', 'lens-aura-bloom', 'lens-retro-shades', 'lens-ghana-portal'] },
   { id: 'databases_sql', name: 'PostgreSQL, MySQL & SQL', category: 'code', level: 86, description: 'Relational database schemas, ACID transactions, data querying, indexing, ORMs.', connectedProjects: ['ugogo', 'medvision'] },
   { id: 'aws_cloud', name: 'AWS Cloud & Infrastructure', category: 'code', level: 82, description: 'EC2, S3, RDS, CloudFront, XAMPP, deployment pipelines, virtualized environments.', connectedProjects: ['ugogo', 'medvision'] },
@@ -582,7 +616,7 @@ export const SERVICES: ServiceItem[] = [
     title: 'DESIGN',
     tagline: 'Thumbnails, Branding & High-Impact Visuals',
     description: 'Crafting visuals that stop the scroll and establish undeniable authority across digital channels.',
-    deliverables: ['High-CTR YouTube thumbnail design', 'Complete brand identity & marketing assets', 'Advanced Canva & Adobe Photoshop compositions', 'UI/UX component systems & wireframes in Figma'],
+    deliverables: ['High-CTR YouTube thumbnail design', 'Complete brand identity & marketing assets', 'Advanced Canva & Affinity compositions', 'UI/UX component systems & wireframes in Figma'],
     accentColor: '#FFB7D5',
     iconName: 'Palette'
   },
@@ -620,7 +654,7 @@ export const RECRUITER_DATA = {
 
 Experienced in web application development, frontend engineering, API integration, UI/UX design, graphic design, artificial intelligence and digital product development. Proficient in modern development technologies including React, JavaScript, TypeScript, Vite, HTML, CSS, Python and FastAPI, with additional programming experience in Java, C++, C#, PHP and SQL.
 
-Combines software engineering knowledge with strong creative capabilities in web design, graphic design and digital content creation. An advanced Canva designer with experience creating professional marketing materials, promotional graphics, social media content and visual brand assets. Also experienced in Figma, Adobe Photoshop and Snapchat Lens Studio for interface design and augmented-reality content creation.
+Combines software engineering knowledge with strong creative capabilities in web design, graphic design and digital content creation. An advanced Canva designer with experience creating professional marketing materials, promotional graphics, social media content and visual brand assets. Also proficient in Affinity, Figma and Snapchat Lens Studio for graphic design, interface design and augmented-reality content creation.
 
 Entrepreneurial and product-oriented, with experience co-founding digital products, developing software projects and applying AI tools and prompt engineering to accelerate development, research, prototyping and problem-solving.
 
@@ -629,13 +663,26 @@ Interested in building scalable digital products and using technology, creativit
     programming: ['React', 'JavaScript', 'TypeScript', 'Python', 'FastAPI', 'Java', 'C++', 'C#', 'PHP', 'SQL', 'PostgreSQL', 'MySQL'],
     genai: ['ChatGPT', 'Claude', 'Google Gemini', 'GitHub Copilot', 'Lovable', 'Prompt Engineering', 'AI-Assisted Rapid Prototyping'],
     frontend: ['React', 'JavaScript', 'TypeScript', 'Vite', 'HTML5', 'CSS3', 'Tailwind CSS', 'Bootstrap'],
-    design_uiux: ['Advanced Canva Design', 'Figma', 'Adobe Photoshop', 'Snapchat Lens Studio', 'Digital Branding', 'Web Design', 'UI/UX Design'],
+    design_uiux: ['Advanced Canva Design', 'Affinity', 'Figma', 'Snapchat Lens Studio', 'Digital Branding', 'Web Design', 'UI/UX Design'],
     backend_cloud: ['FastAPI', 'REST APIs', 'Backend Integration', 'API Testing & Documentation', 'PostgreSQL', 'AWS (EC2, S3, RDS)', 'FinTech Systems'],
     ar_creative: ['Snapchat Lens Studio', 'AR Lens Creation', 'Augmented Reality Filters', 'Cinema 4D (3D Typography)'],
     ai_ml: ['TensorFlow', 'OpenCV', 'Transfer Learning (MobileNetV2)', 'Image Classification', 'Deep Learning'],
     tooling: ['Git', 'GitHub', 'VS Code', 'API Testing Tools', 'NetBeans', 'VirtualBox', 'WSL']
   },
   softwareProjects: [
+    {
+      title: 'WONKYENDI',
+      role: 'Product Concept, UI/UX & Application Developer',
+      subtitle: 'Football Gaming Application (Personal Project | Ongoing Development)',
+      liveUrl: 'https://wonkyendi.vercel.app',
+      githubUrl: 'https://github.com/alqabid',
+      highlights: [
+        'Developing a football-themed gaming application focused on delivering an engaging digital football experience.',
+        'Responsible for end-to-end product concept development, UI/UX design, and interactive application engineering.',
+        'Emphasizing an intuitive, responsive, and engaging user experience across modern web browsers.'
+      ],
+      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'UI/UX Design', 'Interactive Web App', 'Vercel']
+    },
     {
       title: 'UGOGO / YUGOGOO',
       role: 'Co-founder & Product Lead',
@@ -884,8 +931,8 @@ export const EXPERIENCE: ExperienceItem[] = [
     highlights: [
       'Authored viral augmented reality experiences in Snapchat Lens Studio with custom 3D face tracking shaders and spatial VFX.',
       'Mastery in structuring complex prompts to command Large Language Models (LLMs) for high-fidelity code generation, system architecture design, and rapid prototyping.',
-      'Created elite-level visual communication strategies, high-converting promotional campaigns, corporate branding assets, and marketing materials in Canva & Photoshop.'
+      'Created elite-level visual communication strategies, high-converting promotional campaigns, corporate branding assets, and marketing materials in Canva & Affinity.'
     ],
-    technologies: ['Lens Studio', 'Canva Advanced', 'Adobe Photoshop', 'Figma', 'Prompt Engineering', 'GenAI']
+    technologies: ['Lens Studio', 'Canva Advanced', 'Affinity', 'Figma', 'Prompt Engineering', 'GenAI']
   }
 ];

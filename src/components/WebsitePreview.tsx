@@ -129,7 +129,7 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-1.5 rounded-lg bg-[#333333] hover:bg-[#FFF35C] text-white hover:text-[#111111] transition-all flex items-center gap-1"
+            className="p-1.5 rounded-lg bg-[#333333] hover:bg-white text-white hover:text-[#111111] transition-all flex items-center gap-1"
             title="Open Live Web App in New Tab"
           >
             <ExternalLink className="w-3.5 h-3.5" />
@@ -179,7 +179,7 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-xl bg-[#FFF35C] text-[#111111] font-display font-bold text-xs flex items-center gap-1.5"
+                    className="px-4 py-2 rounded-xl bg-white hover:bg-neutral-100 text-[#111111] font-display font-bold text-xs flex items-center gap-1.5"
                   >
                     <span>Launch Live Site</span>
                     <ExternalLink className="w-3.5 h-3.5" />

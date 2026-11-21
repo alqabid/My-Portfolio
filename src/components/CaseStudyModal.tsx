@@ -114,7 +114,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
             {/* Technology Stack */}
             <div className="flex flex-wrap items-center gap-1.5 pt-2">
               <span className="text-xs text-neutral-500 mr-2 font-medium">Stack:</span>
-              {project.stack.map((tech) => (
+              {(project.technologies || []).map((tech) => (
                 <span
                   key={tech}
                   className="px-2.5 py-1 rounded-md bg-neutral-100 text-neutral-800 text-xs font-medium"

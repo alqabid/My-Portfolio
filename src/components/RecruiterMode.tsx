@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Printer,
+  Download,
+  Check,
   Mail,
   Linkedin,
   Github,
@@ -18,6 +20,7 @@ import {
 } from 'lucide-react';
 import { RECRUITER_DATA } from '../data/portfolioData';
 import { usePortfolio } from '../context/PortfolioContext';
+import { generateCvPdf } from '../utils/generateCvPdf';
 
 interface RecruiterModeProps {
   onExitRecruiterMode: () => void;
@@ -25,9 +28,19 @@ interface RecruiterModeProps {
 
 export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMode }) => {
   const { personalInfo: PERSONAL_INFO, experience } = usePortfolio();
+  const [downloadState, setDownloadState] = useState<'idle' | 'done'>('idle');
 
   const handlePrint = () => {
     window.print();
+  };
+
+  const handleDownloadPdf = () => {
+    generateCvPdf({
+      personalInfo: PERSONAL_INFO,
+      experience
+    });
+    setDownloadState('done');
+    setTimeout(() => setDownloadState('idle'), 2500);
   };
 
   return (
@@ -36,16 +49,33 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
         {/* Top Control Strip (Hidden in Print) */}
         <div className="print:hidden flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-neutral-50">
           <div className="flex items-center gap-2 text-xs font-semibold text-neutral-900">
-            <span>Recruiter & Printable Resume View</span>
+            <span>Recruiter & Downloadable Resume View</span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={handleDownloadPdf}
+              className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
+            >
+              {downloadState === 'done' ? (
+                <>
+                  <Check className="w-3.5 h-3.5" />
+                  <span>CV Downloaded (.pdf)</span>
+                </>
+              ) : (
+                <>
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download CV (PDF)</span>
+                </>
+              )}
+            </button>
+
             <button
               onClick={handlePrint}
               className="px-3.5 py-2 rounded-xl bg-white hover:bg-neutral-200/60 text-neutral-900 text-xs font-medium flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>Print / Save PDF</span>
+              <span>Print</span>
             </button>
 
             <button

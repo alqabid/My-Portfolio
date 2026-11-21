@@ -21,7 +21,7 @@ import {
   EXPERIENCE as DEFAULT_EXPERIENCE
 } from '../data/portfolioData';
 
-const STORAGE_KEY = 'abdul_portfolio_cms_v11';
+const STORAGE_KEY = 'abdul_portfolio_cms_v12';
 const AUTH_STORAGE_KEY = 'abdul_portfolio_auth_session';
 
 const DEFAULT_ADMIN_CONFIG: AdminConfig = {
@@ -114,7 +114,12 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const loadSavedData = (): FullPortfolioData => {
     try {
       // Check current or previous storage keys
-      const stored = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('abdul_portfolio_cms_v7') || localStorage.getItem('abdul_portfolio_cms_v8');
+      const stored =
+        localStorage.getItem(STORAGE_KEY) ||
+        localStorage.getItem('abdul_portfolio_cms_v11') ||
+        localStorage.getItem('abdul_portfolio_cms_v10') ||
+        localStorage.getItem('abdul_portfolio_cms_v8') ||
+        localStorage.getItem('abdul_portfolio_cms_v7');
       if (stored) {
         const parsed = JSON.parse(stored);
         const storedMessages: ContactMessage[] = Array.isArray(parsed.contactMessages)
@@ -123,7 +128,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
             )
           : [];
 
-        // Ensure experience contains Juni Ghana Limited at the beginning
+        // Ensure experience contains Juni Ghana Limited at the beginning & uses Affinity instead of Adobe Photoshop
         let expList: ExperienceItem[] = Array.isArray(parsed.experience) ? parsed.experience : DEFAULT_EXPERIENCE;
         const hasJuni = expList.some(
           (e) => e.company && e.company.toUpperCase().includes('JUNI GHANA')
@@ -131,8 +136,17 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         if (!hasJuni) {
           expList = [DEFAULT_EXPERIENCE[0], ...expList];
         }
+        expList = expList.map((exp) => ({
+          ...exp,
+          highlights: (exp.highlights || []).map((h) =>
+            h.replace(/Adobe Photoshop/gi, 'Affinity').replace(/Photoshop/gi, 'Affinity')
+          ),
+          technologies: (exp.technologies || []).map((t) =>
+            t.replace(/Adobe Photoshop/gi, 'Affinity').replace(/Photoshop/gi, 'Affinity')
+          )
+        }));
 
-        // Ensure bio is updated if missing Juni Ghana reference
+        // Ensure bio is updated if missing Juni Ghana reference or still mentions Adobe/Photoshop
         let pInfo = parsed.personalInfo || DEFAULT_PERSONAL_INFO;
         if (!pInfo.bio || !pInfo.bio.includes('Juni Ghana Limited')) {
           pInfo = {
@@ -143,6 +157,13 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
             availability: DEFAULT_PERSONAL_INFO.availability,
             currentRole: DEFAULT_PERSONAL_INFO.currentRole,
             bio: DEFAULT_PERSONAL_INFO.bio
+          };
+        } else if (/adobe|photoshop/i.test(pInfo.bio)) {
+          pInfo = {
+            ...pInfo,
+            bio: pInfo.bio
+              .replace(/Adobe Photoshop/gi, 'Affinity')
+              .replace(/Photoshop/gi, 'Affinity')
           };
         }
 
@@ -155,13 +176,44 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
           };
         }
 
+        // Ensure Wonkyendi project is included in buildProjects
+        let projectsList: Project[] = Array.isArray(parsed.buildProjects)
+          ? parsed.buildProjects
+          : DEFAULT_BUILD_PROJECTS;
+        const hasWonkyendi = projectsList.some((p) => p.id === 'wonkyendi');
+        if (!hasWonkyendi) {
+          const defaultWonkyendi = DEFAULT_BUILD_PROJECTS.find((p) => p.id === 'wonkyendi');
+          if (defaultWonkyendi) {
+            projectsList = [defaultWonkyendi, ...projectsList];
+          }
+        }
+
+        // Ensure skillNodes & services use Affinity instead of Adobe Photoshop
+        const skillsList: SkillNode[] = (Array.isArray(parsed.skillNodes) ? parsed.skillNodes : DEFAULT_SKILL_NODES).map((s: SkillNode) =>
+          /adobe|photoshop/i.test(`${s.id} ${s.name} ${s.description}`)
+            ? {
+                ...s,
+                id: s.id === 'photoshop_figma' ? 'affinity_figma' : s.id,
+                name: s.name.replace(/Adobe Photoshop/gi, 'Affinity').replace(/Photoshop/gi, 'Affinity'),
+                description: s.description.replace(/Adobe Photoshop/gi, 'Affinity').replace(/Photoshop/gi, 'Affinity')
+              }
+            : s
+        );
+
+        const servicesList: ServiceItem[] = (Array.isArray(parsed.services) ? parsed.services : DEFAULT_SERVICES).map((srv: ServiceItem) => ({
+          ...srv,
+          deliverables: (srv.deliverables || []).map((d) =>
+            d.replace(/Adobe Photoshop/gi, 'Affinity').replace(/Photoshop/gi, 'Affinity')
+          )
+        }));
+
         return {
           personalInfo: pInfo,
-          buildProjects: parsed.buildProjects || DEFAULT_BUILD_PROJECTS,
+          buildProjects: projectsList,
           designItems: parsed.designItems || DEFAULT_DESIGN_ITEMS,
           arLenses: parsed.arLenses || DEFAULT_AR_LENSES,
-          skillNodes: parsed.skillNodes || DEFAULT_SKILL_NODES,
-          services: parsed.services || DEFAULT_SERVICES,
+          skillNodes: skillsList,
+          services: servicesList,
           experience: expList,
           contactMessages: storedMessages,
           adminConfig: parsed.adminConfig || DEFAULT_ADMIN_CONFIG

@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
-import { Code2, Server, Palette, Cpu, Check } from 'lucide-react';
+import React from 'react';
+import { Code2, Server, Palette, Cpu } from 'lucide-react';
+import { CursorType } from '../types';
 
-export const SkillConstellation: React.FC = () => {
+interface SkillConstellationProps {
+  onSetCursor?: (type: CursorType, text?: string) => void;
+}
+
+export const SkillConstellation: React.FC<SkillConstellationProps> = () => {
   const skillCategories = [
     {
       title: 'Frontend Engineering',
@@ -35,8 +40,8 @@ export const SkillConstellation: React.FC = () => {
       description: 'High-converting promotional marketing materials, flyers, and interface design.',
       skills: [
         { name: 'Canva (Advanced)', level: 'Expert' },
+        { name: 'Affinity', level: 'Advanced' },
         { name: 'Figma', level: 'Proficient' },
-        { name: 'Adobe Photoshop', level: 'Proficient' },
         { name: 'Visual Brand Identity', level: 'Advanced' },
         { name: 'Event Flyer Design', level: 'Expert' },
         { name: 'High-CTR Asset Creation', level: 'Advanced' }

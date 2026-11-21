@@ -6,6 +6,8 @@ import { ARWorld } from './ARWorld';
 import { SkillConstellation } from './SkillConstellation';
 import { Project, CursorType } from '../types';
 
+import { usePortfolio } from '../context/PortfolioContext';
+
 interface ShowcaseHubProps {
   activeTab?: string;
   onSelectCaseStudy: (project: Project) => void;
@@ -19,6 +21,7 @@ export const ShowcaseHub: React.FC<ShowcaseHubProps> = ({
   onSelectCaseStudy,
   onSetCursor
 }) => {
+  const { buildProjects } = usePortfolio();
   const [activeTab, setActiveTab] = useState<ShowcaseTabType>('build');
 
   useEffect(() => {
@@ -30,17 +33,17 @@ export const ShowcaseHub: React.FC<ShowcaseHubProps> = ({
   const tabs = [
     {
       id: 'build' as const,
-      label: 'Software & AI',
-      count: '4 Projects',
+      label: 'Software & Apps',
+      count: `${buildProjects.length} Projects`,
       icon: Terminal,
-      tag: 'Web & Models'
+      tag: `${buildProjects.length} Builds`
     },
     {
       id: 'design' as const,
       label: 'Brand & Visual Design',
-      count: '8 Works',
+      count: 'Visual Work',
       icon: Palette,
-      tag: 'Flyers & Identity'
+      tag: 'Canva & Affinity'
     },
     {
       id: 'ar' as const,
@@ -54,7 +57,7 @@ export const ShowcaseHub: React.FC<ShowcaseHubProps> = ({
       label: 'Tech Stack & Skills',
       count: 'Core Tools',
       icon: Layers,
-      tag: 'Languages & AI'
+      tag: 'Code & Design'
     }
   ];
 

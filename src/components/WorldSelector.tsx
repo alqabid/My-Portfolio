@@ -23,9 +23,9 @@ export const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld }) =
       id: 'design' as const,
       number: '02',
       title: 'Brand & Visual Design',
-      description: 'Crafting high-impact promotional graphics, event flyers, visual branding, and marketing assets using advanced Canva, Figma, and Adobe Photoshop.',
+      description: 'Crafting high-impact promotional graphics, event flyers, visual branding, and marketing assets using advanced Canva, Affinity, and Figma.',
       icon: Palette,
-      highlights: ['Event Posters & Flyers', 'Advanced Canva & Photoshop', 'Social Campaign Collateral', 'High-CTR Visual Assets'],
+      highlights: ['Event Posters & Flyers', 'Advanced Canva & Affinity', 'Social Campaign Collateral', 'High-CTR Visual Assets'],
       metric: '14.8% Average CTR',
       metricLabel: 'Promotional Campaign Assets'
     },

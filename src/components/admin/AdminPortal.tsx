@@ -1816,7 +1816,7 @@ const DesignModal: React.FC<DesignModalProps> = ({ design, isNew, onClose, onSav
       category: 'flyers',
       clientOrProject: '',
       role: 'Visual Designer',
-      tools: ['Canva Advanced', 'Photoshop'],
+      tools: ['Canva Advanced', 'Affinity'],
       process: ['Visual Storyboarding', 'High-Contrast Typography'],
       imageUrl: '',
       aspectRatio: '4/5',
@@ -2188,7 +2188,7 @@ const DesignModal: React.FC<DesignModalProps> = ({ design, isNew, onClose, onSav
               </label>
               <input
                 type="text"
-                placeholder="Canva Advanced, Photoshop, Figma"
+                placeholder="Canva Advanced, Affinity, Figma"
                 value={toolsInput}
                 onChange={(e) => setToolsInput(e.target.value)}
                 className="w-full px-3 py-1.5 rounded bg-neutral-900 border border-neutral-700 text-white focus:border-emerald-500 focus:outline-none"
