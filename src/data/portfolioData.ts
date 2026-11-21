@@ -49,33 +49,34 @@ export const BUILD_PROJECTS: Project[] = [
     id: 'medvision',
     title: 'MedVision',
     category: 'build',
-    subtitle: 'AI-Powered Pneumonia Detection System',
-    tagline: 'High-speed radiological diagnostic assistance using deep transfer learning.',
-    description: 'MedVision is an AI-powered diagnostic web tool built with TensorFlow and Python that classifies pneumonia from pediatric chest X-ray imagery. Final Project work for the University of Mines and Technology (UMaT), Computer Science & Engineering Class of 2026.',
-    problem: 'Radiologist shortages in developing medical centers often delay chest X-ray interpretations for acute respiratory infections, where rapid diagnosis can be life-saving.',
-    solution: 'Engineered an end-to-end computer vision diagnostic pipeline utilizing MobileNetV2 transfer learning, bridging the model with a client-facing web app through an asynchronous FastAPI backend and applying advanced prompt engineering for AI-assisted optimization.',
+    subtitle: 'AI-Powered Medical Image Diagnosis · Final-Year Team Project',
+    tagline: 'Automated Chest X-ray & Chest CT analysis with Grad-CAM explainability and clinical reports.',
+    description: 'Developed a web-based AI-assisted medical imaging platform supporting automated analysis of Chest X-ray and Chest CT scans, with Grad-CAM visualisation, patient records, and downloadable clinical reports.',
+    problem: 'Radiologist shortages and heavy clinical workloads can delay interpretation of Chest X-rays and Chest CT scans for pneumonia and lung cancer subtypes, where rapid, explainable screening is critical.',
+    solution: 'Co-developed a full-stack AI medical imaging platform combining TensorFlow/Keras MobileNetV2 models for Chest X-ray and Chest CT scans, Grad-CAM visual explainability, FastAPI + PostgreSQL backend services, and an interactive React + TypeScript clinical workflow with patient records and downloadable reports.',
     architecture: [
-      'Frontend: React + TypeScript + Tailwind CSS with radiograph visualizer',
-      'API Layer: Asynchronous FastAPI with Pydantic validation & image normalization',
-      'Inference Engine: TensorFlow & Python with MobileNetV2 transfer learning',
-      'Deployment: Vercel Global Edge Network'
+      'Frontend: React + TypeScript with interactive imaging workflows, Grad-CAM overlays, and patient record views',
+      'Backend API: Python & FastAPI powering inference pipelines, clinical report generation, and API services',
+      'AI Models: TensorFlow/Keras & MobileNetV2 for Chest X-ray (3-class) and Chest CT (4-class) classification + Grad-CAM',
+      'Database & Hosting: PostgreSQL for patient records & diagnostics; Vercel deployment'
     ],
     features: [
-      'Sub-second image pre-processing and tensor normalization',
-      'High-precision classification (Normal vs Viral vs Bacterial Pneumonia)',
-      'Model performance optimized across accuracy, precision, recall, and F1-score benchmarks',
-      'AI-assisted research, debugging, and clinical documentation workflow'
+      'AI-assisted Chest X-ray classification for bacterial pneumonia, viral pneumonia, and normal cases',
+      'Chest CT scan analysis covering Adenocarcinoma, Squamous Cell Carcinoma, Large Cell Carcinoma, and healthy lung tissue',
+      'Grad-CAM visualisation highlighting image regions influencing AI predictions',
+      'Interactive imaging workflows, patient records, and downloadable clinical reports',
+      'Full-stack frontend and backend architecture design and development'
     ],
-    technologies: ['Python', 'TensorFlow', 'MobileNetV2', 'OpenCV', 'FastAPI', 'React', 'TypeScript', 'Vercel'],
+    technologies: ['Python', 'TensorFlow/Keras', 'MobileNetV2', 'FastAPI', 'React', 'TypeScript', 'PostgreSQL'],
     metrics: [
-      { label: 'Validation Accuracy', value: '94.2%' },
-      { label: 'Avg Inference Time', value: '< 280ms' },
-      { label: 'Model Architecture', value: 'MobileNetV2' }
+      { label: 'Modalities', value: 'X-Ray & CT' },
+      { label: 'Explainability', value: 'Grad-CAM' },
+      { label: 'Type', value: 'Team Project' }
     ],
     previewType: 'interactive',
     previewUrl: 'https://api.microlink.io?url=https%3A%2F%2Fmedvision1.vercel.app&screenshot=true&meta=false&embed=screenshot.url',
-    accentColor: '#FFF35C',
-    role: 'Machine Learning Engineer & Full-Stack Architect',
+    accentColor: '#111111',
+    role: 'Final-Year Project | Team Project',
     liveUrl: 'https://medvision1.vercel.app/',
     githubUrl: 'https://github.com/alqabid/Medvision-web'
   },
@@ -141,10 +142,10 @@ export const BUILD_PROJECTS: Project[] = [
       { label: 'Backend Stack', value: 'FastAPI + SQL' }
     ],
     previewType: 'interactive',
-    previewUrl: 'https://api.microlink.io?url=http%3A%2F%2Fugogo.vercel.app&screenshot=true&meta=false&embed=screenshot.url',
+    previewUrl: 'https://api.microlink.io?url=https%3A%2F%2Fugogo.vercel.app&screenshot=true&meta=false&embed=screenshot.url',
     accentColor: '#B9F5D0',
     role: 'Co-founder & Product Lead',
-    liveUrl: 'http://ugogo.vercel.app/',
+    liveUrl: 'https://ugogo.vercel.app/',
     githubUrl: 'https://github.com/alqabid/uGOGO2'
   },
   {
@@ -175,10 +176,10 @@ export const BUILD_PROJECTS: Project[] = [
       { label: 'User Satisfaction', value: '98%' }
     ],
     previewType: 'interactive',
-    previewUrl: 'https://api.microlink.io?url=http%3A%2F%2Fyugogoo-website.vercel.app&screenshot=true&meta=false&embed=screenshot.url',
+    previewUrl: 'https://api.microlink.io?url=https%3A%2F%2Fyugogoo-website.vercel.app&screenshot=true&meta=false&embed=screenshot.url',
     accentColor: '#A9DDFF',
     role: 'Co-founder & Product Lead',
-    liveUrl: 'http://yugogoo-website.vercel.app/',
+    liveUrl: 'https://yugogoo-website.vercel.app/',
     githubUrl: 'https://github.com/alqabid/uGOGO2'
   },
   {
@@ -671,18 +672,19 @@ Interested in building scalable digital products and using technology, creativit
   },
   softwareProjects: [
     {
-      title: 'MEDVISION',
-      role: 'Machine Learning Engineer',
-      subtitle: 'AI-Powered Pneumonia Detection System (Final Project — UMaT Class of 2026)',
+      title: 'MEDVISION – AI-POWERED MEDICAL IMAGE DIAGNOSIS',
+      role: 'Final-Year Project | Team Project',
+      subtitle: 'Web-Based AI-Assisted Chest X-Ray & Chest CT Imaging Platform',
       liveUrl: 'https://medvision1.vercel.app/',
       githubUrl: 'https://github.com/alqabid/Medvision-web',
       highlights: [
-        'Engineered a highly secure, web-based AI diagnostic tool utilizing TensorFlow and Python to classify pneumonia from chest X-ray imagery.',
-        'Implemented MobileNetV2 transfer learning, optimizing the model to achieve rigorous accuracy, precision, recall, and F1-score benchmarks.',
-        'Designed a scalable backend architecture via FastAPI to bridge the machine learning model with the client-facing web application.',
-        'Employed advanced prompt engineering strategies for AI-assisted research, debugging, and documentation generation throughout the software lifecycle.'
+        'Implemented AI-assisted Chest X-ray classification for bacterial pneumonia, viral pneumonia, and normal cases.',
+        'Expanded the platform to support Chest CT analysis, covering Adenocarcinoma, Squamous Cell Carcinoma, Large Cell Carcinoma, and healthy lung tissue.',
+        'Integrated Grad-CAM visualisation to highlight image regions influencing AI predictions.',
+        'Developed interactive imaging workflows, patient records, and downloadable clinical reports.',
+        'Contributed to the design and development of the frontend and backend architecture.'
       ],
-      technologies: ['Python', 'TensorFlow', 'MobileNetV2', 'OpenCV', 'FastAPI', 'React', 'TypeScript']
+      technologies: ['Python', 'TensorFlow/Keras', 'MobileNetV2', 'FastAPI', 'React', 'TypeScript', 'PostgreSQL']
     },
     {
       title: 'WONKYENDI',
@@ -875,17 +877,18 @@ export const EXPERIENCE: ExperienceItem[] = [
   },
   {
     period: '2024 — 2026',
-    role: 'Machine Learning Engineer',
-    company: 'MEDVISION (UMaT Final Project)',
+    role: 'Final-Year Project | Team Project (Full-Stack & ML)',
+    company: 'MEDVISION – AI-POWERED MEDICAL IMAGE DIAGNOSIS',
     location: 'University of Mines and Technology',
     category: 'software',
     highlights: [
-      'Engineered a highly secure, web-based AI diagnostic tool utilizing TensorFlow and Python to classify pneumonia from chest X-ray imagery.',
-      'Implemented MobileNetV2 transfer learning, optimizing the model to achieve rigorous accuracy, precision, recall, and F1-score benchmarks.',
-      'Designed a scalable backend architecture via FastAPI to bridge the machine learning model with the client-facing web application.',
-      'Employed advanced prompt engineering strategies for AI-assisted research, debugging, and documentation generation throughout the software lifecycle.'
+      'Implemented AI-assisted Chest X-ray classification for bacterial pneumonia, viral pneumonia, and normal cases.',
+      'Expanded the platform to support Chest CT analysis, covering Adenocarcinoma, Squamous Cell Carcinoma, Large Cell Carcinoma, and healthy lung tissue.',
+      'Integrated Grad-CAM visualisation to highlight image regions influencing AI predictions.',
+      'Developed interactive imaging workflows, patient records, and downloadable clinical reports.',
+      'Contributed to the design and development of the frontend and backend architecture.'
     ],
-    technologies: ['Python', 'TensorFlow', 'MobileNetV2', 'OpenCV', 'FastAPI', 'React', 'TypeScript']
+    technologies: ['Python', 'TensorFlow/Keras', 'MobileNetV2', 'FastAPI', 'React', 'TypeScript', 'PostgreSQL']
   },
   {
     period: '2022 — Present',

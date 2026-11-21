@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import {
   ExternalLink,
   Github,
@@ -8,7 +8,12 @@ import {
   Gamepad2,
   Globe,
   Monitor,
-  Code2
+  Play,
+  SkipForward,
+  ArrowUpDown,
+  Search,
+  UserCheck,
+  CheckCircle2
 } from 'lucide-react';
 import { Project, CursorType } from '../types';
 import { usePortfolio } from '../context/PortfolioContext';
@@ -24,60 +29,207 @@ interface HealthCheckResult {
   latencyMs?: number;
 }
 
+// Interactive mini desktop UI preview for Java Student Record Management
+const StudentRecordsMiniUI: React.FC = () => {
+  const [query, setQuery] = useState('');
+  const records = [
+    { id: 'CS-26-014', name: 'K. Mensah', gpa: '3.82', status: 'Active' },
+    { id: 'CS-26-029', name: 'A. Osei', gpa: '3.65', status: 'Active' },
+    { id: 'CS-26-041', name: 'E. Boateng', gpa: '3.91', status: 'Honors' }
+  ];
+  const filtered = records.filter(
+    (r) =>
+      r.name.toLowerCase().includes(query.toLowerCase()) ||
+      r.id.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return (
+    <div className="w-full rounded-xl bg-[#111111] overflow-hidden flex flex-col">
+      <div className="bg-[#1C1C1C] px-2.5 py-1.5 flex items-center justify-between text-[10px] font-mono text-neutral-300">
+        <div className="flex items-center gap-1">
+          <span className="w-2 h-2 rounded-full bg-[#FF5F56]" />
+          <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
+          <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
+        </div>
+        <span className="truncate text-neutral-400">StudentRecords.jar — Java SE</span>
+        <span className="text-emerald-400">OOP</span>
+      </div>
+      <div className="h-48 bg-white p-3 flex flex-col justify-between text-neutral-900">
+        <div className="space-y-2">
+          <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-neutral-100">
+            <Search className="w-3 h-3 text-neutral-400 shrink-0" />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search student ID or name..."
+              className="w-full bg-transparent text-[10px] text-neutral-800 placeholder:text-neutral-400 focus:outline-none"
+            />
+          </div>
+
+          <div className="space-y-1">
+            {filtered.map((rec) => (
+              <div
+                key={rec.id}
+                className="px-2 py-1.5 rounded-lg bg-neutral-50 flex items-center justify-between text-[10px]"
+              >
+                <div className="flex items-center gap-1.5 min-w-0">
+                  <UserCheck className="w-3 h-3 text-neutral-700 shrink-0" />
+                  <span className="font-mono text-neutral-500">{rec.id}</span>
+                  <span className="font-semibold text-neutral-900 truncate">{rec.name}</span>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className="font-mono font-semibold text-neutral-900">{rec.gpa}</span>
+                  <span className="px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 text-[9px] font-medium">
+                    {rec.status}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between text-[9px] font-mono text-neutral-400 pt-1">
+          <span>Validated Records: {filtered.length}</span>
+          <span>Encapsulated Storage</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Interactive mini desktop UI preview for C# Queue ADT Music Player
+const MusicPlayerMiniUI: React.FC = () => {
+  const [tracks, setTracks] = useState([
+    { title: 'Accra Midnight', duration: '3:42' },
+    { title: 'Focus Flow', duration: '2:58' },
+    { title: 'Signal Wave', duration: '4:11' }
+  ]);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const handleNext = () => {
+    setTracks((prev) => [...prev.slice(1), prev[0]]);
+  };
+
+  const handleBubbleSort = () => {
+    setTracks((prev) => [...prev].sort((a, b) => a.title.localeCompare(b.title)));
+  };
+
+  return (
+    <div className="w-full rounded-xl bg-[#111111] overflow-hidden flex flex-col">
+      <div className="bg-[#1C1C1C] px-2.5 py-1.5 flex items-center justify-between text-[10px] font-mono text-neutral-300">
+        <div className="flex items-center gap-1">
+          <span className="w-2 h-2 rounded-full bg-[#FF5F56]" />
+          <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
+          <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
+        </div>
+        <span className="truncate text-neutral-400">QueuePlayer.exe — C# .NET</span>
+        <span className="text-emerald-400">FIFO</span>
+      </div>
+      <div className="h-48 bg-neutral-950 p-3 flex flex-col justify-between text-white">
+        <div className="space-y-2">
+          <div className="p-2 rounded-lg bg-neutral-900 flex items-center justify-between">
+            <div className="min-w-0">
+              <span className="text-[9px] font-mono text-emerald-400 block">NOW PLAYING (HEAD)</span>
+              <span className="text-xs font-semibold truncate block">{tracks[0].title}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <button
+                type="button"
+                onClick={() => setIsPlaying((p) => !p)}
+                className="p-1.5 rounded-lg bg-white text-neutral-950 hover:bg-neutral-200 cursor-pointer"
+                title={isPlaying ? 'Pause' : 'Play'}
+              >
+                <Play className="w-3 h-3" />
+              </button>
+              <button
+                type="button"
+                onClick={handleNext}
+                className="p-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white cursor-pointer"
+                title="Dequeue & Next Track"
+              >
+                <SkipForward className="w-3 h-3" />
+              </button>
+              <button
+                type="button"
+                onClick={handleBubbleSort}
+                className="p-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white cursor-pointer"
+                title="Bubble Sort Queue"
+              >
+                <ArrowUpDown className="w-3 h-3" />
+              </button>
+            </div>
+          </div>
+
+          <div className="space-y-1">
+            {tracks.slice(1).map((t, idx) => (
+              <div
+                key={t.title}
+                className="px-2 py-1 rounded bg-neutral-900/70 flex items-center justify-between text-[10px] text-neutral-300"
+              >
+                <span className="truncate">
+                  <span className="font-mono text-neutral-500 mr-1.5">#{idx + 2}</span>
+                  {t.title}
+                </span>
+                <span className="font-mono text-neutral-500">{t.duration}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between text-[9px] font-mono text-neutral-500">
+          <span>ADT: Queue ({tracks.length} items)</span>
+          <span>{isPlaying ? 'PLAYING' : 'PAUSED'}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 interface MiniCardPreviewProps {
   project: Project;
   health?: HealthCheckResult;
   onSelectLive: (id: string) => void;
-  onOpenCaseStudy: (project: Project) => void;
 }
 
 const MiniCardPreview: React.FC<MiniCardPreviewProps> = ({
   project,
   health,
-  onSelectLive,
-  onOpenCaseStudy
+  onSelectLive
 }) => {
-  const [mode, setMode] = useState<'snapshot' | 'live'>('snapshot');
-  const [imgFailed, setImgFailed] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0.28);
+  const [interactive, setInteractive] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
 
-  const cleanDomain = project.liveUrl
-    ? project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')
-    : '';
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const updateScale = () => {
+      if (containerRef.current) {
+        const width = containerRef.current.clientWidth;
+        if (width > 0) {
+          setScale(width / 1280);
+        }
+      }
+    };
+    updateScale();
+    const observer = new ResizeObserver(updateScale);
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
-  const snapshotUrl = project.liveUrl
-    ? `https://api.microlink.io?url=${encodeURIComponent(project.liveUrl)}&screenshot=true&meta=false&embed=screenshot.url`
-    : project.previewUrl;
-
+  // Dedicated interactive desktop app interfaces for local/non-URL projects
   if (!project.liveUrl) {
-    return (
-      <div
-        onClick={() => onOpenCaseStudy(project)}
-        className="relative w-full h-40 rounded-xl bg-neutral-900 overflow-hidden cursor-pointer group"
-      >
-        {!imgFailed && snapshotUrl ? (
-          <img
-            src={snapshotUrl}
-            alt={`${project.title} preview`}
-            onError={() => setImgFailed(true)}
-            className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-300"
-          />
-        ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center text-neutral-400 gap-2">
-            <Code2 className="w-6 h-6 text-neutral-300" />
-            <span className="text-[11px] font-mono">{project.title}</span>
-          </div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex items-end justify-between p-3">
-          <span className="text-[10px] font-mono text-white/90 bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded">
-            Desktop / Core App
-          </span>
-          <span className="text-[10px] font-medium text-white bg-white/15 backdrop-blur-sm px-2 py-0.5 rounded">
-            View Specs
-          </span>
-        </div>
-      </div>
-    );
+    if (project.id === 'student-records') {
+      return <StudentRecordsMiniUI />;
+    }
+    if (project.id === 'music-player-app') {
+      return <MusicPlayerMiniUI />;
+    }
+    return null;
   }
+
+  const cleanDomain = project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
   return (
     <div className="w-full rounded-xl bg-[#111111] overflow-hidden flex flex-col">
@@ -104,66 +256,77 @@ const MiniCardPreview: React.FC<MiniCardPreviewProps> = ({
           />
         </div>
 
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            setMode((prev) => (prev === 'snapshot' ? 'live' : 'snapshot'));
-          }}
-          className={`px-1.5 py-0.5 rounded text-[9px] font-mono transition-colors cursor-pointer shrink-0 ${
-            mode === 'live'
-              ? 'bg-white text-neutral-900 font-semibold'
-              : 'bg-[#2C2C2C] text-neutral-300 hover:text-white'
-          }`}
-          title="Toggle live interactive preview inside card"
-        >
-          {mode === 'live' ? 'Snapshot' : 'Live'}
-        </button>
+        <div className="flex items-center gap-1 shrink-0">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setReloadKey((k) => k + 1);
+            }}
+            className="p-1 rounded text-neutral-400 hover:text-white hover:bg-[#2C2C2C] transition-colors cursor-pointer"
+            title="Reload live preview"
+          >
+            <RefreshCw className="w-2.5 h-2.5" />
+          </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setInteractive((prev) => !prev);
+            }}
+            className={`px-1.5 py-0.5 rounded text-[9px] font-mono transition-colors cursor-pointer ${
+              interactive
+                ? 'bg-white text-neutral-900 font-semibold'
+                : 'bg-[#2C2C2C] text-neutral-300 hover:text-white'
+            }`}
+            title="Toggle direct interaction inside this small card"
+          >
+            {interactive ? 'Lock' : 'Interact'}
+          </button>
+        </div>
       </div>
 
-      {/* Mini Viewport */}
-      <div className="relative w-full h-44 bg-[#0D0D0D] overflow-hidden group">
-        {mode === 'live' ? (
-          <iframe
-            src={project.liveUrl}
-            title={`${project.title} mini live preview`}
-            className="w-full h-full border-0 bg-white"
-            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-            loading="lazy"
-          />
-        ) : (
+      {/* Live Scaled Website/App Interface Viewport */}
+      <div
+        ref={containerRef}
+        className="relative w-full h-48 bg-white overflow-hidden group"
+      >
+        <iframe
+          key={reloadKey}
+          src={project.liveUrl}
+          title={`${project.title} live interface preview`}
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+          loading="lazy"
+          style={
+            interactive
+              ? { width: '100%', height: '100%', border: 0 }
+              : {
+                  width: '1280px',
+                  height: '800px',
+                  border: 0,
+                  transform: `scale(${scale})`,
+                  transformOrigin: 'top left',
+                  pointerEvents: 'none'
+                }
+          }
+          className="bg-white block"
+        />
+
+        {/* Subtle bottom bar in scaled mode to expand full-size */}
+        {!interactive && (
           <div
             onClick={() => onSelectLive(project.id)}
-            className="relative w-full h-full cursor-pointer"
+            className="absolute inset-0 cursor-pointer flex items-end justify-between p-2.5 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-90 group-hover:opacity-100 transition-opacity"
           >
-            {!imgFailed ? (
-              <img
-                src={snapshotUrl}
-                alt={`${project.title} live website snapshot`}
-                onError={() => setImgFailed(true)}
-                className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-300"
-              />
-            ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-neutral-900">
-                <Globe className="w-6 h-6 text-neutral-400 mb-1.5" />
-                <span className="text-xs font-semibold text-white">{project.title}</span>
-                <span className="text-[10px] font-mono text-neutral-400 mt-0.5 truncate max-w-full">
-                  {cleanDomain}
-                </span>
-              </div>
-            )}
-
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-2.5 flex items-center justify-between">
-              <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                {health?.status === 'online' && health.latencyMs
-                  ? `Online · ${health.latencyMs}ms`
-                  : 'Live Web App'}
-              </span>
-              <span className="text-[10px] font-medium text-white bg-white/15 backdrop-blur-sm px-2 py-0.5 rounded opacity-90 group-hover:bg-white group-hover:text-neutral-900 transition-colors">
-                Expand
-              </span>
-            </div>
+            <span className="text-[10px] font-mono text-emerald-300 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              {health?.status === 'online' && health.latencyMs
+                ? `Live · ${health.latencyMs}ms`
+                : 'Live Interface'}
+            </span>
+            <span className="text-[10px] font-medium text-white bg-black/60 group-hover:bg-white group-hover:text-neutral-950 backdrop-blur-sm px-2 py-0.5 rounded transition-colors">
+              Expand
+            </span>
           </div>
         )}
       </div>
@@ -174,7 +337,7 @@ const MiniCardPreview: React.FC<MiniCardPreviewProps> = ({
 export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
   const { buildProjects: BUILD_PROJECTS } = usePortfolio();
 
-  // Ensure MedVision appears first, followed by remaining projects in order
+  // Ensure MedVision appears first, followed by Wonkyendi and the rest
   const orderedProjects = useMemo(() => {
     const medvision = BUILD_PROJECTS.find((p) => p.id === 'medvision');
     const others = BUILD_PROJECTS.filter((p) => p.id !== 'medvision');
@@ -259,7 +422,6 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
 
   const activeHealth = activeProject ? healthMap[activeProject.id] : undefined;
 
-  // Projects shown in the small-card preview grid below (excluding whichever is currently featured on the main stage? No, keep all others cleanly visible so MedVision is featured first and the rest continue below!)
   const otherProjectsBelow = useMemo(
     () => orderedProjects.filter((p) => p.id !== activeProject?.id),
     [orderedProjects, activeProject?.id]
@@ -267,7 +429,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
 
   return (
     <section id="build" className="py-6 space-y-10">
-      {/* Main Featured Live App Preview & Performance Stage (MedVision First by Default) */}
+      {/* Main Featured Live App Preview Stage (MedVision First by Default) */}
       {activeProject && (
         <div id="live-preview-stage" className="rounded-2xl bg-neutral-50 p-5 sm:p-8 space-y-6">
           {/* Top Switcher Bar: MedVision first, then Wonkyendi and other live apps */}
@@ -330,8 +492,8 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
           </div>
 
           {/* Active Project Header & Quick Actions */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
-            <div className="space-y-1.5">
+          <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-5">
+            <div className="space-y-2 max-w-2xl">
               <div className="flex flex-wrap items-center gap-2 text-xs text-neutral-500">
                 <span className="font-semibold text-neutral-900 inline-flex items-center gap-1.5">
                   {activeProject.id === 'wonkyendi' ? (
@@ -345,10 +507,10 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
                 <span className="inline-flex items-center gap-1 font-mono text-[11px]">
                   <Activity className="w-3 h-3 text-emerald-600" />
                   {activeHealth?.status === 'online'
-                    ? `Online (${activeHealth.latencyMs}ms response)`
+                    ? `Online (${activeHealth.latencyMs}ms)`
                     : activeHealth?.status === 'unreachable'
-                    ? 'External host check slow'
-                    : 'Checking deployment...'}
+                    ? 'External host slow'
+                    : 'Checking...'}
                 </span>
               </div>
 
@@ -356,9 +518,21 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
                 {activeProject.title}
               </h3>
 
-              <p className="text-xs sm:text-sm text-neutral-600 max-w-2xl leading-relaxed">
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
                 {activeProject.description}
               </p>
+
+              {/* Key Highlights for Active Project (especially MedVision's expanded capabilities) */}
+              {activeProject.features && activeProject.features.length > 0 && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 pt-1">
+                  {activeProject.features.slice(0, 4).map((feat, idx) => (
+                    <div key={idx} className="flex items-start gap-1.5 text-[11px] text-neutral-700">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-neutral-900 shrink-0 mt-0.5" />
+                      <span>{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="flex flex-wrap items-center gap-2 shrink-0">
@@ -409,7 +583,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
             </div>
 
             <div className="flex flex-wrap items-center gap-1.5">
-              {(activeProject.technologies || []).slice(0, 5).map((tech) => (
+              {(activeProject.technologies || []).map((tech) => (
                 <span
                   key={tech}
                   className="px-2.5 py-1 rounded-md bg-white text-[11px] font-medium text-neutral-600"
@@ -420,7 +594,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
             </div>
           </div>
 
-          {/* Interactive Website Preview Frame */}
+          {/* Live Interactive Website Preview Frame */}
           {activeProject.liveUrl && (
             <WebsitePreview
               key={activeProject.id}
@@ -434,14 +608,14 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
         </div>
       )}
 
-      {/* Other Projects Below — Each with a Small Card Preview */}
+      {/* Other Projects Below — Each Showing Its Own Live Website or App Interface in a Small Card */}
       <div className="space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-500">
-            More Projects & Live Previews ({otherProjectsBelow.length})
+            More Projects & Live Interfaces ({otherProjectsBelow.length})
           </h3>
           <span className="text-xs text-neutral-400">
-            Toggle Live inside any card or click Expand to inspect full size
+            Click Interact inside any card or Expand for full-size view
           </span>
         </div>
 
@@ -455,19 +629,18 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
                 className="rounded-2xl bg-neutral-50 hover:bg-neutral-100/70 p-4 sm:p-5 flex flex-col justify-between transition-colors gap-4"
               >
                 <div className="space-y-3.5">
-                  {/* Small Card Preview Window */}
+                  {/* Live Scaled Website or App Interface Preview */}
                   <MiniCardPreview
                     project={project}
                     health={health}
                     onSelectLive={handleSelectLivePreview}
-                    onOpenCaseStudy={onOpenCaseStudy}
                   />
 
                   {/* Project Info */}
                   <div className="space-y-1.5 px-1">
                     <div className="flex items-center justify-between gap-2 text-[11px]">
                       <span className="font-semibold text-neutral-900 truncate">
-                        {project.role.split('&')[0].trim()}
+                        {project.role.split('|')[0].trim()}
                       </span>
                       {project.id === 'wonkyendi' && (
                         <span className="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-mono text-[10px] font-semibold shrink-0">

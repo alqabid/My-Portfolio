@@ -14,7 +14,7 @@ const ABDUL_QUOTES = [
   "Hey! I'm Abdul. Welcome to my creative tech workspace!",
   "Currently building Wonkyendi — a football gaming app! Preview it live below.",
   "Doing National Service at Juni Ghana Limited as a Software Engineer.",
-  "I engineered MedVision AI to classify pneumonia in chest X-rays with 94.2% accuracy!",
+  "MedVision now supports both Chest X-ray & Chest CT scans with Grad-CAM heatmaps & clinical reports!",
   "Over 18 Snapchat Lenses published with 850,000+ views worldwide!",
   "I build apps in React & TypeScript and design visuals in Affinity & Canva.",
   "Need a web app, game UI, or custom AR lens? Let's build it together!"

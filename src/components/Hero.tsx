@@ -73,10 +73,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenContact, onOpen
               <span>Available for projects</span>
             </div>
             <div className="flex items-center gap-2 bg-neutral-50 px-3 py-1.5 rounded-lg">
-              <span>🫁 MedVision AI (94.2% accuracy)</span>
+              <span>MedVision AI (X-Ray, CT & Grad-CAM)</span>
             </div>
             <div className="flex items-center gap-2 bg-neutral-50 px-3 py-1.5 rounded-lg">
-              <span>👻 850k+ Lens Views</span>
+              <span>850k+ Snapchat Lens Views</span>
             </div>
           </div>
         </div>

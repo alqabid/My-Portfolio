@@ -21,7 +21,7 @@ import {
   EXPERIENCE as DEFAULT_EXPERIENCE
 } from '../data/portfolioData';
 
-const STORAGE_KEY = 'abdul_portfolio_cms_v13';
+const STORAGE_KEY = 'abdul_portfolio_cms_v14';
 const AUTH_STORAGE_KEY = 'abdul_portfolio_auth_session';
 
 const DEFAULT_ADMIN_CONFIG: AdminConfig = {
@@ -116,6 +116,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       // Check current or previous storage keys
       const stored =
         localStorage.getItem(STORAGE_KEY) ||
+        localStorage.getItem('abdul_portfolio_cms_v13') ||
         localStorage.getItem('abdul_portfolio_cms_v12') ||
         localStorage.getItem('abdul_portfolio_cms_v11') ||
         localStorage.getItem('abdul_portfolio_cms_v10') ||
@@ -137,15 +138,28 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         if (!hasJuni) {
           expList = [DEFAULT_EXPERIENCE[0], ...expList];
         }
-        expList = expList.map((exp) => ({
-          ...exp,
-          highlights: (exp.highlights || []).map((h) =>
-            h.replace(/Adobe Photoshop/gi, 'Affinity').replace(/Photoshop/gi, 'Affinity')
-          ),
-          technologies: (exp.technologies || []).map((t) =>
-            t.replace(/Adobe Photoshop/gi, 'Affinity').replace(/Photoshop/gi, 'Affinity')
-          )
-        }));
+        const defaultMedvisionExp = DEFAULT_EXPERIENCE.find((e) =>
+          e.company.toUpperCase().includes('MEDVISION')
+        );
+        expList = expList.map((exp) => {
+          if (
+            defaultMedvisionExp &&
+            exp.company &&
+            exp.company.toUpperCase().includes('MEDVISION') &&
+            !(exp.highlights || []).some((h) => h.includes('Grad-CAM'))
+          ) {
+            return defaultMedvisionExp;
+          }
+          return {
+            ...exp,
+            highlights: (exp.highlights || []).map((h) =>
+              h.replace(/Adobe Photoshop/gi, 'Affinity').replace(/Photoshop/gi, 'Affinity')
+            ),
+            technologies: (exp.technologies || []).map((t) =>
+              t.replace(/Adobe Photoshop/gi, 'Affinity').replace(/Photoshop/gi, 'Affinity')
+            )
+          };
+        });
 
         // Ensure bio is updated if missing Juni Ghana reference or still mentions Adobe/Photoshop
         let pInfo = parsed.personalInfo || DEFAULT_PERSONAL_INFO;
@@ -177,10 +191,23 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
           };
         }
 
-        // Ensure Wonkyendi is included and MedVision always appears first
+        // Ensure Wonkyendi is included, MedVision is updated & first, and liveUrls use HTTPS
         let projectsList: Project[] = Array.isArray(parsed.buildProjects)
           ? [...parsed.buildProjects]
           : [...DEFAULT_BUILD_PROJECTS];
+        const defaultMedvision = DEFAULT_BUILD_PROJECTS.find((p) => p.id === 'medvision');
+        projectsList = projectsList.map((proj) => {
+          if (proj.id === 'medvision' && defaultMedvision && !proj.description.includes('Chest CT')) {
+            return defaultMedvision;
+          }
+          if (proj.liveUrl && proj.liveUrl.startsWith('http://')) {
+            return {
+              ...proj,
+              liveUrl: proj.liveUrl.replace(/^http:\/\//, 'https://')
+            };
+          }
+          return proj;
+        });
         const hasWonkyendi = projectsList.some((p) => p.id === 'wonkyendi');
         if (!hasWonkyendi) {
           const defaultWonkyendi = DEFAULT_BUILD_PROJECTS.find((p) => p.id === 'wonkyendi');

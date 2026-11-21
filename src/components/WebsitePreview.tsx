@@ -21,7 +21,9 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
   allowLiveIframe = true,
   compact = false,
 }) => {
-  const [viewMode, setViewMode] = useState<'screenshot' | 'iframe'>('screenshot');
+  const [viewMode, setViewMode] = useState<'screenshot' | 'iframe'>(
+    allowLiveIframe ? 'iframe' : 'screenshot'
+  );
   const [iframeKey, setIframeKey] = useState(0);
   const [imageError, setImageError] = useState(false);
   const [copied, setCopied] = useState(false);
