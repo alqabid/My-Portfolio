@@ -21,7 +21,7 @@ import {
   EXPERIENCE as DEFAULT_EXPERIENCE
 } from '../data/portfolioData';
 
-const STORAGE_KEY = 'abdul_portfolio_cms_v12';
+const STORAGE_KEY = 'abdul_portfolio_cms_v13';
 const AUTH_STORAGE_KEY = 'abdul_portfolio_auth_session';
 
 const DEFAULT_ADMIN_CONFIG: AdminConfig = {
@@ -116,6 +116,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       // Check current or previous storage keys
       const stored =
         localStorage.getItem(STORAGE_KEY) ||
+        localStorage.getItem('abdul_portfolio_cms_v12') ||
         localStorage.getItem('abdul_portfolio_cms_v11') ||
         localStorage.getItem('abdul_portfolio_cms_v10') ||
         localStorage.getItem('abdul_portfolio_cms_v8') ||
@@ -176,16 +177,26 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
           };
         }
 
-        // Ensure Wonkyendi project is included in buildProjects
+        // Ensure Wonkyendi is included and MedVision always appears first
         let projectsList: Project[] = Array.isArray(parsed.buildProjects)
-          ? parsed.buildProjects
-          : DEFAULT_BUILD_PROJECTS;
+          ? [...parsed.buildProjects]
+          : [...DEFAULT_BUILD_PROJECTS];
         const hasWonkyendi = projectsList.some((p) => p.id === 'wonkyendi');
         if (!hasWonkyendi) {
           const defaultWonkyendi = DEFAULT_BUILD_PROJECTS.find((p) => p.id === 'wonkyendi');
           if (defaultWonkyendi) {
-            projectsList = [defaultWonkyendi, ...projectsList];
+            projectsList.push(defaultWonkyendi);
           }
+        }
+        const medvisionIdx = projectsList.findIndex((p) => p.id === 'medvision');
+        if (medvisionIdx > 0) {
+          const [medvisionItem] = projectsList.splice(medvisionIdx, 1);
+          projectsList.unshift(medvisionItem);
+        }
+        const wonkyendiIdx = projectsList.findIndex((p) => p.id === 'wonkyendi');
+        if (wonkyendiIdx > 1) {
+          const [wonkyendiItem] = projectsList.splice(wonkyendiIdx, 1);
+          projectsList.splice(1, 0, wonkyendiItem);
         }
 
         // Ensure skillNodes & services use Affinity instead of Adobe Photoshop

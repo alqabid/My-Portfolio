@@ -7,7 +7,8 @@ import {
   RefreshCw,
   Gamepad2,
   Globe,
-  Monitor
+  Monitor,
+  Code2
 } from 'lucide-react';
 import { Project, CursorType } from '../types';
 import { usePortfolio } from '../context/PortfolioContext';
@@ -23,22 +24,174 @@ interface HealthCheckResult {
   latencyMs?: number;
 }
 
+interface MiniCardPreviewProps {
+  project: Project;
+  health?: HealthCheckResult;
+  onSelectLive: (id: string) => void;
+  onOpenCaseStudy: (project: Project) => void;
+}
+
+const MiniCardPreview: React.FC<MiniCardPreviewProps> = ({
+  project,
+  health,
+  onSelectLive,
+  onOpenCaseStudy
+}) => {
+  const [mode, setMode] = useState<'snapshot' | 'live'>('snapshot');
+  const [imgFailed, setImgFailed] = useState(false);
+
+  const cleanDomain = project.liveUrl
+    ? project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')
+    : '';
+
+  const snapshotUrl = project.liveUrl
+    ? `https://api.microlink.io?url=${encodeURIComponent(project.liveUrl)}&screenshot=true&meta=false&embed=screenshot.url`
+    : project.previewUrl;
+
+  if (!project.liveUrl) {
+    return (
+      <div
+        onClick={() => onOpenCaseStudy(project)}
+        className="relative w-full h-40 rounded-xl bg-neutral-900 overflow-hidden cursor-pointer group"
+      >
+        {!imgFailed && snapshotUrl ? (
+          <img
+            src={snapshotUrl}
+            alt={`${project.title} preview`}
+            onError={() => setImgFailed(true)}
+            className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center text-neutral-400 gap-2">
+            <Code2 className="w-6 h-6 text-neutral-300" />
+            <span className="text-[11px] font-mono">{project.title}</span>
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex items-end justify-between p-3">
+          <span className="text-[10px] font-mono text-white/90 bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded">
+            Desktop / Core App
+          </span>
+          <span className="text-[10px] font-medium text-white bg-white/15 backdrop-blur-sm px-2 py-0.5 rounded">
+            View Specs
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full rounded-xl bg-[#111111] overflow-hidden flex flex-col">
+      {/* Mini Browser Chrome */}
+      <div className="bg-[#1C1C1C] px-2.5 py-1.5 flex items-center justify-between gap-2 select-none">
+        <div className="flex items-center gap-1 shrink-0">
+          <span className="w-2 h-2 rounded-full bg-[#FF5F56]" />
+          <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
+          <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
+        </div>
+
+        <div className="flex-1 min-w-0 px-2 py-0.5 rounded bg-[#0D0D0D] flex items-center justify-between gap-1.5">
+          <span className="text-[10px] font-mono text-neutral-300 truncate">
+            {cleanDomain}
+          </span>
+          <span
+            className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+              health?.status === 'online'
+                ? 'bg-emerald-500'
+                : health?.status === 'unreachable'
+                ? 'bg-amber-500'
+                : 'bg-neutral-500 animate-pulse'
+            }`}
+          />
+        </div>
+
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            setMode((prev) => (prev === 'snapshot' ? 'live' : 'snapshot'));
+          }}
+          className={`px-1.5 py-0.5 rounded text-[9px] font-mono transition-colors cursor-pointer shrink-0 ${
+            mode === 'live'
+              ? 'bg-white text-neutral-900 font-semibold'
+              : 'bg-[#2C2C2C] text-neutral-300 hover:text-white'
+          }`}
+          title="Toggle live interactive preview inside card"
+        >
+          {mode === 'live' ? 'Snapshot' : 'Live'}
+        </button>
+      </div>
+
+      {/* Mini Viewport */}
+      <div className="relative w-full h-44 bg-[#0D0D0D] overflow-hidden group">
+        {mode === 'live' ? (
+          <iframe
+            src={project.liveUrl}
+            title={`${project.title} mini live preview`}
+            className="w-full h-full border-0 bg-white"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+            loading="lazy"
+          />
+        ) : (
+          <div
+            onClick={() => onSelectLive(project.id)}
+            className="relative w-full h-full cursor-pointer"
+          >
+            {!imgFailed ? (
+              <img
+                src={snapshotUrl}
+                alt={`${project.title} live website snapshot`}
+                onError={() => setImgFailed(true)}
+                className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-300"
+              />
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-neutral-900">
+                <Globe className="w-6 h-6 text-neutral-400 mb-1.5" />
+                <span className="text-xs font-semibold text-white">{project.title}</span>
+                <span className="text-[10px] font-mono text-neutral-400 mt-0.5 truncate max-w-full">
+                  {cleanDomain}
+                </span>
+              </div>
+            )}
+
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-2.5 flex items-center justify-between">
+              <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                {health?.status === 'online' && health.latencyMs
+                  ? `Online · ${health.latencyMs}ms`
+                  : 'Live Web App'}
+              </span>
+              <span className="text-[10px] font-medium text-white bg-white/15 backdrop-blur-sm px-2 py-0.5 rounded opacity-90 group-hover:bg-white group-hover:text-neutral-900 transition-colors">
+                Expand
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
   const { buildProjects: BUILD_PROJECTS } = usePortfolio();
 
-  // Separate live web deployments from desktop/local software projects
+  // Ensure MedVision appears first, followed by remaining projects in order
+  const orderedProjects = useMemo(() => {
+    const medvision = BUILD_PROJECTS.find((p) => p.id === 'medvision');
+    const others = BUILD_PROJECTS.filter((p) => p.id !== 'medvision');
+    return medvision ? [medvision, ...others] : BUILD_PROJECTS;
+  }, [BUILD_PROJECTS]);
+
   const liveProjects = useMemo(
-    () => BUILD_PROJECTS.filter((p) => Boolean(p.liveUrl)),
-    [BUILD_PROJECTS]
+    () => orderedProjects.filter((p) => Boolean(p.liveUrl)),
+    [orderedProjects]
   );
 
   const [selectedProjectId, setSelectedProjectId] = useState<string>(
-    liveProjects[0]?.id || BUILD_PROJECTS[0]?.id || 'wonkyendi'
+    liveProjects[0]?.id || 'medvision'
   );
   const [healthMap, setHealthMap] = useState<Record<string, HealthCheckResult>>({});
   const [isCheckingAll, setIsCheckingAll] = useState(false);
 
-  // Keep selected project valid if list changes
   useEffect(() => {
     if (liveProjects.length > 0 && !liveProjects.some((p) => p.id === selectedProjectId)) {
       setSelectedProjectId(liveProjects[0].id);
@@ -48,7 +201,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
   const activeProject =
     liveProjects.find((p) => p.id === selectedProjectId) ||
     liveProjects[0] ||
-    BUILD_PROJECTS[0];
+    orderedProjects[0];
 
   const probeProject = useCallback(async (project: Project) => {
     if (!project.liveUrl) return;
@@ -90,7 +243,6 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
     setIsCheckingAll(false);
   }, [liveProjects, probeProject]);
 
-  // Run initial live check for deployed projects on mount
   useEffect(() => {
     if (liveProjects.length > 0) {
       checkAllDeployments();
@@ -107,12 +259,18 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
 
   const activeHealth = activeProject ? healthMap[activeProject.id] : undefined;
 
+  // Projects shown in the small-card preview grid below (excluding whichever is currently featured on the main stage? No, keep all others cleanly visible so MedVision is featured first and the rest continue below!)
+  const otherProjectsBelow = useMemo(
+    () => orderedProjects.filter((p) => p.id !== activeProject?.id),
+    [orderedProjects, activeProject?.id]
+  );
+
   return (
     <section id="build" className="py-6 space-y-10">
-      {/* Live App Preview & Performance Stage */}
+      {/* Main Featured Live App Preview & Performance Stage (MedVision First by Default) */}
       {activeProject && (
         <div id="live-preview-stage" className="rounded-2xl bg-neutral-50 p-5 sm:p-8 space-y-6">
-          {/* Top Switcher Bar: Select any live app to preview & inspect performance */}
+          {/* Top Switcher Bar: MedVision first, then Wonkyendi and other live apps */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
               {liveProjects.map((proj) => {
@@ -151,11 +309,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
                       </span>
                     )}
                     {health?.status === 'online' && health.latencyMs && (
-                      <span
-                        className={`text-[10px] font-mono ${
-                          isSelected ? 'text-neutral-400' : 'text-neutral-400'
-                        }`}
-                      >
+                      <span className="text-[10px] font-mono text-neutral-400">
                         {health.latencyMs}ms
                       </span>
                     )}
@@ -193,7 +347,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
                   {activeHealth?.status === 'online'
                     ? `Online (${activeHealth.latencyMs}ms response)`
                     : activeHealth?.status === 'unreachable'
-                    ? 'External host check blocked / slow'
+                    ? 'External host check slow'
                     : 'Checking deployment...'}
                 </span>
               </div>
@@ -280,99 +434,87 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
         </div>
       )}
 
-      {/* All Projects & Performance Overview Grid */}
+      {/* Other Projects Below — Each with a Small Card Preview */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-500">
-            All Software Builds ({BUILD_PROJECTS.length})
+            More Projects & Live Previews ({otherProjectsBelow.length})
           </h3>
           <span className="text-xs text-neutral-400">
-            Click Preview Live to inspect any deployed app above
+            Toggle Live inside any card or click Expand to inspect full size
           </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {BUILD_PROJECTS.map((project) => {
+          {otherProjectsBelow.map((project) => {
             const health = healthMap[project.id];
-            const isSelected = activeProject?.id === project.id;
 
             return (
               <div
                 key={project.id}
-                className={`rounded-2xl p-6 flex flex-col justify-between transition-colors ${
-                  isSelected ? 'bg-neutral-100' : 'bg-neutral-50 hover:bg-neutral-100/70'
-                }`}
+                className="rounded-2xl bg-neutral-50 hover:bg-neutral-100/70 p-4 sm:p-5 flex flex-col justify-between transition-colors gap-4"
               >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between gap-2 text-xs">
-                    <span className="font-semibold text-neutral-900 truncate">
-                      {project.role.split('&')[0].trim()}
-                    </span>
-                    {project.liveUrl ? (
-                      <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-neutral-600 shrink-0">
-                        <span
-                          className={`w-1.5 h-1.5 rounded-full ${
-                            health?.status === 'online'
-                              ? 'bg-emerald-500'
-                              : health?.status === 'unreachable'
-                              ? 'bg-amber-500'
-                              : 'bg-neutral-400 animate-pulse'
-                          }`}
-                        />
-                        {health?.status === 'online'
-                          ? `${health.latencyMs}ms`
-                          : health?.status === 'unreachable'
-                          ? 'Check'
-                          : '...'}
+                <div className="space-y-3.5">
+                  {/* Small Card Preview Window */}
+                  <MiniCardPreview
+                    project={project}
+                    health={health}
+                    onSelectLive={handleSelectLivePreview}
+                    onOpenCaseStudy={onOpenCaseStudy}
+                  />
+
+                  {/* Project Info */}
+                  <div className="space-y-1.5 px-1">
+                    <div className="flex items-center justify-between gap-2 text-[11px]">
+                      <span className="font-semibold text-neutral-900 truncate">
+                        {project.role.split('&')[0].trim()}
                       </span>
-                    ) : (
-                      <span className="text-[11px] font-mono text-neutral-400 shrink-0">
-                        Desktop / Core
-                      </span>
+                      {project.id === 'wonkyendi' && (
+                        <span className="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-mono text-[10px] font-semibold shrink-0">
+                          Ongoing Dev
+                        </span>
+                      )}
+                    </div>
+
+                    <div>
+                      <h4 className="text-base font-display font-bold text-neutral-950">
+                        {project.title}
+                      </h4>
+                      <p className="text-[11px] font-medium text-neutral-500 line-clamp-1">
+                        {project.subtitle}
+                      </p>
+                    </div>
+
+                    <p className="text-xs text-neutral-600 leading-relaxed line-clamp-2">
+                      {project.description}
+                    </p>
+
+                    {/* Key metric pills */}
+                    {project.metrics && project.metrics.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {project.metrics.slice(0, 2).map((m, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2 py-0.5 rounded bg-white text-[10px] font-medium text-neutral-700"
+                          >
+                            {m.label}: <strong className="text-neutral-950">{m.value}</strong>
+                          </span>
+                        ))}
+                      </div>
                     )}
                   </div>
-
-                  <div>
-                    <h4 className="text-lg font-display font-bold text-neutral-950">
-                      {project.title}
-                    </h4>
-                    <p className="text-[11px] font-medium text-neutral-500 mt-0.5">
-                      {project.subtitle}
-                    </p>
-                  </div>
-
-                  <p className="text-xs text-neutral-600 leading-relaxed line-clamp-3">
-                    {project.description}
-                  </p>
-
-                  {/* Key metric pills */}
-                  {project.metrics && project.metrics.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {project.metrics.slice(0, 2).map((m, idx) => (
-                        <span
-                          key={idx}
-                          className="px-2 py-0.5 rounded bg-white text-[10px] font-medium text-neutral-700"
-                        >
-                          {m.label}: <strong className="text-neutral-950">{m.value}</strong>
-                        </span>
-                      ))}
-                    </div>
-                  )}
                 </div>
 
-                <div className="mt-5 pt-2 flex items-center gap-2">
+                {/* Card Actions */}
+                <div className="flex items-center gap-2 px-1">
                   {project.liveUrl ? (
                     <button
                       type="button"
                       onClick={() => handleSelectLivePreview(project.id)}
-                      className={`flex-1 py-2 rounded-xl font-medium text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
-                        isSelected
-                          ? 'bg-neutral-900 text-white'
-                          : 'bg-neutral-900 hover:bg-neutral-800 text-white'
-                      }`}
+                      className="flex-1 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white font-medium text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                     >
                       <Monitor className="w-3.5 h-3.5" />
-                      <span>{isSelected ? 'Previewing Above' : 'Preview Live'}</span>
+                      <span>Expand Preview</span>
                     </button>
                   ) : (
                     <button
@@ -389,7 +531,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
                     <button
                       type="button"
                       onClick={() => onOpenCaseStudy(project)}
-                      className="px-3.5 py-2 rounded-xl bg-white hover:bg-neutral-200/70 text-neutral-900 font-medium text-xs transition-colors cursor-pointer"
+                      className="px-3 py-2 rounded-xl bg-white hover:bg-neutral-200/70 text-neutral-900 font-medium text-xs transition-colors cursor-pointer"
                     >
                       Details
                     </button>

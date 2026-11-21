@@ -46,40 +46,6 @@ Interested in building scalable digital products and using technology, creativit
 
 export const BUILD_PROJECTS: Project[] = [
   {
-    id: 'wonkyendi',
-    title: 'Wonkyendi',
-    category: 'build',
-    subtitle: 'Football Gaming Application · Personal Project | Ongoing Development',
-    tagline: 'Engaging digital football gaming experience built for intuitive, interactive play.',
-    description: 'Developing a football-themed gaming application focused on delivering an engaging digital football experience. Responsible for product concept development, UI/UX design, and application development, with an emphasis on creating an intuitive and interactive user experience.',
-    problem: 'Many web-based football games feel cluttered or sluggish on mobile and desktop browsers, lacking smooth interactive controls and modern sports presentation.',
-    solution: 'Designing and developing Wonkyendi end-to-end — from original product concept and crisp sports UI/UX to responsive interactive gameplay architecture deployed on Vercel.',
-    architecture: [
-      'Product & Concept: End-to-end game loop design, user journeys, and football-themed mechanics',
-      'UI/UX Design: Intuitive, high-contrast interactive sports interface crafted for quick engagement',
-      'Frontend Stack: Modern web application architecture with responsive state & animation handling',
-      'Deployment: Continuous delivery via Vercel Edge Network (Ongoing Development)'
-    ],
-    features: [
-      'Engaging football-themed interactive gameplay experience',
-      'Intuitive, mobile-friendly sports UI/UX designed for immediate playability',
-      'Responsive state-driven interactions and real-time visual feedback',
-      'Active iterative development with regular feature updates on Vercel'
-    ],
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'UI/UX Design', 'Interactive Web App', 'Vercel'],
-    metrics: [
-      { label: 'Status', value: 'Ongoing Dev' },
-      { label: 'Category', value: 'Football Game' },
-      { label: 'Role', value: 'Creator & Dev' }
-    ],
-    previewType: 'interactive',
-    previewUrl: 'https://api.microlink.io?url=https%3A%2F%2Fwonkyendi.vercel.app&screenshot=true&meta=false&embed=screenshot.url',
-    accentColor: '#10B981',
-    role: 'Product Concept, UI/UX & Application Developer',
-    liveUrl: 'https://wonkyendi.vercel.app',
-    githubUrl: 'https://github.com/alqabid'
-  },
-  {
     id: 'medvision',
     title: 'MedVision',
     category: 'build',
@@ -112,6 +78,40 @@ export const BUILD_PROJECTS: Project[] = [
     role: 'Machine Learning Engineer & Full-Stack Architect',
     liveUrl: 'https://medvision1.vercel.app/',
     githubUrl: 'https://github.com/alqabid/Medvision-web'
+  },
+  {
+    id: 'wonkyendi',
+    title: 'Wonkyendi',
+    category: 'build',
+    subtitle: 'Football Gaming Application · Personal Project | Ongoing Development',
+    tagline: 'Engaging digital football gaming experience built for intuitive, interactive play.',
+    description: 'Developing a football-themed gaming application focused on delivering an engaging digital football experience. Responsible for product concept development, UI/UX design, and application development, with an emphasis on creating an intuitive and interactive user experience.',
+    problem: 'Many web-based football games feel cluttered or sluggish on mobile and desktop browsers, lacking smooth interactive controls and modern sports presentation.',
+    solution: 'Designing and developing Wonkyendi end-to-end — from original product concept and crisp sports UI/UX to responsive interactive gameplay architecture deployed on Vercel.',
+    architecture: [
+      'Product & Concept: End-to-end game loop design, user journeys, and football-themed mechanics',
+      'UI/UX Design: Intuitive, high-contrast interactive sports interface crafted for quick engagement',
+      'Frontend Stack: Modern web application architecture with responsive state & animation handling',
+      'Deployment: Continuous delivery via Vercel Edge Network (Ongoing Development)'
+    ],
+    features: [
+      'Engaging football-themed interactive gameplay experience',
+      'Intuitive, mobile-friendly sports UI/UX designed for immediate playability',
+      'Responsive state-driven interactions and real-time visual feedback',
+      'Active iterative development with regular feature updates on Vercel'
+    ],
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'UI/UX Design', 'Interactive Web App', 'Vercel'],
+    metrics: [
+      { label: 'Status', value: 'Ongoing Dev' },
+      { label: 'Category', value: 'Football Game' },
+      { label: 'Role', value: 'Creator & Dev' }
+    ],
+    previewType: 'interactive',
+    previewUrl: 'https://api.microlink.io?url=https%3A%2F%2Fwonkyendi.vercel.app&screenshot=true&meta=false&embed=screenshot.url',
+    accentColor: '#10B981',
+    role: 'Product Concept, UI/UX & Application Developer',
+    liveUrl: 'https://wonkyendi.vercel.app',
+    githubUrl: 'https://github.com/alqabid'
   },
   {
     id: 'ugogo',
@@ -671,6 +671,20 @@ Interested in building scalable digital products and using technology, creativit
   },
   softwareProjects: [
     {
+      title: 'MEDVISION',
+      role: 'Machine Learning Engineer',
+      subtitle: 'AI-Powered Pneumonia Detection System (Final Project — UMaT Class of 2026)',
+      liveUrl: 'https://medvision1.vercel.app/',
+      githubUrl: 'https://github.com/alqabid/Medvision-web',
+      highlights: [
+        'Engineered a highly secure, web-based AI diagnostic tool utilizing TensorFlow and Python to classify pneumonia from chest X-ray imagery.',
+        'Implemented MobileNetV2 transfer learning, optimizing the model to achieve rigorous accuracy, precision, recall, and F1-score benchmarks.',
+        'Designed a scalable backend architecture via FastAPI to bridge the machine learning model with the client-facing web application.',
+        'Employed advanced prompt engineering strategies for AI-assisted research, debugging, and documentation generation throughout the software lifecycle.'
+      ],
+      technologies: ['Python', 'TensorFlow', 'MobileNetV2', 'OpenCV', 'FastAPI', 'React', 'TypeScript']
+    },
+    {
       title: 'WONKYENDI',
       role: 'Product Concept, UI/UX & Application Developer',
       subtitle: 'Football Gaming Application (Personal Project | Ongoing Development)',
@@ -696,20 +710,6 @@ Interested in building scalable digital products and using technology, creativit
         'Leveraged Generative AI and rapid prototyping workflows to accelerate feature planning, UI/UX design, and code generation.'
       ],
       technologies: ['React', 'TypeScript', 'Tailwind CSS', 'FastAPI', 'PostgreSQL', 'GenAI Workflows']
-    },
-    {
-      title: 'MEDVISION',
-      role: 'Machine Learning Engineer',
-      subtitle: 'AI-Powered Pneumonia Detection System (Final Project — UMaT Class of 2026)',
-      liveUrl: 'https://medvision1.vercel.app/',
-      githubUrl: 'https://github.com/alqabid/Medvision-web',
-      highlights: [
-        'Engineered a highly secure, web-based AI diagnostic tool utilizing TensorFlow and Python to classify pneumonia from chest X-ray imagery.',
-        'Implemented MobileNetV2 transfer learning, optimizing the model to achieve rigorous accuracy, precision, recall, and F1-score benchmarks.',
-        'Designed a scalable backend architecture via FastAPI to bridge the machine learning model with the client-facing web application.',
-        'Employed advanced prompt engineering strategies for AI-assisted research, debugging, and documentation generation throughout the software lifecycle.'
-      ],
-      technologies: ['Python', 'TensorFlow', 'MobileNetV2', 'OpenCV', 'FastAPI', 'React', 'TypeScript']
     },
     {
       title: 'STUDENT RECORD MANAGEMENT',
