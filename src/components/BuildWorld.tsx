@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef, memo } from 'react';
 import {
   ExternalLink,
   Github,
@@ -30,7 +30,7 @@ interface HealthCheckResult {
 }
 
 // Interactive mini desktop UI preview for Java Student Record Management
-const StudentRecordsMiniUI: React.FC = () => {
+const StudentRecordsMiniUI: React.FC = memo(() => {
   const [query, setQuery] = useState('');
   const records = [
     { id: 'CS-26-014', name: 'K. Mensah', gpa: '3.82', status: 'Active' },
@@ -44,7 +44,7 @@ const StudentRecordsMiniUI: React.FC = () => {
   );
 
   return (
-    <div className="w-full rounded-xl bg-[#111111] overflow-hidden flex flex-col">
+    <div className="w-full rounded-xl bg-[#111111] overflow-hidden flex flex-col" style={{ contain: 'layout paint style' }}>
       <div className="bg-[#1C1C1C] px-2.5 py-1.5 flex items-center justify-between text-[10px] font-mono text-neutral-300">
         <div className="flex items-center gap-1">
           <span className="w-2 h-2 rounded-full bg-[#FF5F56]" />
@@ -96,10 +96,12 @@ const StudentRecordsMiniUI: React.FC = () => {
       </div>
     </div>
   );
-};
+});
+
+StudentRecordsMiniUI.displayName = 'StudentRecordsMiniUI';
 
 // Interactive mini desktop UI preview for C# Queue ADT Music Player
-const MusicPlayerMiniUI: React.FC = () => {
+const MusicPlayerMiniUI: React.FC = memo(() => {
   const [tracks, setTracks] = useState([
     { title: 'Accra Midnight', duration: '3:42' },
     { title: 'Focus Flow', duration: '2:58' },
@@ -116,7 +118,7 @@ const MusicPlayerMiniUI: React.FC = () => {
   };
 
   return (
-    <div className="w-full rounded-xl bg-[#111111] overflow-hidden flex flex-col">
+    <div className="w-full rounded-xl bg-[#111111] overflow-hidden flex flex-col" style={{ contain: 'layout paint style' }}>
       <div className="bg-[#1C1C1C] px-2.5 py-1.5 flex items-center justify-between text-[10px] font-mono text-neutral-300">
         <div className="flex items-center gap-1">
           <span className="w-2 h-2 rounded-full bg-[#FF5F56]" />
@@ -184,41 +186,84 @@ const MusicPlayerMiniUI: React.FC = () => {
       </div>
     </div>
   );
-};
+});
+
+MusicPlayerMiniUI.displayName = 'MusicPlayerMiniUI';
 
 interface MiniCardPreviewProps {
   project: Project;
   health?: HealthCheckResult;
+  staggerIndex: number;
   onSelectLive: (id: string) => void;
 }
 
-const MiniCardPreview: React.FC<MiniCardPreviewProps> = ({
+const MiniCardPreview: React.FC<MiniCardPreviewProps> = memo(({
   project,
   health,
+  staggerIndex,
   onSelectLive
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0.28);
   const [interactive, setInteractive] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
+  const [shouldMountIframe, setShouldMountIframe] = useState(false);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
 
+  // Viewport-gated + staggered iframe mount so multiple external SPAs never spike CPU/network together
   useEffect(() => {
-    if (!containerRef.current) return;
-    const updateScale = () => {
-      if (containerRef.current) {
-        const width = containerRef.current.clientWidth;
-        if (width > 0) {
-          setScale(width / 1280);
+    const el = containerRef.current;
+    if (!el || !project.liveUrl) return;
+
+    let timerId: number | undefined;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          timerId = window.setTimeout(() => {
+            setShouldMountIframe(true);
+          }, Math.min(staggerIndex * 180, 720));
+          observer.disconnect();
         }
+      },
+      { rootMargin: '140px' }
+    );
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      if (timerId) window.clearTimeout(timerId);
+    };
+  }, [project.liveUrl, staggerIndex]);
+
+  // Measure card width for crisp 1280px -> card-width scaling
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || !project.liveUrl) return;
+    let rafId = 0;
+
+    const updateScale = () => {
+      if (el.clientWidth > 0) {
+        setScale(el.clientWidth / 1280);
       }
     };
     updateScale();
-    const observer = new ResizeObserver(updateScale);
-    observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, []);
 
-  // Dedicated interactive desktop app interfaces for local/non-URL projects
+    const observer = new ResizeObserver(() => {
+      if (!rafId) {
+        rafId = window.requestAnimationFrame(() => {
+          rafId = 0;
+          updateScale();
+        });
+      }
+    });
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
+  }, [project.liveUrl]);
+
   if (!project.liveUrl) {
     if (project.id === 'student-records') {
       return <StudentRecordsMiniUI />;
@@ -232,7 +277,10 @@ const MiniCardPreview: React.FC<MiniCardPreviewProps> = ({
   const cleanDomain = project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
   return (
-    <div className="w-full rounded-xl bg-[#111111] overflow-hidden flex flex-col">
+    <div
+      className="w-full rounded-xl bg-[#111111] overflow-hidden flex flex-col"
+      style={{ contain: 'layout paint style' }}
+    >
       {/* Mini Browser Chrome */}
       <div className="bg-[#1C1C1C] px-2.5 py-1.5 flex items-center justify-between gap-2 select-none">
         <div className="flex items-center gap-1 shrink-0">
@@ -251,7 +299,7 @@ const MiniCardPreview: React.FC<MiniCardPreviewProps> = ({
                 ? 'bg-emerald-500'
                 : health?.status === 'unreachable'
                 ? 'bg-amber-500'
-                : 'bg-neutral-500 animate-pulse'
+                : 'bg-neutral-500'
             }`}
           />
         </div>
@@ -261,6 +309,8 @@ const MiniCardPreview: React.FC<MiniCardPreviewProps> = ({
             type="button"
             onClick={(e) => {
               e.stopPropagation();
+              setIframeLoaded(false);
+              setShouldMountIframe(true);
               setReloadKey((k) => k + 1);
             }}
             className="p-1 rounded text-neutral-400 hover:text-white hover:bg-[#2C2C2C] transition-colors cursor-pointer"
@@ -272,6 +322,7 @@ const MiniCardPreview: React.FC<MiniCardPreviewProps> = ({
             type="button"
             onClick={(e) => {
               e.stopPropagation();
+              setShouldMountIframe(true);
               setInteractive((prev) => !prev);
             }}
             className={`px-1.5 py-0.5 rounded text-[9px] font-mono transition-colors cursor-pointer ${
@@ -289,42 +340,55 @@ const MiniCardPreview: React.FC<MiniCardPreviewProps> = ({
       {/* Live Scaled Website/App Interface Viewport */}
       <div
         ref={containerRef}
-        className="relative w-full h-48 bg-white overflow-hidden group"
+        className="relative w-full h-48 bg-neutral-950 overflow-hidden group"
       >
-        <iframe
-          key={reloadKey}
-          src={project.liveUrl}
-          title={`${project.title} live interface preview`}
-          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-          loading="lazy"
-          style={
-            interactive
-              ? { width: '100%', height: '100%', border: 0 }
-              : {
-                  width: '1280px',
-                  height: '800px',
-                  border: 0,
-                  transform: `scale(${scale})`,
-                  transformOrigin: 'top left',
-                  pointerEvents: 'none'
-                }
-          }
-          className="bg-white block"
-        />
+        {/* Lightweight loading placeholder until live iframe renders */}
+        {!iframeLoaded && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 bg-neutral-950 text-neutral-400 z-10 pointer-events-none">
+            <div className="w-4 h-4 rounded-full border-2 border-neutral-700 border-t-white animate-spin" />
+            <span className="text-[10px] font-mono">{cleanDomain}</span>
+          </div>
+        )}
+
+        {shouldMountIframe && (
+          <iframe
+            key={reloadKey}
+            src={project.liveUrl}
+            title={`${project.title} live interface preview`}
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+            loading="lazy"
+            onLoad={() => setIframeLoaded(true)}
+            style={
+              interactive
+                ? { width: '100%', height: '100%', border: 0 }
+                : {
+                    width: '1280px',
+                    height: '800px',
+                    border: 0,
+                    transform: `scale(${scale})`,
+                    transformOrigin: 'top left',
+                    pointerEvents: 'none'
+                  }
+            }
+            className={`bg-white block transition-opacity duration-300 ${
+              iframeLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        )}
 
         {/* Subtle bottom bar in scaled mode to expand full-size */}
         {!interactive && (
           <div
             onClick={() => onSelectLive(project.id)}
-            className="absolute inset-0 cursor-pointer flex items-end justify-between p-2.5 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-90 group-hover:opacity-100 transition-opacity"
+            className="absolute inset-0 z-20 cursor-pointer flex items-end justify-between p-2.5 bg-gradient-to-t from-black/70 via-transparent to-transparent"
           >
-            <span className="text-[10px] font-mono text-emerald-300 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded flex items-center gap-1">
+            <span className="text-[10px] font-mono text-emerald-300 bg-black/65 px-2 py-0.5 rounded flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
               {health?.status === 'online' && health.latencyMs
                 ? `Live · ${health.latencyMs}ms`
                 : 'Live Interface'}
             </span>
-            <span className="text-[10px] font-medium text-white bg-black/60 group-hover:bg-white group-hover:text-neutral-950 backdrop-blur-sm px-2 py-0.5 rounded transition-colors">
+            <span className="text-[10px] font-medium text-white bg-black/65 group-hover:bg-white group-hover:text-neutral-950 px-2 py-0.5 rounded transition-colors">
               Expand
             </span>
           </div>
@@ -332,7 +396,9 @@ const MiniCardPreview: React.FC<MiniCardPreviewProps> = ({
       </div>
     </div>
   );
-};
+});
+
+MiniCardPreview.displayName = 'MiniCardPreview';
 
 export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
   const { buildProjects: BUILD_PROJECTS } = usePortfolio();
@@ -369,14 +435,9 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
   const probeProject = useCallback(async (project: Project) => {
     if (!project.liveUrl) return;
 
-    setHealthMap((prev) => ({
-      ...prev,
-      [project.id]: { status: 'checking' }
-    }));
-
     const start = performance.now();
     const controller = new AbortController();
-    const timeoutId = window.setTimeout(() => controller.abort(), 7000);
+    const timeoutId = window.setTimeout(() => controller.abort(), 6000);
 
     try {
       await fetch(project.liveUrl, {
@@ -386,39 +447,42 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
         signal: controller.signal
       });
       const elapsed = Math.max(1, Math.round(performance.now() - start));
-      setHealthMap((prev) => ({
-        ...prev,
-        [project.id]: { status: 'online', latencyMs: elapsed }
-      }));
+      return { id: project.id, result: { status: 'online' as const, latencyMs: elapsed } };
     } catch {
-      setHealthMap((prev) => ({
-        ...prev,
-        [project.id]: { status: 'unreachable' }
-      }));
+      return { id: project.id, result: { status: 'unreachable' as const } };
     } finally {
       window.clearTimeout(timeoutId);
     }
   }, []);
 
+  // Batch health-check state update into a single setState so cards don't re-render 5 separate times
   const checkAllDeployments = useCallback(async () => {
     setIsCheckingAll(true);
-    await Promise.all(liveProjects.map((proj) => probeProject(proj)));
+    const results = await Promise.all(liveProjects.map((proj) => probeProject(proj)));
+    const nextMap: Record<string, HealthCheckResult> = {};
+    for (const item of results) {
+      if (item) nextMap[item.id] = item.result;
+    }
+    setHealthMap(nextMap);
     setIsCheckingAll(false);
   }, [liveProjects, probeProject]);
 
+  // Defer background status probes slightly so initial paint & MedVision iframe get 100% bandwidth first
   useEffect(() => {
-    if (liveProjects.length > 0) {
+    if (liveProjects.length === 0) return;
+    const timer = window.setTimeout(() => {
       checkAllDeployments();
-    }
+    }, 900);
+    return () => window.clearTimeout(timer);
   }, [checkAllDeployments, liveProjects.length]);
 
-  const handleSelectLivePreview = (projectId: string) => {
+  const handleSelectLivePreview = useCallback((projectId: string) => {
     setSelectedProjectId(projectId);
     const previewEl = document.getElementById('live-preview-stage');
     if (previewEl) {
       previewEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
-  };
+  }, []);
 
   const activeHealth = activeProject ? healthMap[activeProject.id] : undefined;
 
@@ -445,7 +509,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
                     key={proj.id}
                     type="button"
                     onClick={() => setSelectedProjectId(proj.id)}
-                    className={`px-3.5 py-2 rounded-xl text-xs font-medium flex items-center gap-2 transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                    className={`px-3.5 py-2 rounded-xl text-xs font-medium flex items-center gap-2 transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
                       isSelected
                         ? 'bg-neutral-900 text-white'
                         : 'bg-white hover:bg-neutral-200/70 text-neutral-700'
@@ -457,7 +521,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
                           ? 'bg-emerald-500'
                           : health?.status === 'unreachable'
                           ? 'bg-amber-500'
-                          : 'bg-neutral-400 animate-pulse'
+                          : 'bg-neutral-400'
                       }`}
                     />
                     <span className="font-semibold">{proj.title}</span>
@@ -510,7 +574,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
                     ? `Online (${activeHealth.latencyMs}ms)`
                     : activeHealth?.status === 'unreachable'
                     ? 'External host slow'
-                    : 'Checking...'}
+                    : 'Live Deployment'}
                 </span>
               </div>
 
@@ -522,7 +586,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
                 {activeProject.description}
               </p>
 
-              {/* Key Highlights for Active Project (especially MedVision's expanded capabilities) */}
+              {/* Key Highlights for Active Project */}
               {activeProject.features && activeProject.features.length > 0 && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 pt-1">
                   {activeProject.features.slice(0, 4).map((feat, idx) => (
@@ -608,7 +672,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
         </div>
       )}
 
-      {/* Other Projects Below — Each Showing Its Own Live Website or App Interface in a Small Card */}
+      {/* Other Projects Below — Viewport-Gated Staggered Live Interfaces */}
       <div className="space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-500">
@@ -620,7 +684,7 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {otherProjectsBelow.map((project) => {
+          {otherProjectsBelow.map((project, idx) => {
             const health = healthMap[project.id];
 
             return (
@@ -629,14 +693,13 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
                 className="rounded-2xl bg-neutral-50 hover:bg-neutral-100/70 p-4 sm:p-5 flex flex-col justify-between transition-colors gap-4"
               >
                 <div className="space-y-3.5">
-                  {/* Live Scaled Website or App Interface Preview */}
                   <MiniCardPreview
                     project={project}
                     health={health}
+                    staggerIndex={idx}
                     onSelectLive={handleSelectLivePreview}
                   />
 
-                  {/* Project Info */}
                   <div className="space-y-1.5 px-1">
                     <div className="flex items-center justify-between gap-2 text-[11px]">
                       <span className="font-semibold text-neutral-900 truncate">
@@ -662,12 +725,11 @@ export const BuildWorld: React.FC<BuildWorldProps> = ({ onOpenCaseStudy }) => {
                       {project.description}
                     </p>
 
-                    {/* Key metric pills */}
                     {project.metrics && project.metrics.length > 0 && (
                       <div className="flex flex-wrap gap-1.5 pt-1">
-                        {project.metrics.slice(0, 2).map((m, idx) => (
+                        {project.metrics.slice(0, 2).map((m, mIdx) => (
                           <span
-                            key={idx}
+                            key={mIdx}
                             className="px-2 py-0.5 rounded bg-white text-[10px] font-medium text-neutral-700"
                           >
                             {m.label}: <strong className="text-neutral-950">{m.value}</strong>

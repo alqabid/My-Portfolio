@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Briefcase, Compass, FileText, ArrowUpRight } from 'lucide-react';
+import React from 'react';
+import { Briefcase, Compass, ArrowUpRight } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 
 interface NavbarProps {
@@ -13,20 +13,10 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({
   isRecruiterMode,
   onToggleRecruiterMode,
-  onOpenResume,
   activeSection,
   onSelectTab
 }) => {
   const { personalInfo } = usePortfolio();
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navLinks = [
     { id: 'build', label: 'Projects', isTab: true },

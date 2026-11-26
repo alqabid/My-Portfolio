@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Terminal, Palette, Glasses, Sparkles, Layers, ArrowUpRight } from 'lucide-react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { Terminal, Palette, Glasses, Layers } from 'lucide-react';
 import { BuildWorld } from './BuildWorld';
-import { DesignWorld } from './DesignWorld';
-import { ARWorld } from './ARWorld';
-import { SkillConstellation } from './SkillConstellation';
 import { Project, CursorType } from '../types';
-
 import { usePortfolio } from '../context/PortfolioContext';
+
+// Lazy-load secondary showcase tabs on demand
+const DesignWorld = lazy(() =>
+  import('./DesignWorld').then((m) => ({ default: m.DesignWorld }))
+);
+const ARWorld = lazy(() =>
+  import('./ARWorld').then((m) => ({ default: m.ARWorld }))
+);
+const SkillConstellation = lazy(() =>
+  import('./SkillConstellation').then((m) => ({ default: m.SkillConstellation }))
+);
 
 interface ShowcaseHubProps {
   activeTab?: string;
@@ -15,6 +22,17 @@ interface ShowcaseHubProps {
 }
 
 export type ShowcaseTabType = 'build' | 'design' | 'ar' | 'skills';
+
+const TabLoadingFallback: React.FC = () => (
+  <div className="py-10 space-y-4 animate-pulse">
+    <div className="h-48 rounded-2xl bg-neutral-50" />
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="h-44 rounded-2xl bg-neutral-50" />
+      <div className="h-44 rounded-2xl bg-neutral-50" />
+      <div className="h-44 rounded-2xl bg-neutral-50" />
+    </div>
+  </div>
+);
 
 export const ShowcaseHub: React.FC<ShowcaseHubProps> = ({
   activeTab: externalActiveTab,
@@ -34,28 +52,24 @@ export const ShowcaseHub: React.FC<ShowcaseHubProps> = ({
     {
       id: 'build' as const,
       label: 'Software & Apps',
-      count: `${buildProjects.length} Projects`,
       icon: Terminal,
       tag: `${buildProjects.length} Builds`
     },
     {
       id: 'design' as const,
       label: 'Brand & Visual Design',
-      count: 'Visual Work',
       icon: Palette,
       tag: 'Canva & Affinity'
     },
     {
       id: 'ar' as const,
       label: 'Snapchat AR & 3D',
-      count: '18+ Lenses',
       icon: Glasses,
       tag: '850K+ Views'
     },
     {
       id: 'skills' as const,
       label: 'Tech Stack & Skills',
-      count: 'Core Tools',
       icon: Layers,
       tag: 'Code & Design'
     }
@@ -64,7 +78,7 @@ export const ShowcaseHub: React.FC<ShowcaseHubProps> = ({
   return (
     <section id="work" className="py-12 px-4 sm:px-8 max-w-7xl mx-auto">
       {/* Hub Navigation Bar (Zero borders, clean solid surfaces) */}
-      <div className="mb-10">
+      <div className="mb-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
           <div>
             <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider block mb-1">
@@ -90,9 +104,9 @@ export const ShowcaseHub: React.FC<ShowcaseHubProps> = ({
                 key={tab.id}
                 id={`tab-${tab.id}`}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-3 rounded-xl text-xs font-medium flex items-center gap-2.5 transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                className={`px-4 py-3 rounded-xl text-xs font-medium flex items-center gap-2.5 transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
                   isActive
-                    ? 'bg-neutral-900 text-white shadow-sm'
+                    ? 'bg-neutral-900 text-white'
                     : 'bg-neutral-100 hover:bg-neutral-200/80 text-neutral-700'
                 }`}
               >
@@ -112,7 +126,7 @@ export const ShowcaseHub: React.FC<ShowcaseHubProps> = ({
       </div>
 
       {/* Tab Content Display Area */}
-      <div className="transition-opacity duration-300">
+      <div>
         {activeTab === 'build' && (
           <div id="build">
             <BuildWorld
@@ -124,19 +138,25 @@ export const ShowcaseHub: React.FC<ShowcaseHubProps> = ({
 
         {activeTab === 'design' && (
           <div id="design">
-            <DesignWorld onSetCursor={onSetCursor} />
+            <Suspense fallback={<TabLoadingFallback />}>
+              <DesignWorld onSetCursor={onSetCursor} />
+            </Suspense>
           </div>
         )}
 
         {activeTab === 'ar' && (
           <div id="ar">
-            <ARWorld onSetCursor={onSetCursor} />
+            <Suspense fallback={<TabLoadingFallback />}>
+              <ARWorld onSetCursor={onSetCursor} />
+            </Suspense>
           </div>
         )}
 
         {activeTab === 'skills' && (
           <div id="skills">
-            <SkillConstellation onSetCursor={onSetCursor} />
+            <Suspense fallback={<TabLoadingFallback />}>
+              <SkillConstellation onSetCursor={onSetCursor} />
+            </Suspense>
           </div>
         )}
       </div>

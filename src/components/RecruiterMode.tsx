@@ -20,7 +20,6 @@ import {
 } from 'lucide-react';
 import { RECRUITER_DATA } from '../data/portfolioData';
 import { usePortfolio } from '../context/PortfolioContext';
-import { generateCvPdf } from '../utils/generateCvPdf';
 
 interface RecruiterModeProps {
   onExitRecruiterMode: () => void;
@@ -28,19 +27,26 @@ interface RecruiterModeProps {
 
 export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMode }) => {
   const { personalInfo: PERSONAL_INFO, experience } = usePortfolio();
-  const [downloadState, setDownloadState] = useState<'idle' | 'done'>('idle');
+  const [downloadState, setDownloadState] = useState<'idle' | 'generating' | 'done'>('idle');
 
   const handlePrint = () => {
     window.print();
   };
 
-  const handleDownloadPdf = () => {
-    generateCvPdf({
-      personalInfo: PERSONAL_INFO,
-      experience
-    });
-    setDownloadState('done');
-    setTimeout(() => setDownloadState('idle'), 2500);
+  const handleDownloadPdf = async () => {
+    if (downloadState === 'generating') return;
+    setDownloadState('generating');
+    try {
+      const { generateCvPdf } = await import('../utils/generateCvPdf');
+      generateCvPdf({
+        personalInfo: PERSONAL_INFO,
+        experience
+      });
+      setDownloadState('done');
+      setTimeout(() => setDownloadState('idle'), 2500);
+    } catch {
+      setDownloadState('idle');
+    }
   };
 
   return (
@@ -55,12 +61,18 @@ export const RecruiterMode: React.FC<RecruiterModeProps> = ({ onExitRecruiterMod
           <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={handleDownloadPdf}
-              className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
+              disabled={downloadState === 'generating'}
+              className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer disabled:opacity-70"
             >
               {downloadState === 'done' ? (
                 <>
                   <Check className="w-3.5 h-3.5" />
                   <span>CV Downloaded (.pdf)</span>
+                </>
+              ) : downloadState === 'generating' ? (
+                <>
+                  <Download className="w-3.5 h-3.5 animate-bounce" />
+                  <span>Preparing PDF...</span>
                 </>
               ) : (
                 <>

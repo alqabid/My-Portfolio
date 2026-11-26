@@ -1,21 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ShowcaseHub, ShowcaseTabType } from './components/ShowcaseHub';
 import { AboutSection } from './components/AboutSection';
 import { ContactSection } from './components/ContactSection';
-import { RecruiterMode } from './components/RecruiterMode';
-import { CaseStudyModal } from './components/CaseStudyModal';
 import { Footer } from './components/Footer';
 import { InteractiveStickman } from './components/InteractiveStickman';
-import { AdminLoginModal } from './components/admin/AdminLoginModal';
-import { AdminPortal } from './components/admin/AdminPortal';
+import { usePortfolio } from './context/PortfolioContext';
 import { Project } from './types';
 
+// Lazy-load heavy views & stealth admin modules so initial bundle stays ultra-fast
+const RecruiterMode = lazy(() =>
+  import('./components/RecruiterMode').then((m) => ({ default: m.RecruiterMode }))
+);
+const CaseStudyModal = lazy(() =>
+  import('./components/CaseStudyModal').then((m) => ({ default: m.CaseStudyModal }))
+);
+const AdminLoginModal = lazy(() =>
+  import('./components/admin/AdminLoginModal').then((m) => ({ default: m.AdminLoginModal }))
+);
+const AdminPortal = lazy(() =>
+  import('./components/admin/AdminPortal').then((m) => ({ default: m.AdminPortal }))
+);
+
 export function App() {
+  const { isAdminLoginModalOpen, isAdminPortalOpen } = usePortfolio();
   const [isRecruiterMode, setIsRecruiterMode] = useState(false);
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<Project | null>(null);
-  const [initialServiceInterest, setInitialServiceInterest] = useState<string>('');
+  const [initialServiceInterest] = useState<string>('');
   const [activeSection, setActiveSection] = useState<string>('hero');
   const [activeShowcaseTab, setActiveShowcaseTab] = useState<ShowcaseTabType>('build');
 
@@ -32,35 +44,28 @@ export function App() {
     scrollToSection('work');
   };
 
-  // Intersection Observer to track active section for navbar
+  // Single IntersectionObserver to track active section for navbar
   useEffect(() => {
     if (isRecruiterMode) return;
 
     const sectionIds = ['hero', 'work', 'about', 'contact'];
-    const observers: IntersectionObserver[] = [];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        }
+      },
+      { threshold: 0.25 }
+    );
 
     sectionIds.forEach((id) => {
       const el = document.getElementById(id);
-      if (!el) return;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(id);
-            }
-          });
-        },
-        { threshold: 0.25 }
-      );
-
-      observer.observe(el);
-      observers.push(observer);
+      if (el) observer.observe(el);
     });
 
-    return () => {
-      observers.forEach((o) => o.disconnect());
-    };
+    return () => observer.disconnect();
   }, [isRecruiterMode]);
 
   return (
@@ -68,7 +73,7 @@ export function App() {
       {/* Global Navigation Bar */}
       <Navbar
         isRecruiterMode={isRecruiterMode}
-        onToggleRecruiterMode={() => setIsRecruiterMode(!isRecruiterMode)}
+        onToggleRecruiterMode={() => setIsRecruiterMode((prev) => !prev)}
         onOpenResume={() => setIsRecruiterMode(true)}
         activeSection={activeSection}
         onSelectTab={handleSelectTab}
@@ -76,7 +81,17 @@ export function App() {
 
       {/* Mode Switcher Container */}
       {isRecruiterMode ? (
-        <RecruiterMode onExitRecruiterMode={() => setIsRecruiterMode(false)} />
+        <Suspense
+          fallback={
+            <div className="min-h-screen bg-white pt-28 px-4 sm:px-8 max-w-4xl mx-auto space-y-6 animate-pulse">
+              <div className="h-14 rounded-2xl bg-neutral-100" />
+              <div className="h-64 rounded-2xl bg-neutral-50" />
+              <div className="h-64 rounded-2xl bg-neutral-50" />
+            </div>
+          }
+        >
+          <RecruiterMode onExitRecruiterMode={() => setIsRecruiterMode(false)} />
+        </Suspense>
       ) : (
         <main className="flex flex-col">
           {/* Hero Section with Interactive Abdul Stickman Stage Avatar */}
@@ -86,7 +101,7 @@ export function App() {
             onOpenResume={() => setIsRecruiterMode(true)}
           />
 
-          {/* Streamlined Interactive Showcase Hub (Tabs: Software & AI, Design, AR Lenses, Skills) */}
+          {/* Streamlined Interactive Showcase Hub (Tabs: Software & Apps, Design, AR Lenses, Skills) */}
           <ShowcaseHub
             activeTab={activeShowcaseTab}
             onSelectCaseStudy={(project) => setSelectedCaseStudy(project)}
@@ -115,20 +130,30 @@ export function App() {
         />
       )}
 
-      {/* Full Case Study Modal */}
-      <CaseStudyModal
-        project={selectedCaseStudy}
-        onClose={() => setSelectedCaseStudy(null)}
-      />
+      {/* Full Case Study Modal (Only loaded when opened) */}
+      {selectedCaseStudy && (
+        <Suspense fallback={null}>
+          <CaseStudyModal
+            project={selectedCaseStudy}
+            onClose={() => setSelectedCaseStudy(null)}
+          />
+        </Suspense>
+      )}
 
-      {/* Admin Authentication & Login Modal (Stealth: ?admin=true or Cmd+Shift+A) */}
-      <AdminLoginModal />
+      {/* Stealth Admin Modals (Only loaded when triggered via ?admin=true or Cmd+Shift+A) */}
+      {isAdminLoginModalOpen && (
+        <Suspense fallback={null}>
+          <AdminLoginModal />
+        </Suspense>
+      )}
 
-      {/* Full-Screen Admin CMS & Backend Management Portal */}
-      <AdminPortal />
+      {isAdminPortalOpen && (
+        <Suspense fallback={null}>
+          <AdminPortal />
+        </Suspense>
+      )}
     </div>
   );
 }
-
 
 export default App;

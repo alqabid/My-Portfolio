@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ExternalLink, RefreshCw, Globe, ShieldCheck, Monitor, Maximize2 } from 'lucide-react';
+import React, { useState, useEffect, useRef, memo } from 'react';
+import { ExternalLink, RefreshCw, Globe, ShieldCheck, Monitor } from 'lucide-react';
 import { playSound } from '../utils/sound';
 
 interface WebsitePreviewProps {
@@ -12,29 +12,49 @@ interface WebsitePreviewProps {
   compact?: boolean;
 }
 
-export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
+export const WebsitePreview: React.FC<WebsitePreviewProps> = memo(({
   url,
   title,
   tagline,
-  accentColor = '#FFF35C',
+  accentColor = '#111111',
   heightClass = 'h-72 sm:h-96',
   allowLiveIframe = true,
-  compact = false,
 }) => {
   const [viewMode, setViewMode] = useState<'screenshot' | 'iframe'>(
     allowLiveIframe ? 'iframe' : 'screenshot'
   );
   const [iframeKey, setIframeKey] = useState(0);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [copied, setCopied] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  // Extract clean domain
+  // Only mount heavy external iframe when near viewport
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '250px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    setIframeLoaded(false);
+    setImageError(false);
+  }, [url, iframeKey]);
+
   const cleanDomain = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
   const faviconUrl = `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=64`;
-  
-  // Real website screenshot preview services
   const screenshotUrl = `https://api.microlink.io?url=${encodeURIComponent(url)}&screenshot=true&meta=false&embed=screenshot.url`;
-  const fallbackScreenshotUrl = `https://image.thum.io/get/width/1200/crop/800/${url}`;
 
   const handleCopyUrl = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -47,11 +67,16 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
   const handleRefresh = (e: React.MouseEvent) => {
     e.stopPropagation();
     playSound('click');
+    setIframeLoaded(false);
     setIframeKey((prev) => prev + 1);
   };
 
   return (
-    <div className="w-full rounded-2xl bg-[#111111] overflow-hidden flex flex-col">
+    <div
+      ref={wrapperRef}
+      className="w-full rounded-2xl bg-[#111111] overflow-hidden flex flex-col"
+      style={{ contain: 'layout paint style' }}
+    >
       {/* Realistic Browser Chrome / Navigation Header */}
       <div className="bg-[#1C1C1C] px-3.5 py-2.5 border-b border-[#2A2A2A] flex items-center justify-between gap-3 select-none">
         {/* Window controls */}
@@ -71,6 +96,8 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
             <img
               src={faviconUrl}
               alt=""
+              loading="lazy"
+              decoding="async"
               className="w-3.5 h-3.5 rounded-sm shrink-0"
               onError={(e) => {
                 (e.target as HTMLElement).style.display = 'none';
@@ -93,25 +120,25 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
             <div className="hidden sm:flex items-center bg-[#0D0D0D] rounded-lg p-0.5">
               <button
                 type="button"
+                onClick={() => setViewMode('iframe')}
+                className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium transition-colors cursor-pointer ${
+                  viewMode === 'iframe'
+                    ? 'bg-white text-neutral-900'
+                    : 'text-neutral-400 hover:text-white'
+                }`}
+              >
+                Live
+              </button>
+              <button
+                type="button"
                 onClick={() => setViewMode('screenshot')}
-                className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium transition-colors ${
+                className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium transition-colors cursor-pointer ${
                   viewMode === 'screenshot'
                     ? 'bg-neutral-800 text-white'
                     : 'text-neutral-400 hover:text-white'
                 }`}
               >
                 Snapshot
-              </button>
-              <button
-                type="button"
-                onClick={() => setViewMode('iframe')}
-                className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium transition-colors ${
-                  viewMode === 'iframe'
-                    ? 'bg-white text-neutral-900'
-                    : 'text-neutral-400 hover:text-white'
-                }`}
-              >
-                Interactive
               </button>
             </div>
           )}
@@ -120,7 +147,7 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
             <button
               type="button"
               onClick={handleRefresh}
-              className="p-1 rounded-md text-neutral-400 hover:text-white hover:bg-[#333333] transition-colors"
+              className="p-1 rounded-md text-neutral-400 hover:text-white hover:bg-[#333333] transition-colors cursor-pointer"
               title="Reload Frame"
             >
               <RefreshCw className="w-3.5 h-3.5" />
@@ -131,7 +158,7 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-1.5 rounded-lg bg-[#333333] hover:bg-white text-white hover:text-[#111111] transition-all flex items-center gap-1"
+            className="p-1.5 rounded-lg bg-[#333333] hover:bg-white text-white hover:text-[#111111] transition-colors flex items-center gap-1"
             title="Open Live Web App in New Tab"
           >
             <ExternalLink className="w-3.5 h-3.5" />
@@ -142,24 +169,36 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
       {/* Preview Viewport Canvas */}
       <div className={`relative w-full ${heightClass} bg-[#0D0D0D] overflow-hidden flex items-center justify-center`}>
         {viewMode === 'iframe' ? (
-          <iframe
-            key={iframeKey}
-            src={url}
-            title={`${title} Live Preview`}
-            className="w-full h-full border-0 bg-white"
-            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-            loading="lazy"
-          />
+          <>
+            {!iframeLoaded && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-neutral-950 text-neutral-400 z-10 pointer-events-none">
+                <div className="w-5 h-5 rounded-full border-2 border-neutral-700 border-t-white animate-spin" />
+                <span className="text-[11px] font-mono">Loading {cleanDomain}...</span>
+              </div>
+            )}
+            {isInView && (
+              <iframe
+                key={iframeKey}
+                src={url}
+                title={`${title} Live Preview`}
+                onLoad={() => setIframeLoaded(true)}
+                className={`w-full h-full border-0 bg-white transition-opacity duration-300 ${
+                  iframeLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                loading="lazy"
+              />
+            )}
+          </>
         ) : (
           <div className="relative w-full h-full bg-[#151515] flex flex-col justify-between">
-            {/* Real Screenshot Preview from URL */}
             {!imageError ? (
               <img
                 src={screenshotUrl}
                 alt={`${title} Real Website Preview`}
-                onError={() => {
-                  setImageError(true);
-                }}
+                loading="lazy"
+                decoding="async"
+                onError={() => setImageError(true)}
                 className="w-full h-full object-cover object-top"
               />
             ) : (
@@ -168,7 +207,7 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
                   className="w-14 h-14 rounded-2xl flex items-center justify-center border border-neutral-700 mb-3"
                   style={{ backgroundColor: `${accentColor}20` }}
                 >
-                  <Globe className="w-7 h-7" style={{ color: accentColor }} />
+                  <Globe className="w-7 h-7 text-white" />
                 </div>
                 <h4 className="text-white font-display font-extrabold text-lg sm:text-xl">
                   {title}
@@ -194,7 +233,7 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4 sm:p-5 flex flex-wrap items-end justify-between gap-3">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-[#10B981]" />
                   <span className="text-[10px] font-mono uppercase tracking-wider text-[#10B981] font-bold">
                     LIVE PRODUCTION DEPLOYMENT
                   </span>
@@ -214,10 +253,10 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
                   <button
                     type="button"
                     onClick={() => setViewMode('iframe')}
-                    className="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono text-xs backdrop-blur-sm transition-colors flex items-center gap-1.5 cursor-pointer"
+                    className="px-3 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 text-white font-mono text-xs transition-colors flex items-center gap-1.5 cursor-pointer"
                   >
                     <Monitor className="w-3.5 h-3.5 text-white" />
-                    <span>Interactive View</span>
+                    <span>Live View</span>
                   </button>
                 )}
                 <a
@@ -236,4 +275,6 @@ export const WebsitePreview: React.FC<WebsitePreviewProps> = ({
       </div>
     </div>
   );
-};
+});
+
+WebsitePreview.displayName = 'WebsitePreview';

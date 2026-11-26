@@ -108,6 +108,47 @@
   animation: pulseGlow 4s ease-in-out infinite;
 }
 
+@keyframes stickmanBob {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+@keyframes stickmanWave {
+  0%, 100% {
+    transform: rotate(-7deg);
+  }
+  50% {
+    transform: rotate(7deg);
+  }
+}
+
+@keyframes fadeInFast {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 4px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-stickman-bob {
+  animation: stickmanBob 2.6s ease-in-out infinite;
+}
+
+.animate-stickman-wave {
+  animation: stickmanWave 0.9s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeInFast 0.18s ease-out both;
+}
+
 /* Explicit Print Media Optimization for Clean Resume Output */
 @media print {
   header,

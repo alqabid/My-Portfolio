@@ -2,6 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { ArrowUp, Github, Linkedin, MessageSquare, Mail, Glasses } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 
+const GhanaClock: React.FC = () => {
+  const [ghanaTime, setGhanaTime] = useState<string>('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setGhanaTime(
+        new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Africa/Accra',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true
+        }).format(now)
+      );
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return <span className="text-neutral-700 font-medium">{ghanaTime || 'GMT'}</span>;
+};
+
 export const Footer: React.FC = () => {
   const {
     personalInfo: PERSONAL_INFO,
@@ -10,25 +34,13 @@ export const Footer: React.FC = () => {
     setIsAdminLoginModalOpen
   } = usePortfolio();
 
-  const [ghanaTime, setGhanaTime] = useState<string>('');
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: 'Africa/Accra',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true
-      };
-      setGhanaTime(new Intl.DateTimeFormat('en-US', options).format(now));
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  const handleOpenAdmin = () => {
+    if (isAdminLoggedIn) {
+      setIsAdminPortalOpen(true);
+    } else {
+      setIsAdminLoginModalOpen(true);
+    }
+  };
 
   useEffect(() => {
     // Secret keyboard shortcut: Ctrl+Shift+A or Cmd+Shift+A
@@ -53,14 +65,6 @@ export const Footer: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleOpenAdmin = () => {
-    if (isAdminLoggedIn) {
-      setIsAdminPortalOpen(true);
-    } else {
-      setIsAdminLoginModalOpen(true);
-    }
-  };
-
   return (
     <footer className="print:hidden bg-white py-12 px-4 sm:px-8 select-none">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
@@ -79,7 +83,7 @@ export const Footer: React.FC = () => {
             {PERSONAL_INFO.titles}
           </p>
           <p className="text-[11px] text-neutral-400">
-            Accra, Ghana · Local Time: <span className="text-neutral-700 font-medium">{ghanaTime || 'GMT'}</span>
+            Accra, Ghana · Local Time: <GhanaClock />
           </p>
         </div>
 
